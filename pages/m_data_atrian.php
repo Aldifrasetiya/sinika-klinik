@@ -87,6 +87,7 @@ require_once("{$base_dir}pages{$ds}core{$ds}header.php");
                                         <th>Nama</th>
                                         <th>Alamat</th>
                                         <th>No Telepon</th>
+                                        <th>Jenis Asuransi</th>
                                         <th style="width: 10%">Action</th>
                                     </tr>
                                 </thead>
@@ -97,6 +98,7 @@ require_once("{$base_dir}pages{$ds}core{$ds}header.php");
                                         <td>Aldi Frasetiya</td>
                                         <td>Lubang Sari</td>
                                         <td>081234567890</td>
+                                        <td>BPJS</td>
                                         <td>
                                             <div class="form-button-action">
                                                 <button type="button" data-toggle="tooltip" title=""
