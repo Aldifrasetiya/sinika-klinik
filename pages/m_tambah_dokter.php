@@ -1,8 +1,9 @@
 <?php
 
 $ds = DIRECTORY_SEPARATOR;
-$base_dir = realpath(dirname(__FILE__) . $ds . '..') . $ds;
+$base_dir = realpath(dirname(__FILE__).$ds.'..').$ds;
 require_once("{$base_dir}pages{$ds}core{$ds}header.php");
+require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
 
 
 ?>
@@ -39,34 +40,36 @@ require_once("{$base_dir}pages{$ds}core{$ds}header.php");
                         </li> -->
                     </ul>
                 </div>
-                <div class="row">
-                    <div class="col-md-3 col-lg-6">
-                        <div class="mb-3">
-                            <label for="name">Nama</label>
-                            <input type="text" class="form-control" id="name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="spesialis">Spesialis</label>
-                            <input type="text" class="form-control" id="spesialis">
-                        </div>
-                        <div class="mb-3">
-                            <label for="notlp">No Telepon</label>
-                            <input type="text" class="form-control" id="notlp">
-                        </div>
-                        <div class="mb-3">
-                            <label for="hari">Hari</label>
-                            <input type="date" class="form-control" id="hari">
-                        </div>
-                        <div class="mb-3">
-                            <label for="jamPraktek">Jam Praktek</label>
-                            <input type="time" class="form-control" id="jamPraktek">
-                        </div>
-                        <div class="card-action m-2">
-                            <button class="btn btn-success">Tambah</button>
-                            <button class="btn btn-danger">Batal</button>
+                <form action="./../backend/proses_jadwal_dokter.php" method="POST">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-6">
+                            <div class="mb-3">
+                                <label for="name">Nama Dokter</label>
+                                <input type="text" class="form-control" name="namaDokter" id="name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="spesialis">Spesialis</label>
+                                <input type="text" class="form-control" name="spesialis" id="spesialis">
+                            </div>
+                            <div class="mb-3">
+                                <label for="notlp">No Telepon</label>
+                                <input type="text" class="form-control" name="notlp" id="notlp">
+                            </div>
+                            <div class="mb-3">
+                                <label for="hari">Hari</label>
+                                <input type="date" class="form-control" name="hariPraktek" id="hariPraktek">
+                            </div>
+                            <div class="mb-3">
+                                <label for="jamPraktek">Jam Praktek</label>
+                                <input type="time" class="form-control" name="jamPraktek" id="jamPraktek">
+                            </div>
+                            <div class="card-action m-2">
+                                <button type="submit" name="Tambah" class="btn btn-success">Tambah</button>
+                                <button class="btn btn-danger">Batal</button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>

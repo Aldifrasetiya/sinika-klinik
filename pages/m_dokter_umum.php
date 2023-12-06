@@ -1,8 +1,10 @@
 <?php
 
 $ds = DIRECTORY_SEPARATOR;
-$base_dir = realpath(dirname(__FILE__) . $ds . '..') . $ds;
+$base_dir = realpath(dirname(__FILE__).$ds.'..').$ds;
+// $base_dir2 = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..') . $ds;
 require_once("{$base_dir}pages{$ds}core{$ds}header.php");
+require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
 
 
 ?>
@@ -23,7 +25,7 @@ require_once("{$base_dir}pages{$ds}core{$ds}header.php");
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="#">Jadwal Dokter</a>
+                            <a href="m_dokter_umum.php">Jadwal Dokter Umum</a>
                         </li>
                         <!-- <li class="separator">
                             <i class="flaticon-right-arrow"></i>
@@ -41,127 +43,73 @@ require_once("{$base_dir}pages{$ds}core{$ds}header.php");
                                     <span class="btn-label">
                                         <i class="fa-solid fa-user-plus"></i>
                                     </span>
-                                    Tambah Dokter
+                                    Tambah Jadwal Dokter
                                 </a>
                             </div>
                         </div>
                         <div class="card-body">
-                            <!-- Modal -->
-                            <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header no-bd">
-                                            <h5 class="modal-title">
-                                                <span class="fw-mediumbold">
-                                                    New</span>
-                                                <span class="fw-light">
-                                                    Row
-                                                </span>
-                                            </h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form>
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <div class="form-group form-group-default">
-                                                            <label>#</label>
-                                                            <input id="addNomor" type="text" class="form-control"
-                                                                placeholder="fill nomor">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-12">
-                                                        <div class="form-group form-group-default">
-                                                            <label>Nama</label>
-                                                            <input id="addName" type="text" class="form-control"
-                                                                placeholder="fill name">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 pr-0">
-                                                        <div class="form-group form-group-default">
-                                                            <label>Jabatan</label>
-                                                            <input id="addPosition" type="text" class="form-control"
-                                                                placeholder="fill position">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group form-group-default">
-                                                            <label>Office</label>
-                                                            <input id="addOffice" type="text" class="form-control"
-                                                                placeholder="fill office">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="modal-footer no-bd">
-                                            <button type="button" id="addRowButton" class="btn btn-primary">Add</button>
-                                            <button type="button" class="btn btn-danger"
-                                                data-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="table-responsive">
                                 <table id="add-row" class="display table table-striped table-hover">
-                                    <thead>
+                                    <thead class="text-center">
                                         <tr>
                                             <th>#</th>
                                             <th>ID Dokter</th>
                                             <th>Nama</th>
                                             <th>Spesialis</th>
                                             <th>No Telepon</th>
+                                            <th>Hari Praktek</th>
                                             <th>Jam Praktek</th>
-                                            <th style="width: 10%">Action</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>1</td>
-                                            <td>DKT0001</td>
-                                            <td>dr. Aldi Frasetiya</td>
-                                            <td>Dokter Umum Gigi</td>
-                                            <td>081234567890</td>
-                                            <td>08:00 - 12:00</td>
+                                            <?php
+
+                                            $jadwalDokter = mysqli_query($db_connect, "SELECT * FROM jadwal_dokter");
+                                            $no = 1;
+
+                                            while($row = mysqli_fetch_array($QueryGetListDokter)) {
+                                                ?>
+                                            <tr>
+                                                <td>
+                                                    <?= $no++; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['id_dokter'] ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['nama_dokter']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['spesialis']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['no_hp']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['hari_praktek']; ?>
+                                                </td>
+                                                <td>
+                                                    <?= $row['jam_praktek']; ?>
+                                                </td>
+                                                <td style='vertical-align: middle;'>
+                                                    <a href='m_ubah_dokter.php?id=<?= $row['id_dokter']; ?>'>
+                                                        <button type="button" class="btn btn-warning">Edit</button>
+                                                    </a>
+                                                </td>
+                                                <td style='vertical-align: middle;'><button type="button"
+                                                        href='./../backend/hapus_jadwal_dokter.php?id_dokter=<?= $row['id_dokter']; ?>'
+                                                        class='btn btn-danger delete'>Hapus</button></td>
+                                            </tr>
+
+                                        <?php } ?>
+                                        <!-- <td style="width: 40%; vertical-align: middle;">A warning message, with a
+                                                function attached to the "Confirm" Button</td>
                                             <td>
-                                                <div class="form-button-action">
-                                                    <button type="button" data-toggle="tooltip" title=""
-                                                        class="btn btn-link btn-primary btn-lg"
-                                                        data-original-title="Edit Task">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <button type="button" data-toggle="tooltip" title=""
-                                                        class="btn btn-link btn-danger" data-original-title="Remove">
-                                                        <i class="fa-solid fa-trash"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                    <tbody>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>DKT0002</td>
-                                            <td>dr. Teguh Pratama</td>
-                                            <td>Dokter Umum Anak</td>
-                                            <td>083214567890</td>
-                                            <td>12:00 - 18:00</td>
-                                            <td>
-                                                <div class="form-button-action">
-                                                    <button type="button" data-toggle="tooltip" title=""
-                                                        class="btn btn-link btn-primary btn-lg"
-                                                        data-original-title="Edit Task">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <button type="button" data-toggle="tooltip" title=""
-                                                        class="btn btn-link btn-danger" data-original-title="Remove">
-                                                        <i class="fa-solid fa-trash"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
+                                                <button type="button" class="btn btn-success" id="alert_demo_7">Show
+                                                    me</button>
+                                            </td> -->
                                         </tr>
                                     </tbody>
                                 </table>
@@ -173,6 +121,59 @@ require_once("{$base_dir}pages{$ds}core{$ds}header.php");
         </div>
     </div>
 </body>
+<script>
+    const SweetAlert2Demo = function () {
+        const initDemos = function () {
+            $('.delete').click(function (e) {
+                var url = e.target.getAttribute('href');
+                swal({
+                    title: 'Yakin ingin menghapus?',
+                    text: "Data tidak bisa kembali jika terhapus!",
+                    type: 'warning',
+                    buttons: {
+                        confirm: {
+                            text: 'Hapus',
+                            className: 'btn btn-success'
+                        },
+                        cancel: {
+                            text: 'Batal',
+                            visible: true,
+                            className: 'btn btn-danger'
+                        }
+                    }
+                }).then((Delete) => {
+                    if (Delete) {
+                        swal({
+                            title: 'Data Terhapus!',
+                            text: 'Data Jadwal Dokter Terhapus',
+                            type: 'success',
+                            buttons: {
+                                confirm: {
+                                    className: 'btn btn-success'
+                                }
+                            }
+
+                        });
+                        window.location.href = url;
+                    } else {
+                        swal.close();
+                    }
+                });
+            });
+        };
+        return {
+            //== Init
+            init: function () {
+                initDemos();
+            },
+        };
+    }();
+
+    //== Class Initialization
+    jQuery(document).ready(function () {
+        SweetAlert2Demo.init();
+    });
+</script>
 
 <?php
 require_once("{$base_dir}pages{$ds}core{$ds}footer.php");
