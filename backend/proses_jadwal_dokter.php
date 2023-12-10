@@ -4,8 +4,8 @@ include "config/db-klinik.php";
 
 $QueryGetListDokter = mysqli_query($db_connect, "SELECT * FROM jadwal_dokter");
 
-// tambah_jadwal_dokter.php
-if(isset($_POST["Tambah"])) {
+// tambah jadwal dokter php
+if (isset($_POST["Tambah"])) {
     global $db_connect;
     // Ambil data dari formulir
     $nama_dokter = mysqli_real_escape_string($db_connect, $_POST['namaDokter']);
@@ -14,15 +14,15 @@ if(isset($_POST["Tambah"])) {
     $hp = mysqli_real_escape_string($db_connect, $_POST['hariPraktek']);
     $jp = mysqli_real_escape_string($db_connect, $_POST['jamPraktek']);
 
-    $QueryAddDokter = "INSERT INTO jadwal_dokter(nama_dokter, spesialis, no_hp, hari_praktek, jam_praktek) VALUES('".$nama_dokter."','".$spesialis."','".$no_tlp."','".$hp."','".$jp."')";
+    $QueryAddDokter = "INSERT INTO jadwal_dokter(nama_dokter, spesialis, no_hp, hari_praktek, jam_praktek) VALUES('" . $nama_dokter . "','" . $spesialis . "','" . $no_tlp . "','" . $hp . "','" . $jp . "')";
 
     $ResultQueryAddDokter = mysqli_query($db_connect, $QueryAddDokter);
 
-    header("Location: ./../pages/m_dokter_umum.php");
+    header("Location: ../pages/content/admin/m_dokter_umum.php");
 }
 
-// edit_jadwal_dokter.php
-if(isset($_POST["UbahJadwal"])) {
+// edit jadwal dokter
+if (isset($_POST["UbahJadwal"])) {
     global $db_connect;
     // Ambil data dari formulir
     $id_dokter = mysqli_real_escape_string($db_connect, $_POST['id_dokter']);
@@ -39,7 +39,15 @@ if(isset($_POST["UbahJadwal"])) {
     // var_dump($id_dokter);
     // die;
 
-    header("Location: ./../pages/m_dokter_umum.php");
+    header("Location: ../pages/content/admin/m_dokter_umum.php");
+}
+
+// hapus jadwal dokter
+if (isset($_GET['id_dokter'])) {
+    mysqli_query($db_connect, "DELETE FROM jadwal_dokter WHERE id_dokter='$_GET[id_dokter]'");
+
+    header("Location: ../pages/content/admin/m_dokter_umum.php");
+    die();
 }
 
 

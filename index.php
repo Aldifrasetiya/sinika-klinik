@@ -31,29 +31,26 @@
               <h5 class="card-title text-center pb-0 fs-4">Login</h5>
             </div>
 
-            <form action="./../backend/login.php" method="POST" class="row g-3 needs-validation">
+            <form action="./backend/login.php" method="POST" class="row g-3 needs-validation">
 
               <div class="col-12">
                 <div class="form-floating mb-3">
-                  <input type="text" class="form-control" name="username" id="username" placeholder="username">
-                  <label for="floatingInput">Username</label>
+                  <input type="text" class="form-control" name="email" id="email" placeholder="email">
+                  <label>Email</label>
                 </div>
               </div>
 
               <div class="col-12">
                 <div class="form-floating mb-3">
                   <input type="password" class="form-control" name="password" id="password" placeholder="password">
-                  <label for="floatingInput">Password</label>
+                  <label>Password</label>
                 </div>
               </div>
 
 
               <div class="col-12">
                 <!-- <button class="btn btn-primary w-100" type="submit">Login</button> -->
-                <a href="./pages/dashboard.php" class="btn btn-primary w-100" type="submit" name="login">Login</a>
-              </div>
-              <div class="col-12">
-                <p class="small mb-0">Belum punya akun? <a href="register.php">Buat akun</a></p>
+                <input class="btn btn-primary w-100" type="submit" value="Login" name="login"></input>
               </div>
             </form>
 
