@@ -1,11 +1,9 @@
-# Atlantis-Lite
+# SINIKA - Sistem Informasi Klinik Aisha Medika
 
-![](http://themekita.com/assets/images/atlantislite.png)
+SINIKA merupakan sistem informasi klinik yang dibuat berdasarkan permasalahan pada Klinik Aisha Medika. Fitur-fitur dalam SINIKA adalah sebagai berikut:
+1. Admin: Untuk memananage data antrian, data pasien, jadwal dokter, data obat & resep, dan fitur-fitur lainnya (akan selalu update)
+2. Owner: Untuk memantau perkembangan bisnis Klinik Aisha Medika itu sendiri.
+3. Pasien: Untuk mendaftar dan membuat janji temu dengan dokter.
 
-Free Bootstrap 4 Admin Dashboard
-
-Atlantis Lite is a free bootstrap 4 admin dashboard that is beautifully and elegantly designed to display various metrics, numbers or data visualization.
-
-Atlantis Lite admin dashboard has 2 layouts, many plugins and UI components to help developers create dashboards quickly and effectively so they can save development time and also help users to make the right and fast decisions based on existing data.
-
-We made documentation how you started using this dashboard template and use available components and plugins.
+Fitur-fitur diatas akan selalu di update. Support terus karya dari Mahasiswa UBP (SINIKA by UBP Team)
+Terima Kasih😊
