@@ -5,15 +5,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>SINIKA - Sistem Informasi Klinik Aisha Medika</title>
   <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-  <link rel="icon" href="../assets/img/logo-SINIKA.png" type="image/x-icon" />
+  <link rel="icon" href="../../../assets/img/logo-SINIKA.png" type="image/x-icon" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
   <!-- Fonts and icons -->
-  <script src="../assets/js/plugin/webfont/webfont.min.js"></script>
+  <script src="../../../assets/js/plugin/webfont/webfont.min.js"></script>
   <script>
     WebFont.load({
       google: { "families": ["Lato:300,400,700,900"] },
-      custom: { "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['../assets/css/fonts.min.css'] },
+      custom: { "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['../../../assets/css/fonts.min.css'] },
       active: function () {
         sessionStorage.fonts = true;
       }
@@ -21,11 +21,11 @@
   </script>
 
   <!-- CSS Files -->
-  <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../assets/css/atlantis.min.css">
+  <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../../assets/css/atlantis.min.css">
 
   <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link rel="stylesheet" href="../assets/css/demo.css">
+  <link rel="stylesheet" href="../../../assets/css/demo.css">
 </head>
 
 <body>
@@ -35,7 +35,7 @@
       <div class="logo-header" data-background-color="blue">
 
         <a href="index.html" class="logo">
-          <img width="160" height="60" src="../assets/img/logo-SINIKA-DARK.png" alt="navbar brand"
+          <img width="160" height="60" src="../../../assets/img/logo-SINIKA-DARK.png" alt="navbar brand"
             class="navbar-brand">
         </a>
         <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
@@ -91,7 +91,7 @@
                       </a>
                       <a href="#">
                         <div class="notif-img">
-                          <img src="../assets/img/profile2.jpg" alt="Img Profile">
+                          <img src="../../../assets/img/profile2.jpg" alt="Img Profile">
                         </div>
                         <div class="notif-content">
                           <span class="block">
@@ -121,14 +121,14 @@
             <li class="nav-item dropdown hidden-caret">
               <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
                 <div class="avatar-sm">
-                  <img src="../assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+                  <img src="../../../assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
                 </div>
               </a>
               <ul class="dropdown-menu dropdown-user animated fadeIn">
                 <div class="dropdown-user-scroll scrollbar-outer">
                   <li>
                     <div class="user-box">
-                      <div class="avatar-lg"><img src="../assets/img/profile.jpg" alt="image profile"
+                      <div class="avatar-lg"><img src="../../../assets/img/profile.jpg" alt="image profile"
                           class="avatar-img rounded"></div>
                       <div class="u-text">
                         <h4>Hizrian</h4>
@@ -145,7 +145,7 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Account Setting</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="./../backend/logout.php">Logout</a>
+                    <a class="dropdown-item" href="./../../../backend/logout.php">Logout</a>
                   </li>
                 </div>
               </ul>
@@ -162,46 +162,46 @@
 
 
 <!--   Core JS Files   -->
-<script src="../assets/js/core/jquery.3.2.1.min.js"></script>
-<script src="../assets/js/core/popper.min.js"></script>
-<script src="../assets/js/core/bootstrap.min.js"></script>
+<script src="../../../assets/js/core/jquery.3.2.1.min.js"></script>
+<script src="../../../assets/js/core/popper.min.js"></script>
+<script src="../../../assets/js/core/bootstrap.min.js"></script>
 
 <!-- jQuery UI -->
-<script src="../assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-<script src="../assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+<script src="../../../assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<script src="../../../assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
 
 <!-- jQuery Scrollbar -->
-<script src="../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+<script src="../../../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
 
 
 <!-- Chart JS -->
-<script src="../assets/js/plugin/chart.js/chart.min.js"></script>
+<script src="../../../assets/js/plugin/chart.js/chart.min.js"></script>
 
 <!-- jQuery Sparkline -->
-<script src="../assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+<script src="../../../assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
 
 <!-- Chart Circle -->
-<script src="../assets/js/plugin/chart-circle/circles.min.js"></script>
+<script src="../../../assets/js/plugin/chart-circle/circles.min.js"></script>
 
 <!-- Datatables -->
-<script src="../assets/js/plugin/datatables/datatables.min.js"></script>
+<script src="../../../assets/js/plugin/datatables/datatables.min.js"></script>
 
 <!-- Bootstrap Notify -->
-<script src="../assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+<script src="../../../assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
 
 <!-- jQuery Vector Maps -->
-<script src="../assets/js/plugin/jqvmap/jquery.vmap.min.js"></script>
-<script src="../assets/js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
+<script src="../../../assets/js/plugin/jqvmap/jquery.vmap.min.js"></script>
+<script src="../../../assets/js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
 
 <!-- Sweet Alert -->
-<script src="../assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+<script src="../../../assets/js/plugin/sweetalert/sweetalert.min.js"></script>
 
 <!-- Atlantis JS -->
-<script src="../assets/js/atlantis.min.js"></script>
+<script src="../../../assets/js/atlantis.min.js"></script>
 
 <!-- Atlantis DEMO methods, don't include it in your project! -->
-<script src="../assets/js/setting-demo.js"></script>
-<script src="../assets/js/demo.js"></script>
+<script src="../../../assets/js/setting-demo.js"></script>
+<script src="../../../assets/js/demo.js"></script>
 <script>
   Circles.create({
     id: 'circles-1',
@@ -296,4 +296,4 @@
     fillColor: 'rgba(255, 165, 52, .14)'
   });
 </script>
-<?php include 'sidebar.php' ?>
+<?php include 's_admin.php' ?>

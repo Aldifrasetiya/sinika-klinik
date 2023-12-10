@@ -4,7 +4,7 @@
     <div class="sidebar-content">
       <div class="user">
         <div class="avatar-sm float-left mr-2">
-          <img src="../assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+          <img src="../../../assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
         </div>
         <div class="info">
           <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
@@ -68,12 +68,12 @@
           <div class="collapse" id="base">
             <ul class="nav nav-collapse">
               <li>
-                <a href="./../pages/content/admin/m_data_antrian">
+                <a href="../admin/m_data_antrian">
                   <span class="sub-item">Data Antrian</span>
                 </a>
               </li>
               <li>
-                <a href="./../pages/content/admin/m_data_pasien">
+                <a href="../admin/m_data_pasien">
                   <span class="sub-item">Data Pasien</span>
                 </a>
               </li>
@@ -89,7 +89,7 @@
           <div class="collapse" id="sidebarLayouts">
             <ul class="nav nav-collapse">
               <li>
-                <a href="./../pages/content/admin/m_dokter_umum">
+                <a href="../admin/m_dokter_umum">
                   <span class="sub-item">Dokter Umum</span>
                 </a>
               </li>
@@ -110,7 +110,7 @@
           <div class="collapse" id="obat">
             <ul class="nav nav-collapse">
               <li>
-                <a href="./../pages/content/admin/m_data_obat">
+                <a href="../admin/m_data_obat">
                   <span class="sub-item">Obat</span>
                 </a>
               </li>

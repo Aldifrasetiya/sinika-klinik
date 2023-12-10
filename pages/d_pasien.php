@@ -1,8 +1,9 @@
 <?php
 
 $ds = DIRECTORY_SEPARATOR;
-$base_dir = realpath(dirname(__FILE__) . $ds . '..') . $ds;
+$base_dir = realpath(dirname(__FILE__).$ds.'..').$ds;
 require_once("{$base_dir}pages{$ds}core{$ds}h_pasien.php");
+require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
 
 ?>
 
@@ -74,26 +75,45 @@ require_once("{$base_dir}pages{$ds}core{$ds}h_pasien.php");
                   <th>ID Dokter</th>
                   <th>Nama</th>
                   <th>Spesialis</th>
+                  <th>No Telepon</th>
+                  <th>Hari Praktek</th>
                   <th>Jam Praktek</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>1</td>
-                  <td>DKT0001</td>
-                  <td>dr. Aldi Frasetiya</td>
-                  <td>Dokter Umum Anak</td>
-                  <td>08:00 - 12:00</td>
-                </tr>
-              </tbody>
-              <tbody>
-                <tr>
-                  <td>2</td>
-                  <td>DKT0002</td>
-                  <td>dr. Teguh Pratama</td>
-                  <td>Dokter Umum Gigi</td>
-                  <td>12:00 - 18:00</td>
-                </tr>
+                  <?php
+
+                  $jadwalDokter = mysqli_query($db_connect, "SELECT * FROM jadwal_dokter");
+                  $no = 1;
+
+                  while($row = mysqli_fetch_array($jadwalDokter)) {
+                    ?>
+                  <tr>
+                    <td>
+                      <?= $no++; ?>
+                    </td>
+                    <td>
+                      <?= $row['id_dokter']; ?>
+                    </td>
+                    <td>
+                      <?= $row['nama_dokter']; ?>
+                    </td>
+                    <td>
+                      <?= $row['spesialis']; ?>
+                    </td>
+                    <td>
+                      <?= $row['no_hp']; ?>
+                    </td>
+                    <td>
+                      <?= $row['hari_praktek']; ?>
+                    </td>
+                    <td>
+                      <?= $row['jam_praktek']; ?>
+                    </td>
+                  </tr>
+
+                <?php } ?>
               </tbody>
             </table>
           </div>
