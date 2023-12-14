@@ -13,7 +13,7 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
         <div class="content">
             <div class="page-inner">
                 <div class="page-header">
-                    <h4 class="page-title">Data Obat</h4>
+                    <h4 class="page-title">Data Resep</h4>
                     <ul class="breadcrumbs">
                         <li class="nav-home">
                             <a href="dashboard.php">
@@ -24,7 +24,7 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="m_data_atrian.php">Obat</a>
+                            <a href="m_data_atrian.php">Resep</a>
                         </li>
                         <!-- <li class="separator">
                             <i class="flaticon-right-arrow"></i>
@@ -45,7 +45,7 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
                                     <span class="btn-label">
                                         <i class="fa-regular fa-plus"></i>
                                     </span>
-                                    Tambah Obat
+                                    Tambah Resep
                                 </a>
                             </div>
                             <table id="add-row" class="display table table-striped table-hover">
@@ -69,9 +69,6 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
                                         while ($row = mysqli_fetch_array($dataObat)) {
                                             ?>
                                             <td>
-                                                <?= $no++; ?>
-                                            </td>
-                                            <td>
                                                 <?= $row['id_obat']; ?>
                                             </td>
                                             <td>
@@ -86,14 +83,19 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
                                             <td>
                                                 <?= $row['stok']; ?>
                                             </td>
-                                            <td style='vertical-align: middle;'>
-                                                <a href='m_ubah_data_obat.php?id=<?= $row['id_dokter']; ?>'>
-                                                    <button type="button" class="btn btn-warning">Edit</button>
-                                                </a>
-                                                <button type="button"
-                                                    href='../../../backend/proses_data_obat.php?id_dokter=<?= $row['id_dokter']; ?>'
-                                                    class='btn btn-danger delete'>Hapus</button>
-                                            </td>
+                                            <td></td>
+                                            <td>
+                                                <div class="form-button-action">
+                                                    <button type="button" data-toggle="tooltip" title=""
+                                                        class="btn btn-link btn-primary btn-lg"
+                                                        data-original-title="Edit Task">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                    <button type="button" data-toggle="tooltip" title=""
+                                                        class="btn btn-link btn-danger" data-original-title="Remove">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </div>
                                             </td>
                                         </tr>
                                         <?php
