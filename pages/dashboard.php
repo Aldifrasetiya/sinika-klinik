@@ -46,6 +46,23 @@ require_once("{$base_dir}pages{$ds}core{$ds}header.php");
           </div>
         </div>
       </div>
+      <?php
+
+      include('../backend/config/db-klinik.php');
+
+      // data Realtime antrian
+      $dataRealtimeAntrian = mysqli_query($db_connect, "SELECT count(no_antrian) AS jmlh_antrian FROM antrian");
+      $viewAntrian = mysqli_fetch_array($dataRealtimeAntrian);
+
+      // data Realtime dokter
+      $dataRealtimeDokter = mysqli_query($db_connect, "SELECT count(id_dokter) AS jmlh_dokter FROM jadwal_dokter");
+      $viewDokter = mysqli_fetch_array($dataRealtimeDokter);
+
+      // data Realtime pasien
+      $dataRealtimePasien = mysqli_query($db_connect, "SELECT count(id_pasien) AS jmlh_pasien FROM pasien");
+      $viewPasien = mysqli_fetch_array($dataRealtimePasien);
+
+      ?>
       <div class="page-inner mt--5">
         <div class="row mt--2">
           <div class="col-sm-6 col-md-3">
@@ -60,7 +77,9 @@ require_once("{$base_dir}pages{$ds}core{$ds}header.php");
                   <div class="col-7 col-stats">
                     <div class="numbers">
                       <p class="card-category">Antrian</p>
-                      <h4 class="card-title">20</h4>
+                      <h4 class="card-title">
+                        <?php echo $viewAntrian['jmlh_antrian']; ?>
+                      </h4>
                     </div>
                   </div>
                 </div>
@@ -79,7 +98,9 @@ require_once("{$base_dir}pages{$ds}core{$ds}header.php");
                   <div class="col-7 col-stats">
                     <div class="numbers">
                       <p class="card-category">Dokter</p>
-                      <h4 class="card-title">2</h4>
+                      <h4 class="card-title">
+                        <?php echo $viewDokter['jmlh_dokter']; ?>
+                      </h4>
                     </div>
                   </div>
                 </div>
@@ -98,7 +119,9 @@ require_once("{$base_dir}pages{$ds}core{$ds}header.php");
                   <div class="col-7 col-stats">
                     <div class="numbers">
                       <p class="card-category">Pasien</p>
-                      <h4 class="card-title">50</h4>
+                      <h4 class="card-title">
+                        <?php echo $viewPasien['jmlh_pasien']; ?>
+                      </h4>
                     </div>
                   </div>
                 </div>
