@@ -3,7 +3,7 @@
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..' . $ds) . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
-
+require_once("{$base_dir}backend{$ds}proses_antrian_pasien.php");
 
 ?>
 
@@ -47,52 +47,118 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
                                     Tambah Antrian
                                 </a>
                             </div>
-                            <table id="add-row" class="display table table-striped table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>ID Pasien</th>
-                                        <th>Nama</th>
-                                        <th>Alamat</th>
-                                        <th>No Telepon</th>
-                                        <th>Jenis Asuransi</th>
-                                        <th style="width: 10%">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>PSN0001</td>
-                                        <td>Aldi Frasetiya</td>
-                                        <td>Lubang Sari</td>
-                                        <td>081234567890</td>
-                                        <td>BPJS</td>
-                                        <td>
-                                            <div class="form-button-action">
-                                                <button type="button" data-toggle="tooltip" title=""
-                                                    class="btn btn-link btn-primary btn-lg"
-                                                    data-original-title="Edit Task">
-                                                    <i class="fa fa-edit"></i>
-                                                </button>
-                                                <button type="button" data-toggle="tooltip" title=""
-                                                    class="btn btn-link btn-danger" data-original-title="Remove">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="add-row" class="display table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Nomor Antrian</th>
+                                                <th>Nama Pasien</th>
+                                                <th>ID Dokter</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <?php
+                                                $antrianPasien = mysqli_query($db_connect, "SELECT * FROM antrian");
+                                                $no = 1;
+
+                                                while ($row = mysqli_fetch_array($antrianPasien)) {
+                                                    ?>
+                                                    <td>
+                                                        <?= $no++; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $row['no_antrian']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $row['atas_nama_pasien']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $row['id_dokter']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $row['status_antrian']; ?>
+                                                    </td>
+                                                    <td style='vertical-align: middle;'>
+                                                        <button type="button"
+                                                            href='../../../backend/proses_antrian_pasien.php?no_antrian=<?= $row['no_antrian']; ?>'
+                                                            class='btn btn-danger delete'>Hapus</button>
+                                                    </td>
+                                                    <!-- <td style='vertical-align: middle;'>
+                                                    </td> -->
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-    </div>
 </body>
+<script>
+    const SweetAlert2Demo = function () {
+        const initDemos = function () {
+            $('.delete').click(function (e) {
+                var url = e.target.getAttribute('href');
+                swal({
+                    title: 'Yakin ingin menghapus?',
+                    text: "Data tidak bisa kembali jika terhapus!",
+                    type: 'warning',
+                    buttons: {
+                        confirm: {
+                            text: 'Hapus',
+                            className: 'btn btn-success'
+                        },
+                        cancel: {
+                            text: 'Batal',
+                            visible: true,
+                            className: 'btn btn-danger'
+                        }
+                    }
+                }).then((Delete) => {
+                    if (Delete) {
+                        swal({
+                            title: 'Data Terhapus!',
+                            text: 'Data Pasien Terhapus',
+                            type: 'success',
+                            buttons: {
+                                confirm: {
+                                    className: 'btn btn-success'
+                                }
+                            }
+
+                        });
+                        setTimeout(function () {
+                            window.location.href = url;
+                        }, 2000);
+                    } else {
+                        swal.close();
+                    }
+                });
+            });
+        };
+        return {
+            //== Init
+            init: function () {
+                initDemos();
+            },
+        };
+    }();
+
+    //== Class Initialization
+    jQuery(document).ready(function () {
+        SweetAlert2Demo.init();
+    });
+</script>
 
 <?php
-require_once("{$base_dir}pages{$ds}core{$ds}footer.php");
+// require_once("{$base_dir}pages{$ds}core{$ds}footer.php");
 ?>

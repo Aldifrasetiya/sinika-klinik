@@ -115,24 +115,8 @@
                 </a>
               </li>
               <li>
-                <a href="data-antrian.html">
+                <a href="../admin/m_data_resep">
                   <span class="sub-item">Resep</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a data-toggle="collapse" href="#pembayaran">
-            <i class="fa-solid fa-wallet"></i>
-            <p>Data Pembayaran</p>
-            <span class="caret"></span>
-          </a>
-          <div class="collapse" id="pembayaran">
-            <ul class="nav nav-collapse">
-              <li>
-                <a href="sidebar-style-1.html">
-                  <span class="sub-item">Pembayaran Obat Pasien</span>
                 </a>
               </li>
             </ul>

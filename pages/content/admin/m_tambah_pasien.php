@@ -39,6 +39,10 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                         <div class="col-lg-12">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
+                                    <label for="id_pasien">ID Pasien</label>
+                                    <input type="text" class="form-control" name="id_pasien" id="id_pasien" readonly>
+                                </div>
+                                <div class="form-group col-md-6">
                                     <label for="namePasien">Nama Pasien</label>
                                     <input type="text" class="form-control" name="namaPasien" id="namaPasien">
                                 </div>
@@ -48,7 +52,7 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="ttl">Tanggal Lahir</label>
-                                    <input type="date" class="form-control" id="ttl">
+                                    <input type="date" class="form-control" name="ttl" id="ttl">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="jk">Jenis Kelamin</label>
@@ -64,7 +68,7 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="penyakit">Jenis Penyakit</label>
-                                    <input type="text" class="form-control" id="penyakit">
+                                    <input type="text" class="form-control" name="penyakit" id="penyakit">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="asuransi">Asuransi</label>

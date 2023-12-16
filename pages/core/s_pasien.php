@@ -4,7 +4,7 @@
     <div class="sidebar-content">
       <ul class="nav nav-primary">
         <li class="nav-item">
-          <a href="./../../../pages/d_pasien">
+          <a href="d_pasien">
             <i class="fas fa-home"></i>
             <p>Home</p>
           </a>

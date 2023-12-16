@@ -44,6 +44,11 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-row">
+                                <!-- <div class="form-group col-md-6">
+                                    <label for="id_dokter">ID Dokter</label>
+                                    <input type="text" class="form-control" name="id_dokter" id="id_dokter"
+                                        value="<?php echo $id_dokter; ?>" readonly>
+                                </div> -->
                                 <div class="form-group col-md-6">
                                     <label for="name">Nama Dokter</label>
                                     <input type="text" class="form-control" name="namaDokter" id="name">
@@ -58,7 +63,7 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="hari">Hari</label>
-                                    <input type="date" class="form-control" name="hariPraktek" id="hariPraktek">
+                                    <input type="text" class="form-control" name="hariPraktek" id="hariPraktek">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="jamPraktek">Jam Praktek</label>

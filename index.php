@@ -7,8 +7,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+  <link rel="icon" href="assets/img/logo-SINIKA.png" type="image/x-icon" />
   <!-- <link rel="stylesheet" href="style.css"> -->
-  <title>Smart Klinik</title>
+  <title>SINIKA - Sistem Informasi Klinik Aisha Medika</title>
 </head>
 
 <body>
@@ -53,7 +54,9 @@
                 <input class="btn btn-primary w-100" type="submit" value="Login" name="login"></input>
               </div>
             </form>
-
+            <div class="d-flex flex-row-reverse">
+              <a class="p-2" href="pages/d_pasien">Homepage</a>
+            </div>
           </div>
         </div>
 

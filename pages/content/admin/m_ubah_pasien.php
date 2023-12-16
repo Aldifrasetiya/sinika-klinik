@@ -46,7 +46,7 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                 if (isset($_GET['id'])) {
                     $id_pasien = $_GET['id'];
 
-                    $result = mysqli_query($db_connect, "SELECT * FROM pasien WHERE ID_Pasien = $id_pasien ");
+                    $result = mysqli_query($db_connect, "SELECT * FROM pasien WHERE id_pasien = $id_pasien ");
                     if (mysqli_num_rows($result) == 1) {
                         $row = mysqli_fetch_assoc($result);
                         ?>
@@ -54,19 +54,25 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-row">
-                                        <input type="hidden" name="id_pasien" id="id_pasien" value="<?= $row['ID_Pasien']; ?>">
+                                        <div class="form-group col-md-6">
+                                            <label for="id_pasien">ID Pasien</label>
+                                            <input type="text" class="form-control" name="id_pasien" id="id_pasien"
+                                                value="<?php echo $id_pasien_baru; ?>" readonly>
+                                        </div>
                                         <div class="form-group col-md-6">
                                             <label for="namePasien">Nama Pasien</label>
                                             <input type="text" class="form-control" name="namaPasien" id="namaPasien"
-                                                value="<?= $row['Nama_Pasien']; ?>">
+                                                value="<?= $row['nama_pasien']; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="alamat">Alamat</label>
-                                            <input type="text" class="form-control" name="alamat" id="alamat" value="<?= $row['Alamat']; ?>">
+                                            <input type="text" class="form-control" name="alamat" id="alamat"
+                                                value="<?= $row['alamat']; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="ttl">Tanggal Lahir</label>
-                                            <input type="date" class="form-control" id="ttl" value="<?= $row['tanggal_lahir']; ?>">
+                                            <input type="date" class="form-control" name="ttl" id="ttl"
+                                                value="<?= $row['tanggal_lahir']; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="jk">Jenis Kelamin</label>
@@ -78,15 +84,18 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="notlp">No telepon</label>
-                                            <input type="text" class="form-control" name="notlp" id="notlp" value="<?= $row['Nomor_Telepon']; ?>">
+                                            <input type="text" class="form-control" name="notlp" id="notlp"
+                                                value="<?= $row['no_telepon']; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="penyakit">Jenis Penyakit</label>
-                                            <input type="text" class="form-control" id="penyakit">
+                                            <input type="text" class="form-control" name="penyakit" id="penyakit"
+                                                value="<?= $row['penyakit']; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="asuransi">Asuransi</label>
-                                            <select class="form-control" name="asuransi" id="asuransi" value="<?= $row['Jenis_Asuransi'] ?>">
+                                            <select class="form-control" name="asuransi" id="asuransi"
+                                                value="<?= $row['jenis_asuransi'] ?>">
                                                 <option>--PILIH--</option>
                                                 <option>BPJS</option>
                                                 <option>Non BPJS</option>

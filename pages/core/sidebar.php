@@ -39,7 +39,7 @@
       </div>
       <ul class="nav nav-primary">
         <li class="nav-item">
-          <a href="./../../../pages/dashboard">
+          <a href="dashboard">
             <i class="fas fa-home"></i>
             <p>Dashboard</p>
           </a>
@@ -117,22 +117,6 @@
               <li>
                 <a href="data-antrian.html">
                   <span class="sub-item">Resep</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a data-toggle="collapse" href="#pembayaran">
-            <i class="fa-solid fa-wallet"></i>
-            <p>Data Pembayaran</p>
-            <span class="caret"></span>
-          </a>
-          <div class="collapse" id="pembayaran">
-            <ul class="nav nav-collapse">
-              <li>
-                <a href="sidebar-style-1.html">
-                  <span class="sub-item">Pembayaran Obat Pasien</span>
                 </a>
               </li>
             </ul>

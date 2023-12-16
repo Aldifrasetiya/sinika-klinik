@@ -64,13 +64,13 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                         ?>
                         <tr>
                           <td>
-                            <?= $row['ID_Pasien']; ?>
+                            <?= $row['id_pasien']; ?>
                           </td>
                           <td>
-                            <?= $row['Nama_Pasien']; ?>
+                            <?= $row['nama_pasien']; ?>
                           </td>
                           <td>
-                            <?= $row['Alamat']; ?>
+                            <?= $row['alamat']; ?>
                           </td>
                           <td>
                             <?= $row['tanggal_lahir']; ?>
@@ -78,21 +78,24 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                           <td>
                             <?= $row['jk']; ?>
                           </td>
-                          <td>Penyakit</td>
                           <td>
-                            <?= $row['Nomor_Telepon']; ?>
+                            <?= $row['penyakit']; ?>
                           </td>
                           <td>
-                            <?= $row['Jenis_Asuransi']; ?>
+                            <?= $row['no_telepon']; ?>
+                          </td>
+                          <td>
+                            <?= $row['jenis_asuransi']; ?>
                           </td>
                           <td style='vertical-align: middle;'>
-                            <a href='m_ubah_pasien?id=<?= $row['ID_Pasien']; ?>'>
+                            <a href="m_ubah_pasien?id=<?= $row['id_pasien']; ?>">
                               <button type="button" class="btn btn-warning">Edit</button>
                             </a>
                           </td>
-                          <td style='vertical-align: middle;'><button type="button"
-                              href='./../backend/proses_pasien.php?id_pasien=<?= $row['ID_Pasien']; ?>'
-                              class='btn btn-danger delete'>Hapus</button></td>
+                          <td style='vertical-align: middle;'>
+                            <button href="../../../backend/proses_pasien.php?id_pasien=<?= $row['id_pasien']; ?>"
+                              type="button" class="btn btn-danger delete">Hapus</button>
+                          </td>
                         </tr>
                       <?php } ?>
                     </tbody>
@@ -130,7 +133,7 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
           if (Delete) {
             swal({
               title: 'Data Terhapus!',
-              text: 'Data Jadwal Dokter Terhapus',
+              text: 'Data Pasien Terhapus',
               type: 'success',
               buttons: {
                 confirm: {
@@ -139,7 +142,9 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
               }
 
             });
-            window.location.href = url;
+            setTimeout(function () {
+              window.location.href = url;
+            }, 2000);
           } else {
             swal.close();
           }

@@ -39,21 +39,33 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
                         </li> -->
                     </ul>
                 </div>
+                <form action="../../../backend/proses_antrian_pasien.php"></form>
                 <div class="row">
-                    <div class="col-md-3 col-lg-6">
-                        <div class="mb-3">
-                            <label for="name">Nama</label>
-                            <input type="text" class="form-control" name="namaPasien" id="name">
+                    <div class="col-lg-12">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="id_antrian">ID Antrian</label>
+                                <input type="text" class="form-control" name="id_antrian" id="id_antrian"
+                                    value="<?php echo $id_antrian_baru; ?>" readonly>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="name">Nama</label>
+                                <input type="text" class="form-control" name="namaPasien" id="name">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="alamat">Dokter</label>
+                                <select name="" id="" class="form-control">
+                                    <option value="">Dokter A</option>
+                                    <option value="">Dokter B</option>
+                                    <option value="">Dokter C</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="notlp">No Telepon</label>
+                                <input type="text" class="form-control" name="notlp" id="notlp">
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="alamat">Alamat</label>
-                            <input type="text" class="form-control" name="alamat" id="alamat">
-                        </div>
-                        <div class="mb-3">
-                            <label for="notlp">No Telepon</label>
-                            <input type="text" class="form-control" name="notlp" id="notlp">
-                        </div>
-                        <div class="card-action m-2">
+                        <div class="card-action">
                             <button class="btn btn-success">Tambah</button>
                             <button class="btn btn-danger">Batal</button>
                         </div>

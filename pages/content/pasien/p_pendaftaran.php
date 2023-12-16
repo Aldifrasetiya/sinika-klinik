@@ -3,7 +3,7 @@
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..' . $ds) . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_pasien.php");
-// require_once("{$base_dir}backend{$ds}proses_antrian_pasien.php");
+require_once("{$base_dir}backend{$ds}proses_antrian_pasien.php");
 
 ?>
 
@@ -33,37 +33,33 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_pasien.php");
                         </li> -->
                     </ul>
                 </div>
+                <?php
+                require('../../../backend/config/db-klinik.php');
+
+                $databaseDokter = "SELECT id_dokter, nama_dokter FROM jadwal_dokter";
+                $result = $db_connect->query($databaseDokter);
+                ?>
                 <form action="../../../backend/proses_antrian_pasien.php" method="POST">
                     <div class=" row">
                         <div class="col-lg-12">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
+                                    <input type="hidden" name="hari" value="<?= date('N'); ?>">
                                     <label for="nama" class="form-label">Nama</label>
                                     <input type="text" class="form-control" name="nama" id="nama"
                                         aria-describedby="nama">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="alamat" class="form-label">Alamat</label>
-                                    <input type="text" class="form-control" name="alamat" id="alamat">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="notlp" class="form-label">No Telepon</label>
-                                    <input type="text" class="form-control" name="noTlp" id="notlp">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="asuransi">Asuransi</label>
-                                    <select class="form-control" name="asuransi" id="asuransi">
-                                        <option>--PILIH--</option>
-                                        <option>BPJS</option>
-                                        <option>Non BPJS</option>
-                                        <option>Asuransi lainnya</option>
+                                    <label for="alamat" class="form-label">Dokter</label>
+                                    <select name="id_dokter" id="" class="form-control">
+                                        <?php
+                                        while ($row = $result->fetch_assoc()) {
+                                            echo "<option value='{$row['id_dokter']}'>{$row['nama_dokter']}</option>";
+                                        }
+                                        ?>
                                     </select>
                                 </div>
-                                <div class="form-group col-md-6" id="noBpjsInput" style="display: none;">
-                                    <label for="noAsuransi" class="form-label">Masukkan No Asuransi</label>
-                                    <input type="text" class="form-control" name="noAsuransi" id="noAsuransi">
-                                </div>
-                            </div>
+
                             <div class="card-action">
                                 <button type="submit" name="DaftarAntrian" class="btn btn-success">Daftar</button>
                             </div>
