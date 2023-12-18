@@ -113,8 +113,8 @@ require_once("{$base_dir}pages{$ds}core{$ds}h_pasien.php");
 
           <div class="col-md-12">
             <div class="card">
-              <div class="card-body">
-                <table class="table table-responsive table-bordered border-primary">
+              <div class="table-responsive card-body">
+                <table class="table table-bordered border-primary">
                   <thead class="table-primary">
                     <tr>
                       <th>NO</th>
@@ -201,9 +201,9 @@ require_once("{$base_dir}pages{$ds}core{$ds}h_pasien.php");
             <p>
               Klinik Aisha Medika<br>
               Dusun Tamiang desa Tamiang desa Sindang mulya<br>
-                Kec. Kutawaluya<br><br>
-                <strong>Phone:</strong> +1 5589 55488 55<br>
-                <strong>Email:</strong> info@example.com<br>
+              Kec. Kutawaluya<br><br>
+              <strong>Phone:</strong> +1 5589 55488 55<br>
+              <strong>Email:</strong> info@example.com<br>
             </p>
           </div>
 
