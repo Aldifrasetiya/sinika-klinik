@@ -1,5 +1,13 @@
 <?php
 
+session_start();
+
+if ($_SESSION['role'] != 'admin') {
+  session_destroy();
+  header('Location:./../index.php');
+  exit;
+}
+
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..' . $ds) . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");

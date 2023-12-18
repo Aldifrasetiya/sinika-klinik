@@ -170,5 +170,5 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
 </script>
 
 <?php
-require_once("{$base_dir}pages{$ds}core{$ds}footer.php");
+// require_once("{$base_dir}pages{$ds}core{$ds}footer.php");
 ?>

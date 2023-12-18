@@ -37,13 +37,13 @@
           </div>
         </div>
       </div>
-      <ul class="nav nav-primary">
-        <li class="nav-item">
-          <a href="./../../../pages/dashboard">
-            <i class="fas fa-home"></i>
-            <p>Dashboard</p>
-          </a>
-          <!-- <div class="collapse" id="dashboard">
+        <ul class="nav nav-primary">
+          <li class="nav-item">
+            <a href="./../../../pages/dashboard">
+              <i class="fas fa-home"></i>
+              <p>Dashboard</p>
+            </a>
+            <!-- <div class="collapse" id="dashboard">
             <ul class="nav nav-collapse">
               <li>
                 <a href="./../demo1/index.html">
@@ -52,7 +52,7 @@
               </li>
             </ul>
           </div> -->
-        </li>
+          </li>
         <li class="nav-section">
           <span class="sidebar-mini-icon">
             <i class="fa fa-ellipsis-h"></i>

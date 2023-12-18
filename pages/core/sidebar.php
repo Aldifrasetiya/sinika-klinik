@@ -93,11 +93,6 @@
                   <span class="sub-item">Dokter Umum</span>
                 </a>
               </li>
-              <!-- <li>
-                <a href="overlay-sidebar.html">
-                  <span class="sub-item">Dokter Spesialis</span>
-                </a>
-              </li> -->
             </ul>
           </div>
         </li>
@@ -144,6 +139,7 @@
             </span>Buy Pro</a> -->
         </li>
       </ul>
+      <!-- <button class="btn btn-primary">Logout</button> -->
     </div>
   </div>
 </div>

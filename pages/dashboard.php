@@ -136,7 +136,3 @@ require_once("{$base_dir}pages{$ds}core{$ds}header.php");
 
   <!-- Custom template | don't include it in your project! -->
 </body>
-
-<?php
-require_once("{$base_dir}pages{$ds}core{$ds}footer.php");
-?>
