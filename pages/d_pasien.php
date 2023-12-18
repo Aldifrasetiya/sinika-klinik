@@ -1,143 +1,233 @@
 <?php
 
 $ds = DIRECTORY_SEPARATOR;
-$base_dir = realpath(dirname(__FILE__) . $ds . '..') . $ds;
+$base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds) . $ds;
 require_once("{$base_dir}pages{$ds}core{$ds}h_pasien.php");
-require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
 
 ?>
 
 <body>
-  <div class="main-panel">
-    <div class="content">
-      <div class="panel-header bg-primary-gradient">
-        <div class="page-inner py-5">
-          <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
-            <div>
-              <h2 class="text-white pb-2 fw-bold">Selamat Datang di SINIKA</h2>
-              <!-- <h5 class="text-white op-7 mb-2">Free Bootstrap 4 Admin Dashboard</h5> -->
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="hero d-flex align-items-center">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 d-flex flex-column justify-content-center">
+          <h1 data-aos="fade-up">Selamat Datang di SINIKA</h1>
+          <h2 data-aos="fade-up" data-aos-delay="400">Sistem Informasi Klinik Aisha Medika
+          </h2>
+          <div data-aos="fade-up" data-aos-delay="600">
+            <div class="text-center text-lg-start">
+              <a href="content/pasien/p_pendaftaran"
+                class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                <span>Daftar Antrian Disini!</span>
+              </a>
             </div>
           </div>
         </div>
-      </div>
-      <?php
-
-      include('../backend/config/db-klinik.php');
-
-      // data Realtime antrian
-      $dataRealtimeAntrian = mysqli_query($db_connect, "SELECT count(no_antrian) AS jmlh_antrian FROM antrian");
-      $viewAntrian = mysqli_fetch_array($dataRealtimeAntrian);
-
-      // data Realtime antrian
-      $dataRealtimeDokter = mysqli_query($db_connect, "SELECT count(id_dokter) AS jmlh_dokter FROM jadwal_dokter");
-      $viewDokter = mysqli_fetch_array($dataRealtimeDokter);
-
-      ?>
-      <div class="page-inner mt--5">
-        <div class="row mt--2">
-          <div class="col-sm-6 col-md-3">
-            <div class="card card-stats card-round">
-              <div class="card-body">
-                <div class="row align-items-center">
-                  <div class="col-5">
-                    <div class="icon-big text-center icon-primary bubble-shadow-small">
-                      <i class="fas fa-users"></i>
-                    </div>
-                  </div>
-                  <div class="col-7 col-stats">
-                    <div class="numbers">
-                      <p class="card-category">Antrian</p>
-                      <h4 class="card-title">
-                        <?php echo $viewAntrian['jmlh_antrian']; ?>
-                      </h4>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <div class="card card-stats card-round">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-5">
-                    <div class="icon-big text-center icon-primary bubble-shadow-small">
-                      <i class="fa-solid fa-stethoscope"></i>
-                    </div>
-                  </div>
-                  <div class="col-7 col-stats">
-                    <div class="numbers">
-                      <p class="card-category">Dokter</p>
-                      <h4 class="card-title">
-                        <?php echo $viewDokter['jmlh_dokter']; ?>
-                      </h4>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
+          <img src="assets/img/hero-SINIKA.png" class="img-fluid" alt="">
         </div>
       </div>
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title fw-bold">Jadwal Dokter</div>
-          </div>
-          <div class="card-body">
-            <table class="display table table-striped table-hover">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>ID Dokter</th>
-                  <th>Nama</th>
-                  <th>Spesialis</th>
-                  <th>No Telepon</th>
-                  <th>Hari Praktek</th>
-                  <th>Jam Praktek</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <?php
-
-                  $jadwalDokter = mysqli_query($db_connect, "SELECT * FROM jadwal_dokter");
-                  $no = 1;
-
-                  while ($row = mysqli_fetch_array($jadwalDokter)) {
-                    ?>
-                  <tr>
-                    <td>
-                      <?= $no++; ?>
-                    </td>
-                    <td>
-                      <?= $row['id_dokter']; ?>
-                    </td>
-                    <td>
-                      <?= $row['nama_dokter']; ?>
-                    </td>
-                    <td>
-                      <?= $row['spesialis']; ?>
-                    </td>
-                    <td>
-                      <?= $row['no_hp']; ?>
-                    </td>
-                    <td>
-                      <?= $row['hari_praktek']; ?>
-                    </td>
-                    <td>
-                      <?= $row['jam_praktek']; ?>
-                    </td>
-                  </tr>
-
-                <?php } ?>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
     </div>
+
+  </section><!-- End Hero -->
+
+  <main id="main">
+    <?php
+
+    include('../backend/config/db-klinik.php');
+
+    // data Realtime antrian
+    $dataRealtimeAntrian = mysqli_query($db_connect, "SELECT count(no_antrian) AS jmlh_antrian FROM antrian");
+    $viewAntrian = mysqli_fetch_array($dataRealtimeAntrian);
+
+    // data Realtime dokter
+    $dataRealtimeDokter = mysqli_query($db_connect, "SELECT count(id_dokter) AS jmlh_dokter FROM jadwal_dokter");
+    $viewDokter = mysqli_fetch_array($dataRealtimeDokter);
+
+    // data Realtime pasien
+    $dataRealtimePasien = mysqli_query($db_connect, "SELECT count(id_pasien) AS jmlh_pasien FROM pasien");
+    $viewPasien = mysqli_fetch_array($dataRealtimePasien);
+
+    ?>
+    <!-- ======= Data Realtime Section ======= -->
+    <section id="counts" class="counts">
+
+      <div class="container" data-aos="fade-up">
+
+        <header class="section-header">
+          <h2>Informasi</h2>
+          <p>Data Realtime</p>
+        </header>
+        <div class="row gy-4 justify-content-center">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="count-box">
+              <i class="fas fa-users"></i>
+              <div>
+                <span data-purecounter-start="0" data-purecounter-end="<?php echo $viewAntrian['jmlh_antrian']; ?>"
+                  data-purecounter-duration="1" class="purecounter"></span>
+                <p>Antrian</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="count-box">
+              <i class="fa-solid fa-stethoscope" style="color: #ee6c20;"></i>
+              <div>
+                <span data-purecounter-start="0" data-purecounter-end="<?php echo $viewDokter['jmlh_dokter']; ?>"
+                  data-purecounter-duration="1" class="purecounter"></span>
+                <p>Dokter</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="count-box">
+              <i class="fas fa-user" style="color: #15be56;"></i>
+              <div>
+                <span data-purecounter-start="0" data-purecounter-end="<?php echo $viewPasien['jmlh_pasien']; ?>"
+                  data-purecounter-duration="1" class="purecounter"></span>
+                <p>Pasien</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- End Data Realtime Section -->
+
+    <!-- ======= Jadwal Dokter Section ======= -->
+    <section id="counts" class="counts">
+
+      <div class="container" data-aos="fade-up">
+
+        <header class="section-header">
+          <h2>Informasi</h2>
+          <p>Jadwal Praktek Dokter</p>
+        </header>
+        <div class="row gy-4 justify-content-center">
+
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-body">
+                <table class="table table-responsive table-bordered border-primary">
+                  <thead class="table-primary">
+                    <tr>
+                      <th>NO</th>
+                      <th>ID Dokter</th>
+                      <th>Nama</th>
+                      <th>Spesialis</th>
+                      <th>No Telepon</th>
+                      <th>Hari Praktek</th>
+                      <th>Jam Praktek</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <?php
+
+                      $jadwalDokter = mysqli_query($db_connect, "SELECT * FROM jadwal_dokter");
+                      $no = 1;
+
+                      while ($row = mysqli_fetch_array($jadwalDokter)) {
+                        ?>
+                      <tr>
+                        <td>
+                          <?= $no++; ?>
+                        </td>
+                        <td>
+                          <?= $row['id_dokter']; ?>
+                        </td>
+                        <td>
+                          <?= $row['nama_dokter']; ?>
+                        </td>
+                        <td>
+                          <?= $row['spesialis']; ?>
+                        </td>
+                        <td>
+                          <?= $row['no_hp']; ?>
+                        </td>
+                        <td>
+                          <?= $row['hari_praktek']; ?>
+                        </td>
+                        <td>
+                          <?= $row['jam_praktek']; ?>
+                        </td>
+                      </tr>
+
+                    <?php } ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+    <!-- End Jadwal Dokter Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-5 col-md-12 footer-info">
+            <a href="index.html" class="logo d-flex align-items-center">
+              <img width="160" height="90" src="../assets/img/logo-SINIKA.png" alt="">
+            </a>
+            <p class="fw-bold">SINIKA - Sistem Informasi Klinik Aisha Medika</p>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-6 footer-links">
+            <h4>Dashboard</h4>
+            <ul>
+              <li><i class="bi bi-chevron-right"></i> <a href="../../d_pasien">Home</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="content/pasien/p_pendaftaran">Pendaftaran</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-6 footer-links">
+            <h4>Address</h4>
+            <p>
+              Klinik Aisha Medika<br>
+              Dusun Tamiang desa Tamiang desa Sindang mulya<br>
+                Kec. Kutawaluya<br><br>
+                <strong>Phone:</strong> +1 5589 55488 55<br>
+                <strong>Email:</strong> info@example.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
 </body>
 
 <?php

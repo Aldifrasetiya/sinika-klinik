@@ -2,124 +2,76 @@
 <html lang="en">
 
 <head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
   <title>SINIKA - Sistem Informasi Klinik Aisha Medika</title>
-  <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-  <link rel="icon" href="../assets/img/logo-SINIKA.png" type="image/x-icon" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
-  <!-- Fonts and icons -->
-  <script src="../assets/js/plugin/webfont/webfont.min.js"></script>
-  <script>
-    WebFont.load({
-      google: { "families": ["Lato:300,400,700,900"] },
-      custom: { "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['../assets/css/fonts.min.css'] },
-      active: function () {
-        sessionStorage.fonts = true;
-      }
-    });
-  </script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <!-- CSS Files -->
-  <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../assets/css/atlantis.min.css">
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link rel="stylesheet" href="../assets/css/demo.css">
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: FlexStart
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
 
+
 <body>
-  <div class="wrapper">
-    <div class="main-header">
-      <!-- Logo Header -->
-      <div class="logo-header" data-background-color="blue">
-
-        <a href="index.html" class="logo">
-          <img width="160" height="60" src="../assets/img/logo-SINIKA-DARK.png" alt="navbar brand" class="navbar-brand">
-        </a>
-        <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
-          data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon">
-            <i class="icon-menu"></i>
-          </span>
-        </button>
-        <button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
-        <div class="nav-toggle">
-          <button class="btn btn-toggle toggle-sidebar">
-            <i class="icon-menu"></i>
-          </button>
-        </div>
-      </div>
-      <!-- End Logo Header -->
-
-      <!-- Navbar Header -->
-      <nav class="navbar navbar-header navbar-expand-lg" data-background-color="blue2">
-
-        <div class="container-fluid">
-          <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
-            <li class="nav-item dropdown hidden-caret">
-              <a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-bell"></i>
-                <span class="notification">4</span>
-              </a>
-              <ul class="dropdown-menu notif-box animated fadeIn" aria-labelledby="notifDropdown">
-                <li>
-                  <div class="dropdown-title">You have 4 new notification</div>
-                </li>
-                <li>
-                  <a class="see-all" href="javascript:void(0);">See all notifications<i class="fa fa-angle-right"></i>
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <!-- End Navbar -->
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+      <a href="d_pasien" class="logo d-flex align-items-center">
+        <img width="160" height="60" src="../assets/img/logo-SINIKA.png" alt="logo-SINIKA">
+      </a>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="../pages/d_pasien">Home</a></li>
+          <li><a class="nav-link scrollto" href="../pages/content/pasien/p_pendaftaran">Pendaftaran</a></li>
+          <li><a class="getstarted scrollto" href="../index.php">Login</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
     </div>
+  </header><!-- End Header -->
+
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../assets/js/main.js"></script>
 </body>
 
 </html>
-
-
-
-<!--   Core JS Files   -->
-<script src="../assets/js/core/jquery.3.2.1.min.js"></script>
-<script src="../assets/js/core/popper.min.js"></script>
-<script src="../assets/js/core/bootstrap.min.js"></script>
-
-<!-- jQuery UI -->
-<script src="../assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-<script src="../assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
-
-<!-- jQuery Scrollbar -->
-<script src="../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
-
-
-<!-- Chart JS -->
-<script src="../assets/js/plugin/chart.js/chart.min.js"></script>
-
-<!-- jQuery Sparkline -->
-<script src="../assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
-
-<!-- Chart Circle -->
-<script src="../assets/js/plugin/chart-circle/circles.min.js"></script>
-
-<!-- Datatables -->
-<script src="../assets/js/plugin/datatables/datatables.min.js"></script>
-
-<!-- Bootstrap Notify -->
-<script src="../assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
-
-<!-- jQuery Vector Maps -->
-<script src="../assets/js/plugin/jqvmap/jquery.vmap.min.js"></script>
-<script src="../assets/js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
-
-<!-- Sweet Alert -->
-<script src="../assets/js/plugin/sweetalert/sweetalert.min.js"></script>
-
-<!-- Atlantis JS -->
-<script src="../assets/js/atlantis.min.js"></script>
-
-<?php include 's_pasien.php' ?>

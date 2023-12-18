@@ -8,81 +8,48 @@ require_once("{$base_dir}backend{$ds}proses_antrian_pasien.php");
 ?>
 
 <body>
-    <div class="main-panel">
-        <div class="content">
-            <div class="page-inner">
-                <div class="page-header">
-                    <h4 class="page-title">Pendaftaran</h4>
-                    <ul class="breadcrumbs">
-                        <li class="nav-home">
-                            <a href="d_pasien.php">
-                                <i class="flaticon-home"></i>
-                            </a>
-                        </li>
-                        <li class="separator">
-                            <i class="flaticon-right-arrow"></i>
-                        </li>
-                        <li class="nav-item">
-                            <a href="p_pendaftaran">Pendaftaran</a>
-                        </li>
-                        <!-- <li class="separator">
-                            <i class="flaticon-right-arrow"></i>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#">Dokter Umum</a>
-                        </li> -->
-                    </ul>
-                </div>
+    <!-- ======= Pendaftaran Section ======= -->
+    <section id="contact" class="contact">
+        <div class="container" data-aos="zoom-in">
+            <header class="section-header mt-5"> <!-- Added margin-bottom (mb-4) to the header -->
+                <p>Pendaftaran </p>
+            </header>
+
+            <div class="row justify-content-center">
                 <?php
                 require('../../../backend/config/db-klinik.php');
-
                 $databaseDokter = "SELECT id_dokter, nama_dokter FROM jadwal_dokter";
                 $result = $db_connect->query($databaseDokter);
                 ?>
                 <form action="../../../backend/proses_antrian_pasien.php" method="POST">
-                    <div class=" row">
-                        <div class="col-lg-12">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <input type="hidden" name="hari" value="<?= date('N'); ?>">
-                                    <label for="nama" class="form-label">Nama</label>
-                                    <input type="text" class="form-control" name="nama" id="nama"
-                                        aria-describedby="nama">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="alamat" class="form-label">Dokter</label>
-                                    <select name="id_dokter" id="" class="form-control">
-                                        <?php
-                                        while ($row = $result->fetch_assoc()) {
-                                            echo "<option value='{$row['id_dokter']}'>{$row['nama_dokter']}</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-
-                            <div class="card-action">
-                                <button type="submit" name="DaftarAntrian" class="btn btn-success">Daftar</button>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="hidden" name="hari" value="<?= date('N'); ?>">
+                                <label for="nama" class="form-label">Nama</label>
+                                <input type="text" class="form-control" name="nama" id="nama" aria-describedby="nama">
                             </div>
                         </div>
-                        <script>
-                            document.getElementById("asuransi").addEventListener("change", function () {
-                                const selectedOption = this.value;
-                                const noBpjsInput = document.getElementById("noBpjsInput");
 
-                                if (selectedOption === "BPJS" || selectedOption === "Asuransi lainnya") {
-                                    noBpjsInput.style.display = "block";
-                                } else {
-                                    noBpjsInput.style.display = "none";
-                                }
-                            });
-                        </script>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="dokter" class="form-label">Pilih Dokter</label>
+                                <select name="id_dokter" id="dokter" class="form-select">
+                                    <?php
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo "<option value='{$row['id_dokter']}'>{$row['nama_dokter']}</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="card-action py-3">
+                            <button type="submit" name="DaftarAntrian" class="btn btn-success">Daftar</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
-    </div>
-    </div>
-</body>
+    </section><!-- End Pendaftaran Section -->
 
-<?php
-require_once("{$base_dir}pages{$ds}core{$ds}footer.php");
-?>
+</body>
