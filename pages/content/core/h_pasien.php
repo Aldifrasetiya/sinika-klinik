@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link rel="icon" href="../assets/img/logo-SINIKA.png" type="image/x-icon" />
 
   <title>SINIKA - Sistem Informasi Klinik Aisha Medika</title>
   <meta content="" name="description">
