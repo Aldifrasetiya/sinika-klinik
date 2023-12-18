@@ -113,7 +113,7 @@ require_once("{$base_dir}pages{$ds}core{$ds}h_pasien.php");
 
           <div class="col-md-12">
             <div class="card">
-              <div class="table-responsive card-body">
+              <div class="table-responsive">
                 <table class="table table-bordered border-primary">
                   <thead class="table-primary">
                     <tr>
