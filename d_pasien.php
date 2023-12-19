@@ -1,8 +1,8 @@
 <?php
 
 $ds = DIRECTORY_SEPARATOR;
-$base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds) . $ds;
-require_once("{$base_dir}pages{$ds}core{$ds}h_pasien.php");
+$base_dir = realpath(dirname(__FILE__) . $ds) . $ds;
+require_once("{$base_dir}core{$ds}h_pasien.php");
 
 ?>
 
@@ -26,7 +26,7 @@ require_once("{$base_dir}pages{$ds}core{$ds}h_pasien.php");
           </div>
         </div>
         <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
-          <img src="assets/img/hero-SINIKA.png" class="img-fluid" alt="">
+          <img src="pages/assets/img/hero-SINIKA.png" class="img-fluid" alt="">
         </div>
       </div>
     </div>
@@ -36,7 +36,7 @@ require_once("{$base_dir}pages{$ds}core{$ds}h_pasien.php");
   <main id="main">
     <?php
 
-    include('../backend/config/db-klinik.php');
+    include('backend/config/db-klinik.php');
 
     // data Realtime antrian
     $dataRealtimeAntrian = mysqli_query($db_connect, "SELECT count(no_antrian) AS jmlh_antrian FROM antrian");
@@ -178,7 +178,7 @@ require_once("{$base_dir}pages{$ds}core{$ds}h_pasien.php");
         <div class="row gy-4">
           <div class="col-lg-5 col-md-12 footer-info">
             <a href="index.html" class="logo d-flex align-items-center">
-              <img width="160" height="90" src="../assets/img/logo-SINIKA.png" alt="">
+              <img width="160" height="90" src="assets/img/logo-SINIKA.png" alt="logo-SINIKA">
             </a>
             <p class="fw-bold">SINIKA - Sistem Informasi Klinik Aisha Medika</p>
             <div class="social-links mt-3">
@@ -192,8 +192,8 @@ require_once("{$base_dir}pages{$ds}core{$ds}h_pasien.php");
           <div class="col-lg-2 col-6 footer-links">
             <h4>Dashboard</h4>
             <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="../../d_pasien">Home</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="content/pasien/p_pendaftaran">Pendaftaran</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="pages/index.php">Home</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="pages/content/pasien/p_pendaftaran">Pendaftaran</a></li>
             </ul>
           </div>
           <div class="col-lg-2 col-6 footer-links">
@@ -218,16 +218,16 @@ require_once("{$base_dir}pages{$ds}core{$ds}h_pasien.php");
   </footer><!-- End Footer -->
 
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="pages/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="pages/assets/vendor/aos/aos.js"></script>
+  <script src="pages/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="pages/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="pages/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="pages/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="pages/assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="pages/assets/js/main.js"></script>
 </body>
 
 <?php

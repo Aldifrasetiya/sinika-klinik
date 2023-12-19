@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <link rel="icon" href="../assets/img/logo-SINIKA.png" type="image/x-icon" />
+  <link rel="icon" href="../../../assets/img/logo-SINIKA.png" type="image/x-icon" />
 
   <title>SINIKA - Sistem Informasi Klinik Aisha Medika</title>
   <meta content="" name="description">
@@ -54,9 +54,9 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" href="../../../pages/d_pasien">Home</a></li>
-          <li><a class="nav-link scrollto active" href="../pages/content/pasien/p_pendaftaran">Pendaftaran</a></li>
-          <li><a class="getstarted scrollto" href="../../../index.php">Login</a></li>
+          <li><a class="nav-link scrollto" href="../../../d_pasien">Home</a></li>
+          <li><a class="nav-link scrollto active" href="../../content/pasien/p_pendaftaran">Pendaftaran</a></li>
+          <li><a class="getstarted scrollto" href="../../index.php">Login</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

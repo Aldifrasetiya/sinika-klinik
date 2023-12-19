@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <link rel="icon" href="../assets/img/logo-SINIKA.png" type="image/x-icon" />
+  <link rel="icon" href="assets/img/logo-SINIKA.png" type="image/x-icon" />
   <title>SINIKA - Sistem Informasi Klinik Aisha Medika</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
@@ -13,8 +13,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="pages/assets/img/favicon.png" rel="icon">
+  <link href="pages/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link
@@ -22,15 +22,15 @@
     rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="pages/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="pages/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="pages/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="pages/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="pages/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="pages/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="pages/assets/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: FlexStart
@@ -47,13 +47,13 @@
   <header id="header" class="header fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
       <a href="d_pasien" class="logo d-flex align-items-center">
-        <img width="160" height="60" src="../assets/img/logo-SINIKA.png" alt="logo-SINIKA">
+        <img width="160" height="60" src="assets/img/logo-SINIKA.png" alt="logo-SINIKA">
       </a>
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="../pages/d_pasien">Home</a></li>
-          <li><a class="nav-link scrollto" href="../pages/content/pasien/p_pendaftaran">Pendaftaran</a></li>
-          <li><a class="getstarted scrollto" href="../index.php">Login</a></li>
+          <li><a class="nav-link scrollto" href="pages/content/pasien/p_pendaftaran">Pendaftaran</a></li>
+          <li><a class="getstarted scrollto" href="pages/index.php">Login</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -62,16 +62,16 @@
 
 
   <!-- Vendor JS Files -->
-  <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="../assets/vendor/aos/aos.js"></script>
-  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="../assets/vendor/php-email-form/validate.js"></script>
+  <script src="pages/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="pages/assets/vendor/aos/aos.js"></script>
+  <script src="pages/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="pages/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="pages/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="pages/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="pages/assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="../assets/js/main.js"></script>
+  <script src="pages/assets/js/main.js"></script>
 </body>
 
 </html>

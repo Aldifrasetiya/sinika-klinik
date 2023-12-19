@@ -7,7 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
-  <link rel="icon" href="assets/img/logo-SINIKA.png" type="image/x-icon" />
+  <link rel="icon" href="../assets/img/logo-SINIKA.png" type="image/x-icon" />
   <!-- <link rel="stylesheet" href="style.css"> -->
   <title>SINIKA - Sistem Informasi Klinik Aisha Medika</title>
 </head>
@@ -19,7 +19,7 @@
 
         <div class="d-flex justify-content-center">
           <a href="index.html" class="logo d-flex align-items-center w-auto">
-            <img width="350" height="150" src="assets/img/logo-SINIKA.png" alt="logo">
+            <img width="350" height="150" src="../assets/img/logo-SINIKA.png" alt="logo">
             <!-- <span class="d-none d-lg-block">SIKAM</span> -->
           </a>
         </div><!-- End Logo -->
@@ -32,7 +32,7 @@
               <h5 class="card-title text-center pb-0 fs-4">Login</h5>
             </div>
 
-            <form action="./backend/login.php" method="POST" class="row g-3 needs-validation">
+            <form action="../backend/login.php" method="POST" class="row g-3 needs-validation">
 
               <div class="col-12">
                 <div class="form-floating mb-3">
@@ -54,8 +54,8 @@
                 <input class="btn btn-primary w-100" type="submit" value="Login" name="login"></input>
               </div>
             </form>
-            <div class="d-flex flex-row-reverse">
-              <a class="p-2" href="pages/d_pasien">Homepage</a>
+            <div class="d-flex justify-content-center">
+              <a href="../d_pasien" class="btn btn-warning w-100 my-3 text-white">Homepage</a>
             </div>
           </div>
         </div>

@@ -15,10 +15,6 @@ require_once("{$base_dir}backend{$ds}proses_antrian_pasien.php");
             <header class="section-header mt-5">
                 <p>Informasi Antrian</p>
             </header>
-
-            <!-- ======= End Halaman Antrian Section ======= -->
-
-
             <div class="col-md-12">
                 <?php
                 require_once("../../../backend/config/db-klinik.php");
@@ -54,12 +50,13 @@ require_once("{$base_dir}backend{$ds}proses_antrian_pasien.php");
                 var_dump($nomor_antrian, $pasien, $nama_dokter, $spesialis);
                 ?> -->
             </div>
-            <a href="../../d_pasien.php">
+            <a href="../../../d_pasien.php">
                 <button type="button" class="btn btn-primary my-3">Kembali ke home</button>
             </a>
         </div>
 
     </section>
+    <!-- ======= End Halaman Antrian Section ======= -->
 </body>
 
 <?php
