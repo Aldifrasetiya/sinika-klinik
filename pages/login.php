@@ -55,7 +55,7 @@
               </div>
             </form>
             <div class="d-flex justify-content-center">
-              <a href="../d_pasien" class="btn btn-warning w-100 my-3 text-white">Homepage</a>
+              <a href="../index.php" class="btn btn-warning w-100 my-3 text-white">Homepage</a>
             </div>
           </div>
         </div>

@@ -54,9 +54,9 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" href="../../../d_pasien">Home</a></li>
+          <li><a class="nav-link scrollto" href="../../../index.php">Home</a></li>
           <li><a class="nav-link scrollto active" href="../../content/pasien/p_pendaftaran">Pendaftaran</a></li>
-          <li><a class="getstarted scrollto" href="../../index.php">Login</a></li>
+          <li><a class="getstarted scrollto" href="../../login.php">Login</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
