@@ -18,11 +18,13 @@ if (isset($_POST['login'])) {
             $_SESSION['role'] = $data['role'];
 
             if ($_SESSION['role'] == 'admin') {
-                header('Location:./../pages/dashboard.php');
+                header('Location:../pages/dashboard.php');
                 exit;
-
+            } else if ($_SESSION['role'] == 'owner') {
+                header('Location:../pages/d_owner.php');
+                exit;
             } else {
-                header('Location:./../index.php');
+                header('Location:../pages/dashboard.php');
             }
 
         } else {
