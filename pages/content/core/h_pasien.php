@@ -47,16 +47,16 @@
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-      <a href="d_pasien" class="logo d-flex align-items-center">
+      <a href="../../../index" class="logo d-flex align-items-center">
         <img width="160" height="60" src="../../../assets/img/logo-SINIKA.png" alt="logo-SINIKA">
       </a>
 
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" href="../../../index.php">Home</a></li>
+          <li><a class="nav-link scrollto" href="../../../index">Home</a></li>
           <li><a class="nav-link scrollto active" href="../../content/pasien/p_pendaftaran">Pendaftaran</a></li>
-          <li><a class="getstarted scrollto" href="../../login.php">Login</a></li>
+          <li><a class="getstarted scrollto" href="../../login">Login</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

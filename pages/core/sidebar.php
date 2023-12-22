@@ -4,7 +4,7 @@
     <div class="sidebar-content">
       <div class="user">
         <div class="avatar-sm float-left mr-2">
-          <img src="../assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+          <img width="45" height="45" src="https://img.icons8.com/fluency/48/businesswoman.png" alt="businesswoman" />
         </div>
         <div class="info">
           <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
@@ -133,10 +133,9 @@
             </ul>
           </div>
         </li> -->
-        <!-- <li class="mx-4 mt-2">
-          <a href="http://themekita.com/atlantis-bootstrap-dashboard.html" class="btn btn-primary btn-block"><span
-              class="btn-label mr-2"> <i class="fa fa-heart"></i>
-            </span>Buy Pro</a> -->
+        <li class="mx-4 mt-2">
+          <a href="./../backend/logout.php" class="btn btn-primary btn-block"><span class="btn-label mr-2">
+            </span>Log Out</a>
         </li>
       </ul>
       <!-- <button class="btn btn-primary">Logout</button> -->

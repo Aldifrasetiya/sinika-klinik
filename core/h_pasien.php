@@ -46,7 +46,7 @@
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-      <a href="d_pasien" class="logo d-flex align-items-center">
+      <a href="index" class="logo d-flex align-items-center">
         <img width="160" height="60" src="assets/img/logo-SINIKA.png" alt="logo-SINIKA">
       </a>
       <nav id="navbar" class="navbar">
@@ -71,7 +71,7 @@
   <script src="pages/assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="pages/assets/js/main.js"></script>
+  <script src="../pages/assets/js/main.js"></script>
 </body>
 
 </html>
