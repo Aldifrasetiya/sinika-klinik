@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..') . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_owner.php");
@@ -108,7 +108,7 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                                         </div>
                                     </div>
                                     <div class="card-action">
-                                        <button type="submit" name="TambahPasien" class="btn btn-success mx-2">Tambah</button>
+                                        <button type="submit" name="UbahPasien" class="btn btn-success mx-2">Tambah</button>
                                         <button class="btn btn-danger">Batal</button>
                                     </div>
                                 </div>

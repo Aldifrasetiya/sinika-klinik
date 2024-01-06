@@ -2,7 +2,7 @@
 session_start();
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..' . $ds) . $ds;
-require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_owner.php");
+require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
 require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
 
 
@@ -13,7 +13,7 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
         <div class="content">
             <div class="page-inner">
                 <div class="page-header">
-                    <h4 class="page-title">Jadwal Dokter Umum</h4>
+                    <h4 class="page-title">Data Dokter Umum</h4>
                     <ul class="breadcrumbs">
                         <li class="nav-home">
                             <a href="dashboard.php">
@@ -24,7 +24,7 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="./../pages/content/admin/m_dokter_umum.php">Jadwal Dokter Umum</a>
+                            <a href="./../pages/content/admin/m_data_dokter.php">Data Dokter Umum</a>
                         </li>
                         <!-- <li class="separator">
                             <i class="flaticon-right-arrow"></i>
@@ -38,11 +38,11 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex align-items-center">
-                                <a href="m_tambah_dokter.php" type="button" class="btn btn-primary">
+                                <a href="m_tambah_data_dokter" type="button" class="btn btn-primary">
                                     <span class="btn-label">
                                         <i class="fa-solid fa-user-plus"></i>
                                     </span>
-                                    Tambah Jadwal Dokter
+                                    Tambah Data Dokter Umum
                                 </a>
                             </div>
                         </div>
@@ -51,13 +51,12 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
                                 <table id="add-row" class="display table table-striped table-hover">
                                     <thead class="text-center">
                                         <tr>
-                                            <th>#</th>
+                                            <th>No</th>
                                             <th>ID Dokter</th>
-                                            <th>Nama</th>
+                                            <th>Nama Dokter</th>
                                             <th>Spesialis</th>
                                             <th>No Telepon</th>
-                                            <th>Hari Praktek</th>
-                                            <th>Jam Praktek</th>
+                                            <th>Jadwal Praktek</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -65,10 +64,10 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
                                         <tr>
                                             <?php
 
-                                            $jadwalDokter = mysqli_query($db_connect, "SELECT * FROM jadwal_dokter");
+                                            $dokter = mysqli_query($db_connect, "SELECT * FROM dokter");
                                             $no = 1;
 
-                                            while ($row = mysqli_fetch_array($jadwalDokter)) {
+                                            while ($row = mysqli_fetch_array($dokter)) {
                                                 ?>
                                             <tr>
                                                 <td>
@@ -84,26 +83,22 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
                                                     <?= $row['spesialisasi']; ?>
                                                 </td>
                                                 <td>
-                                                    <?= $row['hari_praktek']; ?>
+                                                    <?= $row['notlp_dokter']; ?>
                                                 </td>
                                                 <td>
-                                                    <?= $row['jam_mulai_praktek']; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $row['jam_selesai_praktek']; ?>
+                                                    <?= $row['jadwal_praktek']; ?>
                                                 </td>
                                                 <td style='vertical-align: middle;'>
                                                     <div style="display: flex; align-items: center; gap: 10px;">
-                                                        <a href='m_ubah_dokter.php?id=<?= $row['id_dokter']; ?>'>
+                                                        <a href='m_ubah_data_dokter.php?id=<?= $row['id_dokter']; ?>'>
                                                             <button type="button" class="btn btn-warning">Edit</button>
                                                         </a>
                                                         <button type="button"
-                                                            href='../../../backend/proses_jadwal_dokter.php?id_dokter=<?= $row['id_dokter']; ?>'
+                                                            href='../../../backend/proses_data_dokter.php?id_dokter=<?= $row['id_dokter']; ?>'
                                                             class='btn btn-danger delete'>Hapus</button>
                                                     </div>
                                                 </td>
                                             </tr>
-
                                         <?php } ?>
                                     </tbody>
                                 </table>
@@ -139,7 +134,7 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
                     if (Delete) {
                         swal({
                             title: 'Data Terhapus!',
-                            text: 'Data Jadwal Dokter Terhapus',
+                            text: 'Data Dokter Umum Berhasil Terhapus',
                             type: 'success',
                             buttons: {
                                 confirm: {

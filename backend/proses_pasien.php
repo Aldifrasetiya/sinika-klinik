@@ -1,25 +1,10 @@
 <?php
 include "config/db-klinik.php";
 
-// // Mendapatkan ID pasien terbesar dari database
-// $query = mysqli_query($db_connect, "SELECT max(id_pasien) as idTerbesar FROM pasien");
-// $data = mysqli_fetch_array($query);
-
-// // Mengenerate ID pasien baru
-// $urutan = (int) substr($data['idTerbesar'], 3, 4);
-// $urutan++;
-// $id_pasien_baru = "PSN" . sprintf("%04d", $urutan);
-
-// // Menampilkan ID pasien baru (opsional)
-// echo $id_pasien_baru;
-
-
-$QueryPasien = mysqli_query($db_connect, "SELECT * FROM pasien");
-
 // tambah data pasien
 if (isset($_POST['TambahPasien'])) {
     // Melakukan validasi data form untuk mencegah SQL injection
-    $id_pasien = mysqli_real_escape_string($db_connect, $_POST['id_pasien']);
+    // $id_pasien = mysqli_real_escape_string($db_connect, $_POST['id_pasien']);
     $nama_pasien = mysqli_real_escape_string($db_connect, $_POST['namaPasien']);
     $alamat = mysqli_real_escape_string($db_connect, $_POST['alamat']);
     $ttl = mysqli_real_escape_string($db_connect, $_POST['ttl']);
@@ -27,10 +12,12 @@ if (isset($_POST['TambahPasien'])) {
     $penyakit = mysqli_real_escape_string($db_connect, $_POST['penyakit']);
     $notlp = mysqli_real_escape_string($db_connect, $_POST['notlp']);
     $asuransi = mysqli_real_escape_string($db_connect, $_POST['asuransi']);
+    $noAsuransi = mysqli_real_escape_string($db_connect, $_POST['noAsuransi']);
+
 
     // Query untuk menambahkan data pasien baru
-    $QueryAddPasien = "INSERT INTO pasien(id_pasien, nama_pasien, alamat, tanggal_lahir, jk, penyakit, no_telepon, jenis_asuransi) 
-                       VALUES ('$id_pasien', '$nama_pasien', '$alamat', '$ttl', '$jk', '$penyakit', '$notlp', '$asuransi')";
+    $QueryAddPasien = "INSERT INTO pasien(nama_pasien, alamat, tanggal_lahir, jk, penyakit, no_telepon, jenis_asuransi, no_asuransi) 
+                       VALUES ('$nama_pasien', '$alamat', '$ttl', '$jk', '$penyakit', '$notlp', '$asuransi', '$noAsuransi')";
 
     // Menjalankan query
     $resultQueryAddPasien = mysqli_query($db_connect, $QueryAddPasien);
@@ -43,7 +30,12 @@ if (isset($_POST['TambahPasien'])) {
         // Menampilkan pesan kesalahan jika query tidak berhasil
         echo "Error: " . mysqli_error($db_connect);
     }
+
+    // Menutup koneksi database setelah digunakan
+    $db->closeConnection();
+    
 }
+
 
 // edit data pasien
 if (isset($_POST["UbahPasien"])) {
@@ -59,7 +51,7 @@ if (isset($_POST["UbahPasien"])) {
     $notlp = mysqli_real_escape_string($db_connect, $_POST['notlp']);
     $asuransi = mysqli_real_escape_string($db_connect, $_POST['asuransi']);
 
-    $queryUpdatePasien = "UPDATE pasien SET id_pasien = '$id_pasien_baru' nama_pasien = '$nama_pasien', alamat = '$alamat', tanggal_lahir='$ttl', jk='$jk', penyakit='$penyakit', no_Telepon='$notlp', jenis_asuransi='$asuransi' WHERE id_pasien='$id_pasien'";
+    $queryUpdatePasien = "UPDATE pasien SET id_pasien = '$id_pasien' nama_pasien = '$nama_pasien', alamat = '$alamat', tanggal_lahir='$ttl', jk='$jk', penyakit='$penyakit', no_Telepon='$notlp', jenis_asuransi='$asuransi' WHERE id_pasien='$id_pasien'";
 
     $resultUpdatePasien = mysqli_query($db_connect, $queryUpdatePasien);
 
@@ -67,7 +59,7 @@ if (isset($_POST["UbahPasien"])) {
 
 }
 
-// hapus jadwal dokter
+// hapus data pasien
 if (isset($_GET['id_pasien'])) {
     mysqli_query($db_connect, "DELETE FROM pasien WHERE id_pasien='$_GET[id_pasien]'");
 

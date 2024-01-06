@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..' . $ds) . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_owner.php");
@@ -87,13 +87,14 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
                                                 <?= $row['stok']; ?>
                                             </td>
                                             <td style='vertical-align: middle;'>
-                                                <a href='m_ubah_data_obat.php?id=<?= $row['id_dokter']; ?>'>
-                                                    <button type="button" class="btn btn-warning">Edit</button>
-                                                </a>
-                                                <button type="button"
-                                                    href='../../../backend/proses_data_obat.php?id_dokter=<?= $row['id_dokter']; ?>'
-                                                    class='btn btn-danger delete'>Hapus</button>
-                                            </td>
+                                                <div style='display: flex; align-items: center; gap: 10px;'>
+                                                    <a href='m_ubah_data_obat.php?id=<?= $row['id_dokter']; ?>'>
+                                                        <button type="button" class="btn btn-warning">Edit</button>
+                                                    </a>
+                                                    <button type="button"
+                                                        href='../../../backend/proses_data_obat.php?id_obat=<?= $row['id_obat']; ?>'
+                                                        class='btn btn-danger delete'>Hapus</button>
+                                                </div>
                                             </td>
                                         </tr>
                                         <?php

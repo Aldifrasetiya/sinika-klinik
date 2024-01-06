@@ -2,7 +2,7 @@
 session_start();
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..' . $ds) . $ds;
-require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_owner.php");
+require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
 require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
 
 
@@ -24,7 +24,7 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="./../pages/content/admin/m_dokter_umum.php">Jadwal Dokter Umum</a>
+                            <a href="./../pages/content/admin/m_jadwal_dokter_umum">Jadwal Dokter Umum</a>
                         </li>
                         <!-- <li class="separator">
                             <i class="flaticon-right-arrow"></i>
@@ -38,7 +38,7 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex align-items-center">
-                                <a href="m_tambah_dokter.php" type="button" class="btn btn-primary">
+                                <a href="m_tambah_jadwal_dokter.php" type="button" class="btn btn-primary">
                                     <span class="btn-label">
                                         <i class="fa-solid fa-user-plus"></i>
                                     </span>
@@ -51,13 +51,12 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
                                 <table id="add-row" class="display table table-striped table-hover">
                                     <thead class="text-center">
                                         <tr>
-                                            <th>#</th>
-                                            <th>ID Dokter</th>
-                                            <th>Nama</th>
+                                            <th>ID Jadwal Dokter</th>
+                                            <th>Nama Dokter</th>
                                             <th>Spesialis</th>
-                                            <th>No Telepon</th>
                                             <th>Hari Praktek</th>
-                                            <th>Jam Praktek</th>
+                                            <th>Jam Mulai Praktek</th>
+                                            <th>Jam Selesai Praktek</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -65,17 +64,15 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
                                         <tr>
                                             <?php
 
-                                            $jadwalDokter = mysqli_query($db_connect, "SELECT * FROM jadwal_dokter");
-                                            $no = 1;
+                                            $jadwalDokter = mysqli_query($db_connect, "SELECT jadwal_dokter.*, dokter.nama_dokter, dokter.spesialisasi, dokter.notlp_dokter
+                                            FROM jadwal_dokter
+                                            INNER JOIN dokter ON jadwal_dokter.id_dokter = dokter.id_dokter");
 
                                             while ($row = mysqli_fetch_array($jadwalDokter)) {
                                                 ?>
                                             <tr>
                                                 <td>
-                                                    <?= $no++; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $row['id_dokter']; ?>
+                                                    <?= $row['id_jadwal_dokter']; ?>
                                                 </td>
                                                 <td>
                                                     <?= $row['nama_dokter']; ?>
@@ -94,14 +91,15 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
                                                 </td>
                                                 <td style='vertical-align: middle;'>
                                                     <div style="display: flex; align-items: center; gap: 10px;">
-                                                        <a href='m_ubah_dokter.php?id=<?= $row['id_dokter']; ?>'>
+                                                        <a href='m_ubah_jadwal_dokter.php?id=<?= $row['id_jadwal_dokter']; ?>'>
                                                             <button type="button" class="btn btn-warning">Edit</button>
                                                         </a>
                                                         <button type="button"
-                                                            href='../../../backend/proses_jadwal_dokter.php?id_dokter=<?= $row['id_dokter']; ?>'
+                                                            href='../../../backend/proses_jadwal_dokter.php?id_jadwal_dokter=<?= $row['id_jadwal_dokter']; ?>'
                                                             class='btn btn-danger delete'>Hapus</button>
                                                     </div>
                                                 </td>
+                                                <td style='vertical-align: middle;'></td>
                                             </tr>
 
                                         <?php } ?>

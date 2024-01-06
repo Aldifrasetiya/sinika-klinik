@@ -2,7 +2,7 @@
 session_start();
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..') . $ds;
-require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_owner.php");
+require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
 require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
 
 
@@ -30,7 +30,7 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="m_ubah_dokter.php">Ubah Jadwal Dokter Umum</a>
+                            <a href="m_ubah_jadwal_dokter.php">Ubah Jadwal Dokter Umum</a>
                         </li>
                         <!-- <li class="separator">
                             <i class="flaticon-right-arrow"></i>
@@ -44,9 +44,11 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
                 require('../../../backend/config/db-klinik.php');
 
                 if (isset($_GET['id'])) {
-                    $id_dokter = $_GET['id'];
+                    $id_jadwal_dokter = $_GET['id'];
 
-                    $result = mysqli_query($db_connect, "SELECT * FROM jadwal_dokter WHERE id_dokter = $id_dokter ");
+                    $result = mysqli_query($db_connect, "SELECT jadwal_dokter.*, dokter.nama_dokter, dokter.spesialisasi, dokter.notlp_dokter
+                    FROM jadwal_dokter
+                    INNER JOIN dokter ON jadwal_dokter.id_dokter = dokter.id_dokter WHERE id_jadwal_dokter = $id_jadwal_dokter ");
                     if (mysqli_num_rows($result) == 1) {
                         $row = mysqli_fetch_assoc($result);
                         ?>
@@ -54,7 +56,7 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-row">
-                                        <input type="hidden" name="id_dokter" id="id_dokter" value="<?= $row['id_dokter']; ?>">
+                                        <input type="hidden" name="id_jadwal_dokter" id="id_jadwal_dokter" value="<?= $row['id_jadwal_dokter']; ?>">
                                         <div class="form-group col-md-6">
                                             <label for="name">Nama Dokter</label>
                                             <input type="text" class="form-control" name="namaDokter" id="namaDokter"
@@ -63,12 +65,12 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
                                         <div class="form-group col-md-6">
                                             <label for="spesialis">Spesialis</label>
                                             <input type="text" class="form-control" name="spesialis" id="spesialis"
-                                                value="<?= $row['spesialis']; ?>">
+                                                value="<?= $row['spesialisasi']; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="notlp">No Telepon</label>
                                             <input type="text" class="form-control" name="notlp" id="notlp"
-                                                value="<?= $row['no_hp']; ?> ">
+                                                value="<?= $row['notlp_dokter']; ?> ">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="hari">Hari Praktek</label>
@@ -76,13 +78,18 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
                                                 value="<?= $row['hari_praktek']; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="jamPraktek">Jam Praktek</label>
-                                            <input type="time" class="form-control" name="jamPraktek" id="jamPraktek"
-                                                value="<?= $row['jam_praktek']; ?>">
+                                            <label for="mulaiPraktek">Jam Mulai Praktek</label>
+                                            <input type="time" class="form-control" name="mulaiPraktek" id="mulaiPraktek"
+                                                value="<?= $row['jam_mulai_praktek']; ?>">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="selesaiPraktek">Jam Selesai Praktek</label>
+                                            <input type="time" class="form-control" name="selesaiPraktek" id="selesaiPraktek"
+                                                value="<?= $row['jam_selesai_praktek']; ?>">
                                         </div>
                                     </div>
                                     <div class="card-action">
-                                        <input type="hidden" name="UbahJadwal" id="UbahJadwal" value="UbahJadwal">
+                                        <input type="hidden" name="ubahJadwalDokter" id="ubahJadwalDokter" value="ubahJadwalDokter">
                                         <button type="submit" class="btn btn-warning" name="UbahJadwal">Ubah</button>
                                         <button class=" btn btn-danger">Batal</button>
                                     </div>

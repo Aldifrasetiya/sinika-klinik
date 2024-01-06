@@ -123,14 +123,17 @@ require_once("{$base_dir}core{$ds}h_pasien.php");
                       <th>Spesialis</th>
                       <th>No Telepon</th>
                       <th>Hari Praktek</th>
-                      <th>Jam Praktek</th>
+                      <th>Jam Mulai Praktek</th>
+                      <th>Jam Selesai Praktek</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <?php
 
-                      $jadwalDokter = mysqli_query($db_connect, "SELECT * FROM jadwal_dokter");
+                      $jadwalDokter = mysqli_query($db_connect, "SELECT jadwal_dokter.*, dokter.nama_dokter, dokter.spesialisasi, dokter.notlp_dokter
+                      FROM jadwal_dokter
+                      INNER JOIN dokter ON jadwal_dokter.id_dokter = dokter.id_dokter");
                       $no = 1;
 
                       while ($row = mysqli_fetch_array($jadwalDokter)) {
@@ -146,19 +149,21 @@ require_once("{$base_dir}core{$ds}h_pasien.php");
                           <?= $row['nama_dokter']; ?>
                         </td>
                         <td>
-                          <?= $row['spesialis']; ?>
+                          <?= $row['spesialisasi']; ?>
                         </td>
                         <td>
-                          <?= $row['no_hp']; ?>
+                          <?= $row['notlp_dokter']; ?>
                         </td>
                         <td>
                           <?= $row['hari_praktek']; ?>
                         </td>
                         <td>
-                          <?= $row['jam_praktek']; ?>
+                          <?= $row['jam_mulai_praktek']; ?>
+                        </td>
+                        <td>
+                          <?= $row['jam_selesai_praktek']; ?>
                         </td>
                       </tr>
-
                     <?php } ?>
                   </tbody>
                 </table>

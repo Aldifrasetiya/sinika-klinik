@@ -1,3 +1,23 @@
+<?php
+// session_start();
+
+// if (isset($_POST['login'])) {
+//   $email = $_POST['email'];
+//   $password = $_POST['password'];
+
+//   $auth = new Auth($db_connect);
+//   $result = $auth->loginUser($email, $password);
+
+//   if ($result === true) {
+//     $auth->authorizeUser($_SESSION['username'], $_SESSION['role']);
+//   } else {
+//     echo $result;
+//   }
+// }
+
+?>
+
+
 <!-- Sidebar -->
 <div class="sidebar sidebar-style-2">
   <div class="sidebar-wrapper scrollbar scrollbar-inner">
@@ -9,31 +29,35 @@
         <div class="info">
           <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
             <span>
-              Hizrian
-              <span class="user-level">Administrator</span>
+              <?= $_SESSION['username']; ?>
+              <span class="user-level">
+                <?= $_SESSION['role']; ?>
+              </span>
               <span class="caret"></span>
             </span>
           </a>
           <div class="clearfix"></div>
 
           <div class="collapse in" id="collapseExample">
-            <ul class="nav">
-              <li>
-                <a href="#profile">
-                  <span class="link-collapse">My Profile</span>
-                </a>
-              </li>
-              <li>
-                <a href="#edit">
-                  <span class="link-collapse">Edit Profile</span>
-                </a>
-              </li>
-              <li>
-                <a href="#settings">
-                  <span class="link-collapse">Settings</span>
-                </a>
-              </li>
-            </ul>
+            <?php if (isset($_SESSION['username']) && isset($_SESSION['role'])): ?>
+              <ul class="nav">
+                <li>
+                  <a href="#profile">
+                    <span class="link-collapse">My Profile</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#edit">
+                    <span class="link-collapse">Edit Profile</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#settings">
+                    <span class="link-collapse">Settings</span>
+                  </a>
+                </li>
+              </ul>
+            <?php endif; ?>
           </div>
         </div>
       </div>
@@ -82,22 +106,22 @@
         </li>
         <li class="nav-item">
           <a data-toggle="collapse" href="#sidebarLayouts">
-            <i class="fa-solid fa-calendar"></i>
-            <p>Jadwal Dokter</p>
+            <i class="fa-solid fa-stethoscope"></i>
+            <p>Data Dokter</p>
             <span class="caret"></span>
           </a>
           <div class="collapse" id="sidebarLayouts">
             <ul class="nav nav-collapse">
               <li>
-                <a href="../admin/m_dokter_umum">
+                <a href="../admin/m_data_dokter">
                   <span class="sub-item">Dokter Umum</span>
                 </a>
               </li>
-              <!-- <li>
-                <a href="overlay-sidebar.html">
-                  <span class="sub-item">Dokter Spesialis</span>
+              <li>
+                <a href="../admin/m_jadwal_dokter_umum">
+                  <span class="sub-item">Jadwal Dokter Umum</span>
                 </a>
-              </li> -->
+              </li>
             </ul>
           </div>
         </li>

@@ -18,7 +18,10 @@ require_once("{$base_dir}backend{$ds}proses_antrian_pasien.php");
             <div class="row justify-content-center">
                 <?php
                 require('../../../backend/config/db-klinik.php');
-                $databaseDokter = "SELECT id_dokter, nama_dokter FROM jadwal_dokter";
+
+                $databaseDokter = "SELECT jadwal_dokter.*, dokter.nama_dokter, dokter.spesialisasi
+                FROM jadwal_dokter
+                INNER JOIN dokter ON jadwal_dokter.id_dokter = dokter.id_dokter";
                 $result = $db_connect->query($databaseDokter);
                 ?>
                 <form action="../../../backend/proses_antrian_pasien.php" method="POST">
@@ -26,8 +29,9 @@ require_once("{$base_dir}backend{$ds}proses_antrian_pasien.php");
                         <div class="col-md-6">
                             <div class="form-group">
                                 <input type="hidden" name="hari" value="<?= date('N'); ?>">
-                                <label for="nama" class="form-label">Nama</label>
-                                <input type="text" class="form-control" name="nama" id="nama" aria-describedby="nama">
+                                <label for="nama_pasien" class="form-label">Nama</label>
+                                <input type="text" class="form-control" name="nama_pasien" id="nama_pasien"
+                                    aria-describedby="nama">
                             </div>
                         </div>
 

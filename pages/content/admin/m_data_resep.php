@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..' . $ds) . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
@@ -13,7 +13,7 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
         <div class="content">
             <div class="page-inner">
                 <div class="page-header">
-                    <h4 class="page-title">Data Resep</h4>
+                    <h4 class="page-title">Resep</h4>
                     <ul class="breadcrumbs">
                         <li class="nav-home">
                             <a href="dashboard.php">
@@ -24,7 +24,7 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="m_data_atrian.php">Resep</a>
+                            <a href="m_data_resep.php">Resep</a>
                         </li>
                         <!-- <li class="separator">
                             <i class="flaticon-right-arrow"></i>
@@ -41,7 +41,7 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
                                 <div class="d-flex align-items-center">
                                     <!-- <h4 class="card-title">Add Row</h4> -->
                                 </div>
-                                <a href="m_tambah_obat.php" type="button" class="btn btn-primary">
+                                <a href="m_tambah_data_resep.php" type="button" class="btn btn-primary">
                                     <span class="btn-label">
                                         <i class="fa-regular fa-plus"></i>
                                     </span>
@@ -51,50 +51,62 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
                             <table id="add-row" class="display table table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
+                                        <th>ID Resep</th>
+                                        <th>ID Pasien</th>
+                                        <th>ID Dokter</th>
                                         <th>ID Obat</th>
+                                        <th>Tanggal Resep</th>
                                         <th>Nama Obat</th>
-                                        <th>Jenis Obat</th>
-                                        <th>Harga Obat</th>
-                                        <th>Stok Obat</th>
+                                        <th>Jumlah Obat</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <?php
-                                        $dataObat = mysqli_query($db_connect, "SELECT * FROM obat");
-                                        $no = 1;
+                                        $dataResep = mysqli_query(
+                                            $db_connect,
 
-                                        while ($row = mysqli_fetch_array($dataObat)) {
+                                            "SELECT resep.*, pasien.nama_pasien, pasien.tanggal_lahir, pasien.jk, pasien.penyakit, pasien.jenis_asuransi, pasien.no_asuransi, 
+                                        dokter.nama_dokter, dokter.spesialisasi, dokter.notlp_dokter,
+                                        obat.nama_obat, obat.jenis_obat, obat.harga 
+                                        FROM resep
+                                        JOIN dokter ON resep.id_dokter = dokter.id_dokter
+                                        JOIN pasien ON resep.id_pasien = pasien.id_pasien
+                                        JOIN obat ON resep.id_obat = obat.id_obat"
+                                        );
+
+                                        while ($row = mysqli_fetch_array($dataResep)) {
                                             ?>
+                                            <td>
+                                                <?= $row['id_resep']; ?>
+                                            </td>
+                                            <td>
+                                                <?= $row['id_pasien']; ?>
+                                            </td>
+                                            <td>
+                                                <?= $row['id_dokter']; ?>
+                                            </td>
                                             <td>
                                                 <?= $row['id_obat']; ?>
                                             </td>
                                             <td>
-                                                <?= $row['nama_obat']; ?>
+                                                <?= $row['tgl_resep']; ?>
                                             </td>
                                             <td>
-                                                <?= $row['jenis_obat']; ?>
+                                                <?= $row['nama_obat'] ?>
                                             </td>
                                             <td>
-                                                <?= $row['harga']; ?>
+                                                <?= $row['jumlah_obat'] ?>
                                             </td>
-                                            <td>
-                                                <?= $row['stok']; ?>
-                                            </td>
-                                            <td></td>
-                                            <td>
-                                                <div class="form-button-action">
-                                                    <button type="button" data-toggle="tooltip" title=""
-                                                        class="btn btn-link btn-primary btn-lg"
-                                                        data-original-title="Edit Task">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <button type="button" data-toggle="tooltip" title=""
-                                                        class="btn btn-link btn-danger" data-original-title="Remove">
-                                                        <i class="fa-solid fa-trash"></i>
-                                                    </button>
+                                            <td style='vertical-align: middle;'>
+                                                <div style='display: flex; align-items: center; gap: 10px;'>
+                                                    <a href='m_ubah_data_obat.php?id=<?= $row['id_obat']; ?>'>
+                                                        <button type="button" class="btn btn-warning">Edit</button>
+                                                    </a>
+                                                    <button type="button"
+                                                        href='../../../backend/proses_data_obat.php?id_obat=<?= $row['id_obat']; ?>'
+                                                        class='btn btn-danger delete'>Hapus</button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -108,8 +120,6 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
                 </div>
             </div>
         </div>
-    </div>
-    </div>
     </div>
 </body>
 

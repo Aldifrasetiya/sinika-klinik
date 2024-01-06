@@ -1,20 +1,27 @@
 <?php
-
 session_start();
+require '../backend/config/db-klinik.php';
+require '../backend/login.php'; // Include file kelas Auth
 
-if ($_SESSION['role'] != 'admin') {
-  session_destroy();
-  header('Location:./../index.php');
-  exit;
+if (isset($_POST['login'])) {
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+
+  $auth = new Auth($db_connect);
+  $result = $auth->loginUser($email, $password);
+
+  if ($result === true) {
+    $auth->authorizeUser($_SESSION['username'], $_SESSION['role']);
+  } else {
+    echo $result;
+  }
 }
-
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds) . $ds;
 require_once("{$base_dir}pages{$ds}core{$ds}header.php");
 
-
-
 ?>
+
 <!-- Fonts and icons -->
 <!-- <script src="../../assets/js/plugin/webfont/webfont.min.js"></script>
 <script>
@@ -40,7 +47,9 @@ require_once("{$base_dir}pages{$ds}core{$ds}header.php");
         <div class="page-inner py-5">
           <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
             <div>
-              <h2 class="text-white pb-2 fw-bold">Selamat datang Administrator</h2>
+              <h2 class="text-white pb-2 fw-bold">Selamat datang <span>
+                  <?= $_SESSION['username']; ?>
+                </span></h2>
               <!-- <h5 class="text-white op-7 mb-2">Free Bootstrap 4 Admin Dashboard</h5> -->
             </div>
           </div>
@@ -48,7 +57,10 @@ require_once("{$base_dir}pages{$ds}core{$ds}header.php");
       </div>
       <?php
 
-      include('../backend/config/db-klinik.php');
+      include '../backend/config/db-klinik.php';
+      // $db = new DB('localhost', 'root', '', 'database');
+      // $conn = $db->connect();
+      
 
       // data Realtime antrian
       $dataRealtimeAntrian = mysqli_query($db_connect, "SELECT count(no_antrian) AS jmlh_antrian FROM antrian");

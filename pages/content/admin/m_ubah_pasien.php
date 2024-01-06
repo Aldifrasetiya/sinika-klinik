@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..') . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
@@ -54,11 +54,11 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-row">
-                                        <div class="form-group col-md-6">
+                                        <!-- <div class="form-group col-md-6">
                                             <label for="id_pasien">ID Pasien</label>
                                             <input type="text" class="form-control" name="id_pasien" id="id_pasien"
-                                                value="<?php echo $id_pasien_baru; ?>" readonly>
-                                        </div>
+                                                value="<?php echo $id_pasien; ?>" readonly>
+                                        </div> -->
                                         <div class="form-group col-md-6">
                                             <label for="namePasien">Nama Pasien</label>
                                             <input type="text" class="form-control" name="namaPasien" id="namaPasien"
@@ -77,7 +77,7 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                                         <div class="form-group col-md-6">
                                             <label for="jk">Jenis Kelamin</label>
                                             <select class="form-control" name="jk" id="jk" value="<?= $row['jk']; ?>">
-                                                <option>--PILIH--</option>
+                                                <option disabled selected>Pilih Jenis Kelamin ...</option>
                                                 <option>LAKI-LAKI</option>
                                                 <option>PEREMPUAN</option>
                                             </select>
@@ -96,7 +96,7 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                                             <label for="asuransi">Asuransi</label>
                                             <select class="form-control" name="asuransi" id="asuransi"
                                                 value="<?= $row['jenis_asuransi'] ?>">
-                                                <option>--PILIH--</option>
+                                                <option disabled selected>Pilih Asuransi ...</option>
                                                 <option>BPJS</option>
                                                 <option>Non BPJS</option>
                                                 <option>Asuransi lainnya</option>

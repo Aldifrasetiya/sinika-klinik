@@ -1,3 +1,17 @@
+<?php
+
+// session_start();
+// require '../backend/config/db-klinik.php';
+
+// if ($_SESSION['role'] != 'admin') {
+//   session_destroy();
+//   header('Location:./../index.php');
+//   exit;
+// }
+
+?>
+
+
 <!-- Sidebar -->
 <div class="sidebar sidebar-style-2">
   <div class="sidebar-wrapper scrollbar scrollbar-inner">
@@ -9,8 +23,10 @@
         <div class="info">
           <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
             <span>
-              Hizrian
-              <span class="user-level">Administrator</span>
+              <?= $_SESSION['username']; ?>
+              <span class="user-level">
+                <?= $_SESSION['role']; ?>
+              </span>
               <span class="caret"></span>
             </span>
           </a>
@@ -82,15 +98,29 @@
         </li>
         <li class="nav-item">
           <a data-toggle="collapse" href="#sidebarLayouts">
-            <i class="fa-solid fa-calendar"></i>
-            <p>Jadwal Dokter</p>
+            <i class="fa-solid fa-stethoscope"></i>
+            <p>Data Dokter</p>
             <span class="caret"></span>
           </a>
           <div class="collapse" id="sidebarLayouts">
             <ul class="nav nav-collapse">
               <li>
+                <a href="./../pages/content/admin/m_data_dokter">
+                  <span class="sub-item">Data Dokter Umum</span>
+                </a>
+              </li>
+              <li>
+                <a href="./../pages/content/admin/m_jadwal_dokter_umum">
+                  <span class="sub-item">Jadwal Dokter Umum</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="collapse" id="sidebarLayouts">
+            <ul class="nav nav-collapse">
+              <li>
                 <a href="./../pages/content/admin/m_dokter_umum">
-                  <span class="sub-item">Dokter Umum</span>
+                  <span class="sub-item">Jadwal Dokter Umum</span>
                 </a>
               </li>
             </ul>

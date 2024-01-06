@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..' . $ds) . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
@@ -87,18 +87,17 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
                                                 <?= $row['stok']; ?>
                                             </td>
                                             <td style='vertical-align: middle;'>
-                                                <a href='m_ubah_data_obat.php?id=<?= $row['id_dokter']; ?>'>
-                                                    <button type="button" class="btn btn-warning">Edit</button>
-                                                </a>
-                                                <button type="button"
-                                                    href='../../../backend/proses_data_obat.php?id_dokter=<?= $row['id_dokter']; ?>'
-                                                    class='btn btn-danger delete'>Hapus</button>
-                                            </td>
+                                                <div style='display: flex; align-items: center; gap: 10px;'>
+                                                    <a href='m_ubah_data_obat.php?id=<?= $row['id_dokter']; ?>'>
+                                                        <button type="button" class="btn btn-warning">Edit</button>
+                                                    </a>
+                                                    <button type="button"
+                                                        href='../../../backend/proses_data_obat.php?id_obat=<?= $row['id_obat']; ?>'
+                                                        class='btn btn-danger delete'>Hapus</button>
+                                                </div>
                                             </td>
                                         </tr>
-                                        <?php
-                                        }
-                                        ?>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>
@@ -110,7 +109,62 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
     </div>
     </div>
 </body>
+<script>
+    const SweetAlert2Demo = function () {
+        const initDemos = function () {
+            $('.delete').click(function (e) {
+                var url = e.target.getAttribute('href');
+                swal({
+                    title: 'Yakin ingin menghapus?',
+                    text: "Data tidak bisa kembali jika terhapus!",
+                    type: 'warning',
+                    buttons: {
+                        confirm: {
+                            text: 'Hapus',
+                            className: 'btn btn-success'
+                        },
+                        cancel: {
+                            text: 'Batal',
+                            visible: true,
+                            className: 'btn btn-danger'
+                        }
+                    }
+                }).then((Delete) => {
+                    if (Delete) {
+                        swal({
+                            title: 'Data Terhapus!',
+                            text: 'Data Obat Terhapus',
+                            type: 'success',
+                            buttons: {
+                                confirm: {
+                                    className: 'btn btn-success'
+                                }
+                            }
+
+                        });
+                        setTimeout(function () {
+                            window.location.href = url;
+                        }, 2000);
+                    } else {
+                        swal.close();
+                    }
+                });
+            });
+        };
+        return {
+            //== Init
+            init: function () {
+                initDemos();
+            },
+        };
+    }();
+
+    //== Class Initialization
+    jQuery(document).ready(function () {
+        SweetAlert2Demo.init();
+    });
+</script>
 
 <?php
-require_once("{$base_dir}pages{$ds}core{$ds}footer.php");
+// require_once("{$base_dir}pages{$ds}core{$ds}footer.php");
 ?>

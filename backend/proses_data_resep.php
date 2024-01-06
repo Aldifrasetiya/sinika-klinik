@@ -2,22 +2,25 @@
 
 include "config/db-klinik.php";
 
-$QueryDataObat = mysqli_query($db_connect, "SELECT * FROM obat");
+$QueryDataObat = mysqli_query($db_connect, "SELECT * FROM resep");
 
 // tambah data obat php
-if (isset($_POST["Tambah"])) {
+if (isset($_POST["TambahResep"])) {
     global $db_connect;
     // Ambil data dari formulir
-    $nama_obat = mysqli_real_escape_string($db_connect, $_POST['namaObat']);
-    $jenis = mysqli_real_escape_string($db_connect, $_POST['jenis']);
-    $harga = mysqli_real_escape_string($db_connect, $_POST['harga']);
-    $stok = mysqli_real_escape_string($db_connect, $_POST['stok']);
+    // $id_resep = mysqli_real_escape_string($db_connect, $_POST['id_resep']);
+    $id_pasien = mysqli_real_escape_string($db_connect, $_POST['id_pasien']);
+    $id_dokter = mysqli_real_escape_string($db_connect, $_POST['id_dokter']);
+    $id_obat = mysqli_real_escape_string($db_connect, $_POST['id_obat']);
+    $tgl_resep = mysqli_real_escape_string($db_connect, $_POST['tglResep']);
+    // $nama_obat = mysqli_real_escape_string($db_connect, $_POST['namaObat']);
+    $jmlh_obat = mysqli_real_escape_string($db_connect, $_POST['jmlhObat']);
 
-    $QueryAddObat = "INSERT INTO obat(nama_obat, jenis_obat, harga, stok) VALUES('" . $nama_obat . "','" . $jenis . "','" . $harga . "','" . $stok . "')";
+    $QueryAddResep = "INSERT INTO resep(id_pasien, id_dokter, id_obat, tgl_resep, jumlah_obat) VALUES('" . $id_pasien . "','" . $id_dokter . "','" . $id_obat . "','" . $tgl_resep . "', '" . $jmlh_obat . "')";
 
-    $ResultQueryObat = mysqli_query($db_connect, $QueryAddObat);
+    $ResultQueryResep = mysqli_query($db_connect, $QueryAddResep);
 
-    header("Location: ../pages/content/admin/m_data_obat.php");
+    header("Location: ../pages/content/admin/m_data_resep.php");
 }
 
 // ubah data obat php

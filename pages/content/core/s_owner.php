@@ -9,8 +9,10 @@
                 <div class="info">
                     <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
                         <span>
-                            H. Sumitro S.Kep,. <span>Ners,. M.Kep.</span>
-                            <span class="user-level">Owner</span>
+                            <?= $_SESSION['username']; ?>
+                            <span class="user-level">
+                                <?= $_SESSION['role']; ?>
+                            </span>
                             <span class="caret"></span>
                         </span>
                     </a>
@@ -68,8 +70,13 @@
                     <div class="collapse" id="base">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="../admin/m_data_pasien">
+                                <a href="../owner/m_data_pasien">
                                     <span class="sub-item">Data Pasien</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../owner/m_data_user">
+                                    <span class="sub-item">Data Admin</span>
                                 </a>
                             </li>
                         </ul>

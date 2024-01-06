@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..' . $ds) . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_owner.php");
@@ -63,22 +63,22 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
                                 <tbody>
                                     <tr>
                                         <?php
-                                        $dataObat = mysqli_query($db_connect, "SELECT * FROM obat");
+                                        $dataObat = mysqli_query($db_connect, "SELECT * FROM resep");
                                         $no = 1;
 
                                         while ($row = mysqli_fetch_array($dataObat)) {
                                             ?>
                                             <td>
-                                                <?= $row['id_obat']; ?>
+                                                <?= $row['id_pasien']; ?>
                                             </td>
                                             <td>
-                                                <?= $row['nama_obat']; ?>
+                                                <?= $row['id_dokter']; ?>
                                             </td>
                                             <td>
-                                                <?= $row['jenis_obat']; ?>
+                                                <?= $row['id_oabt']; ?>
                                             </td>
                                             <td>
-                                                <?= $row['harga']; ?>
+                                                <?= $row['tgl_resep']; ?>
                                             </td>
                                             <td>
                                                 <?= $row['stok']; ?>

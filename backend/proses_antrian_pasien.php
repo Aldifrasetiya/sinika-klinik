@@ -2,19 +2,8 @@
 // Koneksi ke database (ganti sesuai konfigurasi database Anda)
 include "config/db-klinik.php";
 
-// // Mendapatkan ID pasien terbesar dari database
-// $query = mysqli_query($db_connect, "SELECT max(id_antrian) as idTerbesar FROM antrian");
-// $data = mysqli_fetch_array($query);
-
-// // Mengenerate ID pasien baru
-// $urutan = (int) substr($data['idTerbesar'], 3, 4) + 1;
-// $id_antrian_baru = "ATR" . sprintf("%04d", $urutan);
-
-// // Menampilkan ID pasien baru (opsional)
-// echo $id_antrian_baru;
-
 if (isset($_POST['DaftarAntrian'])) {
-    $nama_pasien = $_POST['nama'];
+    $nama_pasien = $_POST['nama_pasien'];
     $id_dokter = $_POST['id_dokter'];
 
     // Ambil nomor antrian secara otomatis
@@ -39,47 +28,26 @@ if (isset($_POST['DaftarAntrian'])) {
     header("Location: ../pages/content/pasien/p_halaman_antrian.php?nomor_antrian={$nomor_antrian}&id_pasien={$id_pasien}");
     exit();
 }
+// edit status antrian
+if (isset($_POST['editAntrian'])) {
+    $nomor_antrian_selesai = $_POST['noAntrian']; // Ganti dengan nomor antrian yang sesuai
+    $status_selesai = $_POST['statusAntrian'];
 
-// hapus jadwal dokter
+    $queryUpdateStatus = "UPDATE antrian SET status_antrian = ? WHERE no_antrian = ?";
+    $stmt = $db_connect->prepare($queryUpdateStatus);
+    $stmt->bind_param("si", $status_selesai, $nomor_antrian_selesai);
+    $stmt->execute();
+    $stmt->close();
+
+    header("Location: ../pages/content/admin/m_data_antrian.php");
+    exit();
+}
+
+// hapus data antrian
 if (isset($_GET['no_antrian'])) {
     mysqli_query($db_connect, "DELETE FROM antrian WHERE no_antrian='$_GET[no_antrian]'");
 
     header("Location: ../pages/content/admin/m_data_antrian.php");
     exit();
 }
-
-
-// if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['DaftarAntrian'])) {
-//     $nama = $_POST['nama'];
-//     $id_dokter = $_POST['id_dokter'];
-
-//     // Simpan data pasien ke database
-//     $sqlPasien = "INSERT INTO pasien (nama) VALUES ('$nama')";
-//     $db_connect->query($sqlPasien);
-//     $id_pasien = $db_connect->insert_id;
-
-//     // Simpan data antrian ke database
-//     $sqlAntrian = "INSERT INTO antrian (atas_nama_pasien, id_dokter, id_pasien) VALUES ('$nama', '$id_dokter', '$id_pasien')";
-//     $db_connect->query($sqlAntrian);
-//     $nomor_antrian = $db_connect->insert_id;
-
-//     // Redirect ke halaman informasi antrian dengan membawa nomor antrian
-//     header("Location: p_halaman_antrian.php?nomor_antrian=$nomor_antrian&id_pasien=$id_pasien");
-//     exit();
-// }
-
-// if (isset($_GET['nomor_antrian']) && isset($_GET['id_pasien'])) {
-//     $nomor_antrian = $_GET['nomor_antrian'];
-//     $id_pasien = $_GET['id_pasien'];
-
-//     // Ambil informasi pasien
-//     $sqlInfoPasien = "SELECT nama FROM pasien WHERE id_pasien = $id_pasien";
-//     $result = $db_connect->query($sqlInfoPasien);
-//     $row = $result->fetch_assoc();
-//     $pasien = $row['nama'];
-// } else {
-//     echo "Tidak ada informasi antrian yang valid.";
-//     exit();
-// }
-
 ?>
