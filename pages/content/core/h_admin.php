@@ -34,7 +34,7 @@
       <!-- Logo Header -->
       <div class="logo-header" data-background-color="blue">
 
-        <a href="index.html" class="logo">
+        <a href="../../dashboard" class="logo">
           <img width="160" height="60" src="../../../assets/img/logo-SINIKA-DARK.png" alt="navbar brand"
             class="navbar-brand">
         </a>

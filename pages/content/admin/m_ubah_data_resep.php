@@ -13,7 +13,7 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
         <div class="content">
             <div class="page-inner">
                 <div class="page-header">
-                    <h4 class="page-title">Tambah Obat</h4>
+                    <h4 class="page-title">Ubah Resep</h4>
                     <ul class="breadcrumbs">
                         <li class="nav-home">
                             <a href="dashboard.php">
@@ -24,13 +24,13 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="m_data_obat.php">Data Obat</a>
+                            <a href="m_data_resep.php">Data Resep</a>
                         </li>
                         <li class="separator">
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="m_tambah_atrian.php">Tambah Obat</a>
+                            <a href="m_ubah_data_resep.php">Ubah Resep</a>
                         </li>
                         <!-- <li class="separator">
                             <i class="flaticon-right-arrow"></i>
@@ -56,9 +56,9 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
                                     <div class="form-row">
                                         <input type="hidden" name="id_obat" id="id_obat" value="<?= $row['id_obat']; ?>">
                                         <div class="form-group col-md-6">
-                                            <label for="name">Nama Obat</label>
-                                            <input type="text" class="form-control" name="namaObat" id="namaObat"
-                                                value="<?= $row['nama_obat']; ?>">
+                                            <label for="id_pasien">ID Pasien</label>
+                                            <input type="text" class="form-control" name="id_pasien" id="id_pasien"
+                                                value="<?= $row['id_pasien']; ?>" readonly>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="jenis">Jenis</label>
@@ -66,18 +66,33 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
                                                 value="<?= $row['jenis_obat']; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="harga">Harga</label>
-                                            <input type="text" class="form-control" name="harga" id="harga"
-                                                value="<?= $row['harga']; ?>">
+                                            <label for="id_dokter">ID Dokter</label>
+                                            <input type="text" class="form-control" name="id_dokter" id="id_dokter"
+                                                value="<?= $row['id_dokter']; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="stok">Stok</label>
-                                            <input type="text" class="form-control" name="stok" id="stok"
-                                                value="<?= $row['stok']; ?>">
+                                            <label for="id_obat">ID Obat</label>
+                                            <input type="text" class="form-control" name="id_obat" id="id_obat"
+                                                value="<?= $row['id_obat']; ?>">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="tglResep">Tanggal resep</label>
+                                            <input type="text" class="form-control" name="tglResep" id="tglResep"
+                                                value="<?= $row['tanggal_resep']; ?>">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="namaObat">Nama Obat</label>
+                                            <input type="text" class="form-control" name="namaObat" id="namaObat"
+                                                value="<?= $row['nama_obat']; ?>">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="jmlhObat">Jumlah Obat</label>
+                                            <input type="text" class="form-control" name="jmlhObat" id="jmlhObat"
+                                                value="<?= $row['jumlah_obat']; ?>">
                                         </div>
                                     </div>
                                     <div class="card-action">
-                                        <input type="hidden" name="ubahObat" value="ubahObat">
+                                        <input type="hidden" name="ubahResep" value="ubahResep">
                                         <button type="submit" class="btn btn-success">Ubah</button>
                                         <button class="btn btn-danger">Batal</button>
                                     </div>
@@ -85,10 +100,10 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
                         </form>
                         <?php
                     } else {
-                        echo "Data Obat tidak ditemukan";
+                        echo "Data Resep tidak ditemukan";
                     }
                 } else {
-                    echo "ID Obat tidak diberikan";
+                    echo "ID Resep tidak diberikan";
                 }
                 ?>
             </div>

@@ -88,7 +88,7 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
                                             </td>
                                             <td style='vertical-align: middle;'>
                                                 <div style='display: flex; align-items: center; gap: 10px;'>
-                                                    <a href='m_ubah_data_obat.php?id=<?= $row['id_dokter']; ?>'>
+                                                    <a href='m_ubah_data_obat.php?id=<?= $row['id_obat']; ?>'>
                                                         <button type="button" class="btn btn-warning">Edit</button>
                                                     </a>
                                                     <button type="button"

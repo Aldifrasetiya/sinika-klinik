@@ -40,7 +40,7 @@ if (isset($_POST["ubahDokter"])) {
     $nama_dokter = mysqli_real_escape_string($db_connect, $_POST['namaDokter']);
     $spesialis = mysqli_real_escape_string($db_connect, $_POST['spesialis']);
     $no_tlp = mysqli_real_escape_string($db_connect, $_POST['notlp']);
-    $jdwPraktek = mysqli_real_escape_string($db_connect, $_POST['jdwPraktek']);
+    $jdwPraktek = mysqli_real_escape_string($db_connect, $_POST['hariPraktek']);
 
     $queryUpdateDokter = "UPDATE dokter SET nama_dokter='$nama_dokter', spesialisasi='$spesialis', notlp_dokter='$no_tlp', jadwal_praktek='$jdwPraktek' WHERE id_dokter='$id_dokter'";
 
@@ -49,14 +49,15 @@ if (isset($_POST["ubahDokter"])) {
     // var_dump($id_dokter);
     // die;
 
-    header("Location: ../pages/content/admin/m_data_dokter  .php");
+    header("Location: ../pages/content/admin/m_data_dokter.php");
+    exit();
 }
 
 // hapus jadwal dokter
 if (isset($_GET['id_dokter'])) {
-    mysqli_query($db_connect, "DELETE FROM jadwal_dokter WHERE id_dokter='$_GET[id_dokter]'");
+    mysqli_query($db_connect, "DELETE FROM dokter WHERE id_dokter='$_GET[id_dokter]'");
 
-    header("Location: ../pages/content/admin/m_dokter_umum.php");
+    header("Location: ../pages/content/admin/m_data_dokter.php");
     die();
 }
 

@@ -2,9 +2,7 @@
 
 include "config/db-klinik.php";
 
-$QueryDataObat = mysqli_query($db_connect, "SELECT * FROM resep");
-
-// tambah data obat php
+// tambah data resep php
 if (isset($_POST["TambahResep"])) {
     global $db_connect;
     // Ambil data dari formulir
@@ -23,15 +21,15 @@ if (isset($_POST["TambahResep"])) {
     header("Location: ../pages/content/admin/m_data_resep.php");
 }
 
-// ubah data obat php
-if (isset($_POST["ubahObat"])) {
+// ubah data resep
+if (isset($_POST["ubahResep"])) {
     global $db_connect;
     // Ambil data dari formulir
-    $id_obat = mysqli_real_escape_string($db_connect, $_POST['id_obat']);
-    $nama_obat = mysqli_real_escape_string($db_connect, $_POST['namaObat']);
-    $jenis = mysqli_real_escape_string($db_connect, $_POST['jenis']);
-    $harga = mysqli_real_escape_string($db_connect, $_POST['harga']);
-    $stok = mysqli_real_escape_string($db_connect, $_POST['stok']);
+    $id_pasien = mysqli_real_escape_string($db_connect, $_POST['id_pasien']);
+    $id_dokter = mysqli_real_escape_string($db_connect, $_POST['namaObat']);
+    $id_obat = mysqli_real_escape_string($db_connect, $_POST['']);
+    $tgl_resep = mysqli_real_escape_string($db_connect, $_POST['tglResep']);
+    $jmlh_obat = mysqli_real_escape_string($db_connect, $_POST['jmlhObat']);
 
     $QueryUpdateObat = "UPDATE obat SET nama_obat='$nama_obat', jenis_obat='$jenis', harga='$harga', stok='$stok' WHERE id_obat = '$id_obat'";
 

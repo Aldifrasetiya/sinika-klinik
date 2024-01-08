@@ -101,11 +101,11 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
                                             </td>
                                             <td style='vertical-align: middle;'>
                                                 <div style='display: flex; align-items: center; gap: 10px;'>
-                                                    <a href='m_ubah_data_obat.php?id=<?= $row['id_obat']; ?>'>
+                                                    <a href='m_ubah_data_obat.php?id=<?= $row['id_resep']; ?>'>
                                                         <button type="button" class="btn btn-warning">Edit</button>
                                                     </a>
                                                     <button type="button"
-                                                        href='../../../backend/proses_data_obat.php?id_obat=<?= $row['id_obat']; ?>'
+                                                        href='../../../backend/proses_data_resep.php?id_resep=<?= $row['id_resep']; ?>'
                                                         class='btn btn-danger delete'>Hapus</button>
                                                 </div>
                                             </td>

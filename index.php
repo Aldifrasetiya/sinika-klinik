@@ -18,7 +18,7 @@ require_once("{$base_dir}core{$ds}h_pasien.php");
           </h2>
           <div data-aos="fade-up" data-aos-delay="600">
             <div class="text-center text-lg-start">
-              <a href="content/pasien/p_pendaftaran"
+              <a href="pages/content/pasien/p_pendaftaran"
                 class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
                 <span>Daftar Antrian Disini!</span>
               </a>

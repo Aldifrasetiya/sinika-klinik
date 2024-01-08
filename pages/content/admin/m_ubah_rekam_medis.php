@@ -3,7 +3,7 @@ session_start();
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..') . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
-require_once("{$base_dir}backend{$ds}proses_data_obat.php");
+require_once("{$base_dir}backend{$ds}proses_rekam_medis.php");
 
 
 ?>
@@ -13,7 +13,7 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
         <div class="content">
             <div class="page-inner">
                 <div class="page-header">
-                    <h4 class="page-title">Tambah Obat</h4>
+                    <h4 class="page-title">Ubah Rekam Medis</h4>
                     <ul class="breadcrumbs">
                         <li class="nav-home">
                             <a href="dashboard.php">
@@ -24,13 +24,13 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="m_data_obat.php">Data Obat</a>
+                            <a href="m_rekam_medis.php">Rekam Medis</a>
                         </li>
                         <li class="separator">
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="m_tambah_atrian.php">Tambah Obat</a>
+                            <a href="m_ubah_rekam_medis.php">Ubah Rekam Medis</a>
                         </li>
                         <!-- <li class="separator">
                             <i class="flaticon-right-arrow"></i>
@@ -44,51 +44,52 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
                 require('../../../backend/config/db-klinik.php');
 
                 if (isset($_GET['id'])) {
-                    $id_obat = $_GET['id'];
+                    $id_rekam_medis = $_GET['id'];
 
-                    $result = mysqli_query($db_connect, "SELECT * FROM obat WHERE id_obat = '$id_obat'");
+                    $result = mysqli_query($db_connect, "SELECT * FROM rekam_medis WHERE id_rekam_medis = $id_rekam_medis ");
                     if (mysqli_num_rows($result) == 1) {
                         $row = mysqli_fetch_assoc($result);
                         ?>
-                        <form action="../../../backend/proses_data_obat.php" method="POST">
+                        <form action="../../../backend/proses_rekam_medis.php" method="POST">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-row">
-                                        <input type="hidden" name="id_obat" id="id_obat" value="<?= $row['id_obat']; ?>">
+                                        <input type="hidden" name="id_rekam_medis" id="id_rekam_medis"
+                                            value="<?= $row['id_rekam_medis']; ?>">
                                         <div class="form-group col-md-6">
-                                            <label for="name">Nama Obat</label>
-                                            <input type="text" class="form-control" name="namaObat" id="namaObat"
-                                                value="<?= $row['nama_obat']; ?>">
+                                            <label for="id_pasien">ID Pasien</label>
+                                            <input type="text" class="form-control" name="id_pasien" id="id_pasien"
+                                                value="<?= $row['id_pasien']; ?>" readonly>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="jenis">Jenis</label>
-                                            <input type="text" class="form-control" name="jenis" id="jenis"
-                                                value="<?= $row['jenis_obat']; ?>">
+                                            <label for="rp">Riwayat Penyakit</label>
+                                            <input type="text" class="form-control" name="rp"
+                                                id="rp" "<?= $row['riwayat_penyakit']; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="harga">Harga</label>
-                                            <input type="text" class="form-control" name="harga" id="harga"
-                                                value="<?= $row['harga']; ?>">
+                                            <label for="alergi">Alergi</label>
+                                            <input type="text" class="form-control" name="alergi"
+                                                id="alergi" "<?= $row['alergi']; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="stok">Stok</label>
-                                            <input type="text" class="form-control" name="stok" id="stok"
-                                                value="<?= $row['stok']; ?>">
+                                            <label for="ct">Catatan Lain</label>
+                                            <input type="text" class="form-control" name="ct"
+                                                id="ct" "<?= $row['catatan_lain']; ?>">
                                         </div>
                                     </div>
                                     <div class="card-action">
-                                        <input type="hidden" name="ubahObat" value="ubahObat">
-                                        <button type="submit" class="btn btn-success">Ubah</button>
-                                        <button class="btn btn-danger">Batal</button>
+                                        <button type="submit" class="btn btn-warning" name="ubah">Ubah</button>
+                                        <button class=" btn btn-danger">Batal</button>
                                     </div>
                                 </div>
+                            </div>
                         </form>
                         <?php
                     } else {
-                        echo "Data Obat tidak ditemukan";
+                        echo ".";
                     }
                 } else {
-                    echo "ID Obat tidak diberikan";
+                    echo "ID dokter tidak diberikan";
                 }
                 ?>
             </div>

@@ -147,6 +147,27 @@
             </ul>
           </div>
         </li>
+        <li class="nav-item">
+          <a data-toggle="collapse" href="#report">
+            <i class="fa-regular fa-clipboard"></i>
+            <p>Laporan</p>
+            <span class="caret"></span>
+          </a>
+          <div class="collapse" id="report">
+            <ul class="nav nav-collapse">
+              <li>
+                <a href="./../pages/content/admin/m_rekam_medis">
+                  <span class="sub-item">Rekam Medis</span>
+                </a>
+              </li>
+              <li>
+                <a href="./../pages/content/admin/m_riwayat_pasien">
+                  <span class="sub-item">Riwayat Pasien</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
         <!-- <li class="nav-item">
           <a data-toggle="collapse" href="#forms">
             <i class="fa-solid fa-users"></i>
