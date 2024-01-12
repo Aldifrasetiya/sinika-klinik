@@ -1,7 +1,7 @@
 <?php
 session_start();
-require '../backend/config/db-klinik.php';
-require '../backend/login.php'; // Include file kelas Auth
+require '../../../backend/config/db-klinik.php';
+require '../../../backend/login.php';
 
 if (isset($_POST['login'])) {
   $email = $_POST['email'];
@@ -11,34 +11,42 @@ if (isset($_POST['login'])) {
   $result = $auth->loginUser($email, $password);
 
   if ($result === true) {
-    $auth->authorizeUser($_SESSION['username'], $_SESSION['role']);
+    $auth->authorizeUser($_SESSION['username'] && $_SESSION['role']);
   } else {
     echo $result;
   }
 }
+
+// if (isset($_POST['login'])) {
+//   $email = $_POST['email'];
+//   $password = $_POST['password'];
+
+//   $auth = new Auth($db_connect);
+//   $result = $auth->loginUser($email, $password);
+
+//   if ($result !== true) {
+//     echo "<script>
+//             Swal.fire({
+//               icon: 'error',
+//               title: 'Oops...',
+//               text: '$result',
+//             });
+//           </script>";
+//   }
+// }
+
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds) . $ds;
-require_once("{$base_dir}pages{$ds}core{$ds}header.php");
+require_once("{$base_dir}core{$ds}h_admin.php");
 
+// if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
+//   // Lakukan apa yang perlu dilakukan di dashboard admin
+// } else {
+//   // Jika tidak ada session atau rolenya bukan admin, redirect ke halaman login
+//   header('Location: login.php');
+//   exit;
+// }
 ?>
-
-<!-- Fonts and icons -->
-<!-- <script src="../../assets/js/plugin/webfont/webfont.min.js"></script>
-<script>
-  WebFont.load({
-    google: { "families": ["Lato:300,400,700,900"] },
-    custom: { "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['../../assets/css/fonts.min.css'] },
-    active: function () {
-      sessionStorage.fonts = true;
-    }
-  });
-</script> -->
-
-<!-- CSS Files -->
-<!-- <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="../../assets/css/atlantis.min.css"> -->
-<!-- CSS Just for demo purpose, don't include it in your project -->
-<!-- <link rel="stylesheet" href="../../assets/css/demo.css"> -->
 
 <body>
   <div class="main-panel">
@@ -47,9 +55,9 @@ require_once("{$base_dir}pages{$ds}core{$ds}header.php");
         <div class="page-inner py-5">
           <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
             <div>
-              <h2 class="text-white pb-2 fw-bold">Selamat datang <span>
-                  <?= $_SESSION['username']; ?>
-                </span></h2>
+              <h2 class="text-white pb-2 fw-bold">Selamat datang
+                administrator
+              </h2>
               <!-- <h5 class="text-white op-7 mb-2">Free Bootstrap 4 Admin Dashboard</h5> -->
             </div>
           </div>
@@ -57,7 +65,7 @@ require_once("{$base_dir}pages{$ds}core{$ds}header.php");
       </div>
       <?php
 
-      include '../backend/config/db-klinik.php';
+      include '../../../backend/config/db-klinik.php';
       // $db = new DB('localhost', 'root', '', 'database');
       // $conn = $db->connect();
       

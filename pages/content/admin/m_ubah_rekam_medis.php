@@ -3,7 +3,6 @@ session_start();
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..') . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
-require_once("{$base_dir}backend{$ds}proses_rekam_medis.php");
 
 
 ?>
@@ -50,7 +49,7 @@ require_once("{$base_dir}backend{$ds}proses_rekam_medis.php");
                     if (mysqli_num_rows($result) == 1) {
                         $row = mysqli_fetch_assoc($result);
                         ?>
-                        <form action="../../../backend/proses_rekam_medis.php" method="POST">
+                        <form action="proses/proses_rekam_medis.php" method="POST">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-row">
@@ -64,17 +63,17 @@ require_once("{$base_dir}backend{$ds}proses_rekam_medis.php");
                                         <div class="form-group col-md-6">
                                             <label for="rp">Riwayat Penyakit</label>
                                             <input type="text" class="form-control" name="rp"
-                                                id="rp" "<?= $row['riwayat_penyakit']; ?>">
+                                                id="rp" value="<?= $row['riwayat_penyakit']; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="alergi">Alergi</label>
                                             <input type="text" class="form-control" name="alergi"
-                                                id="alergi" "<?= $row['alergi']; ?>">
+                                                id="alergi" value="<?= $row['alergi']; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="ct">Catatan Lain</label>
                                             <input type="text" class="form-control" name="ct"
-                                                id="ct" "<?= $row['catatan_lain']; ?>">
+                                                id="ct" value="<?= $row['catatan_lain']; ?>">
                                         </div>
                                     </div>
                                     <div class="card-action">

@@ -1,6 +1,6 @@
 <?php
 
-include "config/db-klinik.php";
+include "../../../../backend/config/db-klinik.php";
 
 $QueryDataObat = mysqli_query($db_connect, "SELECT * FROM obat");
 
@@ -17,7 +17,7 @@ if (isset($_POST["Tambah"])) {
 
     $ResultQueryObat = mysqli_query($db_connect, $QueryAddObat);
 
-    header("Location: ../pages/content/admin/m_data_obat.php");
+    header("Location: ../m_data_obat.php");
 }
 
 // ubah data obat php
@@ -34,14 +34,14 @@ if (isset($_POST["ubahObat"])) {
 
     $ResultUpdateteObat = mysqli_query($db_connect, $QueryUpdateObat);
 
-    header("Location: ../pages/content/admin/m_data_obat.php");
+    header("Location: ../m_data_obat.php");
 }
 
 // hapus data obat
 if (isset($_GET['id_obat'])) {
     mysqli_query($db_connect, "DELETE FROM obat WHERE id_obat='$_GET[id_obat]'");
 
-    header("Location: ../pages/content/admin/m_data_obat.php");
+    header("Location: ../m_data_obat.php");
     die();
 }
 

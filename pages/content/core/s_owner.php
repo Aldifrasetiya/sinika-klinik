@@ -4,7 +4,8 @@
         <div class="sidebar-content">
             <div class="user">
                 <div class="avatar-sm float-left mr-2">
-                    <img width="45" height="45" src="https://img.icons8.com/fluency/48/manager.png" alt="manager" />
+                    <img width="40" height="40" src="https://img.icons8.com/3d-fluency/94/user-male-circle.png"
+                        alt="user-male-circle" />
                 </div>
                 <div class="info">
                     <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
@@ -41,7 +42,7 @@
             </div>
             <ul class="nav nav-primary">
                 <li class="nav-item">
-                    <a href="./../../../pages/d_owner">
+                    <a href="../dashboard/d_owner">
                         <i class="fas fa-home"></i>
                         <p>Dashboard</p>
                     </a>
@@ -124,26 +125,31 @@
                         </ul>
                     </div>
                 </li>
-                <!-- <li class="nav-item">
-          <a data-toggle="collapse" href="#forms">
-            <i class="fa-solid fa-users"></i>
-            <p>Data Pasien</p>
-            <span class="caret"></span>
-          </a>
-          <div class="collapse" id="forms">
-            <ul class="nav nav-collapse">
-              <li>
-                <a href="forms/forms.html">
-                  <span class="sub-item">Basic Form</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </li> -->
-                <!-- <li class="mx-4 mt-2">
-          <a href="http://themekita.com/atlantis-bootstrap-dashboard.html" class="btn btn-primary btn-block"><span
-              class="btn-label mr-2"> <i class="fa fa-heart"></i>
-            </span>Buy Pro</a> -->
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#report">
+                        <i class="fa-regular fa-clipboard"></i>
+                        <p>Laporan</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="report">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="../owner/m_rekam_medis">
+                                    <span class="sub-item">Rekam Medis</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../owner/m_riwayat_pasien">
+                                    <span class="sub-item">Riwayat Pasien</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="mx-4 mt-2">
+                    <a href="../../../backend/logout.php" class="btn btn-primary btn-block"><span
+                            class="btn-label mr-2">
+                        </span>Log Out</a>
                 </li>
             </ul>
         </div>

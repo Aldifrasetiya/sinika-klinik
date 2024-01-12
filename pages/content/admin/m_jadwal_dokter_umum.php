@@ -3,7 +3,6 @@ session_start();
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..' . $ds) . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
-require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
 
 
 ?>
@@ -63,6 +62,7 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
                                     <tbody>
                                         <tr>
                                             <?php
+                                            require '../../../backend/config/db-klinik.php';
 
                                             $jadwalDokter = mysqli_query($db_connect, "SELECT jadwal_dokter.*, dokter.nama_dokter, dokter.spesialisasi, dokter.notlp_dokter
                                             FROM jadwal_dokter
@@ -91,11 +91,12 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
                                                 </td>
                                                 <td style='vertical-align: middle;'>
                                                     <div style="display: flex; align-items: center; gap: 10px;">
-                                                        <a href='m_ubah_jadwal_dokter.php?id=<?= $row['id_jadwal_dokter']; ?>'>
+                                                        <a
+                                                            href='m_ubah_jadwal_dokter.php?id=<?= $row['id_jadwal_dokter']; ?>'>
                                                             <button type="button" class="btn btn-warning">Edit</button>
                                                         </a>
                                                         <button type="button"
-                                                            href='../../../backend/proses_jadwal_dokter.php?id_jadwal_dokter=<?= $row['id_jadwal_dokter']; ?>'
+                                                            href='proses/proses_jadwal_dokter.php?id_jadwal_dokter=<?= $row['id_jadwal_dokter']; ?>'
                                                             class='btn btn-danger delete'>Hapus</button>
                                                     </div>
                                                 </td>

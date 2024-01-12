@@ -43,83 +43,62 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_owner.php");
                 require('../../../backend/config/db-klinik.php');
 
                 if (isset($_GET['id'])) {
-                    $id_pasien = $_GET['id'];
+                    $id_users = $_GET['id'];
 
-                    $result = mysqli_query($db_connect, "SELECT * FROM pasien WHERE id_pasien = $id_pasien ");
+                    $result = mysqli_query($db_connect, "SELECT * FROM users WHERE id_users = $id_users ");
                     if (mysqli_num_rows($result) == 1) {
                         $row = mysqli_fetch_assoc($result);
                         ?>
-                        <form action="proses/proses_pasien.php" method="POST">
+                        <form action="proses/proses_data_admin.php" method="POST">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-row">
-                                        <input type="hidden" name="id_pasien" id="id_pasien" value="<?= $row['id_pasien']; ?>">
+                                        <input type="hidden" name="id_users" id="id_users" value="<?= $row['id_users']; ?>">
                                         <div class="form-group col-md-6">
-                                            <label for="namePasien">Nama Pasien</label>
-                                            <input type="text" class="form-control" name="namaPasien" id="namaPasien"
-                                                value="<?= $row['nama_pasien']; ?>">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="alamat">Alamat</label>
-                                            <input type="text" class="form-control" name="alamat" id="alamat"
-                                                value="<?= $row['alamat']; ?>">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="ttl">Tanggal Lahir</label>
-                                            <input type="date" class="form-control" name="ttl" id="ttl"
-                                                value="<?= $row['tanggal_lahir']; ?>">
+                                            <label for="name">Nama</label>
+                                            <input type="text" class="form-control" name="nama" id="nama"
+                                                value="<?= $row['nama_users']; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="jk">Jenis Kelamin</label>
                                             <select class="form-control" name="jk" id="jk" value="<?= $row['jk']; ?>">
-                                                <option>--PILIH--</option>
+                                                <option disabled selected>--PILIH--</option>
                                                 <option>LAKI-LAKI</option>
                                                 <option>PEREMPUAN</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-md-6">
+                                            <label for="alamat">Alamat</label>
+                                            <input type="text" class="form-control" name="alamat" id="alamat"
+                                                value="<?= $row['alamat_users']; ?>">
+                                        </div>
+                                        <div class="form-group col-md-6">
                                             <label for="notlp">No telepon</label>
                                             <input type="text" class="form-control" name="notlp" id="notlp"
-                                                value="<?= $row['no_telepon']; ?>">
+                                                value="<?= $row['notlp_users']; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="penyakit">Jenis Penyakit</label>
-                                            <input type="text" class="form-control" name="penyakit" id="penyakit"
-                                                value="<?= $row['penyakit']; ?>">
+                                            <label for="username">Username</label>
+                                            <input type="text" class="form-control" name="username" id="username"
+                                                value="<?= $row['username']; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="asuransi">Asuransi</label>
-                                            <select class="form-control" name="asuransi" id="asuransi"
-                                                value="<?= $row['jenis_asuransi'] ?>">
-                                                <option>--PILIH--</option>
-                                                <option>BPJS</option>
-                                                <option>Non BPJS</option>
-                                                <option>Asuransi lainnya</option>
-                                            </select>
+                                            <label for="email">Email</label>
+                                            <input type="text" class="form-control" name="email" id="email"
+                                                value="<?= $row['email']; ?>">
                                         </div>
-                                        <div class="form-group col-md-6" id="noBpjsInput" style="display: none;">
-                                            <label for="noAsuransi" class="form-label">Masukkan No Asuransi</label>
-                                            <input type="text" class="form-control" name="noAsuransi" id="noAsuransi">
-                                        </div>
+                                        <!-- <div class="form-group col-md-6">
+                                            <label for="password">Password</label>
+                                            <input type="text" class="form-control" name="password" id="password"
+                                                value="<?= $row['password']; ?>">
+                                        </div> -->
                                     </div>
                                     <div class="card-action">
-                                        <button type="submit" name="UbahPasien" class="btn btn-success mx-2">Tambah</button>
+                                        <button type="submit" name="UbahAdmin" class="btn btn-success mx-2">Simpan</button>
                                         <button class="btn btn-danger">Batal</button>
                                     </div>
                                 </div>
                             </div>
-                            <script>
-                                document.getElementById("asuransi").addEventListener("change", function () {
-                                    const selectedOption = this.value;
-                                    const noBpjsInput = document.getElementById("noBpjsInput");
-
-                                    if (selectedOption === "BPJS" || selectedOption === "Asuransi lainnya") {
-                                        noBpjsInput.style.display = "block";
-                                    } else {
-                                        noBpjsInput.style.display = "none";
-                                    }
-                                });
-                            </script>
                         </form>
                         <?php
                     } else {

@@ -10,7 +10,7 @@ if ($_SESSION['role'] != 'owner') {
 
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds) . $ds;
-require_once("{$base_dir}pages{$ds}core{$ds}h_owner.php");
+require_once("{$base_dir}core{$ds}h_owner.php");
 
 
 
@@ -48,7 +48,7 @@ require_once("{$base_dir}pages{$ds}core{$ds}h_owner.php");
       </div>
       <?php
 
-      include('../backend/config/db-klinik.php');
+      include('../../../backend/config/db-klinik.php');
 
       // data Realtime antrian
       $dataRealtimeAntrian = mysqli_query($db_connect, "SELECT count(no_antrian) AS jmlh_antrian FROM antrian");

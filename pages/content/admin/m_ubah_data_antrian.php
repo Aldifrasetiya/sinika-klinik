@@ -3,7 +3,6 @@ session_start();
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..') . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
-require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
 
 
 ?>
@@ -50,7 +49,7 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
                     if (mysqli_num_rows($result) == 1) {
                         $row = mysqli_fetch_assoc($result);
                         ?>
-                        <form action="../../../backend/proses_antrian_pasien.php" method="POST">
+                        <form action="../backend/proses_antrian_pasien.php" method="POST">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-row">

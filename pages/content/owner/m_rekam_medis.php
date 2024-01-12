@@ -2,7 +2,7 @@
 session_start();
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..' . $ds) . $ds;
-require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
+require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_owner.php");
 
 ?>
 
@@ -11,7 +11,7 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
         <div class="content">
             <div class="page-inner">
                 <div class="page-header">
-                    <h4 class="page-title">Data Pasien</h4>
+                    <h4 class="page-title">Rekam Medis</h4>
                     <ul class="breadcrumbs">
                         <li class="nav-home">
                             <a href="../../../pages/dashboard.php">
@@ -22,7 +22,7 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="m_data_pasien.php">Data Pasien</a>
+                            <a href="m_rekam_medis.php">Rekam Medis</a>
                         </li>
                     </ul>
                 </div>
@@ -30,11 +30,11 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex align-items-center">
-                                <a href="m_tambah_pasien.php" class="btn btn-primary">
+                                <a href="m_tambah_rekam_medis.php" class="btn btn-primary">
                                     <span class="btn-label">
                                         <i class="fa-solid fa-user-plus"></i>
                                     </span>
-                                    Tambah Data Pasien
+                                    Tambah Rekam Medis
                                 </a>
                             </div>
                         </div>
@@ -43,61 +43,44 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
                                 <table id="add-row" class="display table table-striped table-hover">
                                     <thead>
                                         <tr>
+                                            <th>ID Rekam Medis</th>
                                             <th>ID Pasien</th>
-                                            <th>Nama</th>
-                                            <th>Alamat</th>
-                                            <th>Tanggal Lahir</th>
-                                            <th>JK</th>
-                                            <th>Penyakit</th>
-                                            <th>No Telepon</th>
-                                            <th>Jenis Asuransi</th>
-                                            <th>No Asuransi</th>
-                                            <th>Action</th>
+                                            <th>Riwayat Penyakit</th>
+                                            <th>Alergi</th>
+                                            <th>Catatan Lain</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         require '../../../backend/config/db-klinik.php';
 
-                                        $dataPasien = mysqli_query($db_connect, "SELECT * FROM pasien");
+                                        $dataRekamMedis = mysqli_query($db_connect, "SELECT * FROM rekam_medis");
 
-                                        while ($row = mysqli_fetch_array($dataPasien)) {
+                                        while ($row = mysqli_fetch_array($dataRekamMedis)) {
                                             ?>
                                             <tr>
+                                                <td>
+                                                    <?= $row['id_rekam_medis']; ?>
+                                                </td>
                                                 <td>
                                                     <?= $row['id_pasien']; ?>
                                                 </td>
                                                 <td>
-                                                    <?= $row['nama_pasien']; ?>
+                                                    <?= $row['riwayat_penyakit']; ?>
                                                 </td>
                                                 <td>
-                                                    <?= $row['alamat']; ?>
+                                                    <?= $row['alergi']; ?>
                                                 </td>
                                                 <td>
-                                                    <?= $row['tanggal_lahir']; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $row['jk']; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $row['penyakit']; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $row['no_telepon']; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $row['jenis_asuransi']; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $row['no_asuransi']; ?>
+                                                    <?= $row['catatan_lain']; ?>
                                                 </td>
                                                 <td style='vertical-align: middle;'>
                                                     <div style="display: flex; align-items: center; gap: 10px">
-                                                        <a href="m_ubah_pasien.php?id=<?= $row['id_pasien']; ?>">
+                                                        <a href="m_ubah_rekam_medis.php?id=<?= $row['id_rekam_medis']; ?>">
                                                             <button type="button" class="btn btn-warning">Edit</button>
                                                         </a>
                                                         <button type="button"
-                                                            href='proses/proses_pasien.php?id_pasien=<?= $row['id_pasien']; ?>'
+                                                            href='proses/proses_rekam_medis.php?id_rekam_medis=<?= $row['id_rekam_medis']; ?>'
                                                             class='btn btn-danger delete'>Hapus</button>
                                                     </div>
                                                 </td>

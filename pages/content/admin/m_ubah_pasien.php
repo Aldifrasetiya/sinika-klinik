@@ -3,7 +3,6 @@ session_start();
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..') . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
-require_once("{$base_dir}backend{$ds}proses_pasien.php");
 
 
 ?>
@@ -50,15 +49,11 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                     if (mysqli_num_rows($result) == 1) {
                         $row = mysqli_fetch_assoc($result);
                         ?>
-                        <form action="../../../backend/proses_pasien.php" method="POST">
+                        <form action="proses/proses_pasien.php" method="POST">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-row">
-                                        <!-- <div class="form-group col-md-6">
-                                            <label for="id_pasien">ID Pasien</label>
-                                            <input type="text" class="form-control" name="id_pasien" id="id_pasien"
-                                                value="<?php echo $id_pasien; ?>" readonly>
-                                        </div> -->
+                                        <input type="hidden" name="id_pasien" id="id_pasien" value="<?= $row['id_pasien']; ?>">
                                         <div class="form-group col-md-6">
                                             <label for="namePasien">Nama Pasien</label>
                                             <input type="text" class="form-control" name="namaPasien" id="namaPasien"
@@ -108,7 +103,7 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                                         </div>
                                     </div>
                                     <div class="card-action">
-                                        <button type="submit" name="TambahPasien" class="btn btn-success mx-2">Tambah</button>
+                                        <button type="submit" name="UbahPasien" class="btn btn-success mx-2">Tambah</button>
                                         <button class="btn btn-danger">Batal</button>
                                     </div>
                                 </div>
@@ -128,10 +123,10 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                         </form>
                         <?php
                     } else {
-                        echo "Jadwal Dokter tidak ditemukan.";
+                        echo "Data Pasien tidak ditemukan.";
                     }
                 } else {
-                    echo "ID dokter tidak diberikan";
+                    echo "ID Pasien tidak diberikan";
                 }
                 ?>
             </div>

@@ -1,6 +1,6 @@
 <?php
 // Koneksi ke database (ganti sesuai konfigurasi database Anda)
-include "config/db-klinik.php";
+include "../../../../backend/config/db-klinik.php";
 
 if (isset($_POST['DaftarAntrian'])) {
     $nama_pasien = $_POST['nama_pasien'];
@@ -39,7 +39,7 @@ if (isset($_POST['editAntrian'])) {
     $stmt->execute();
     $stmt->close();
 
-    header("Location: ../pages/content/admin/m_data_antrian.php");
+    header("Location: ../m_data_antrian.php");
     exit();
 }
 
@@ -47,7 +47,7 @@ if (isset($_POST['editAntrian'])) {
 if (isset($_GET['no_antrian'])) {
     mysqli_query($db_connect, "DELETE FROM antrian WHERE no_antrian='$_GET[no_antrian]'");
 
-    header("Location: ../pages/content/admin/m_data_antrian.php");
+    header("Location: ../m_data_antrian.php");
     exit();
 }
 ?>

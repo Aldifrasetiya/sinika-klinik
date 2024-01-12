@@ -3,8 +3,6 @@ session_start();
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..' . $ds) . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_owner.php");
-require_once("{$base_dir}backend{$ds}proses_pasien.php");
-
 ?>
 
 <body>
@@ -15,7 +13,7 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                     <h4 class="page-title">Data Admin</h4>
                     <ul class="breadcrumbs">
                         <li class="nav-home">
-                            <a href="../../../pages/dashboard.php">
+                            <a href="../dashboard/dashboard.php">
                                 <i class="flaticon-home"></i>
                             </a>
                         </li>
@@ -23,7 +21,7 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="m_data_pasien.php">Data Admin</a>
+                            <a href="m_data_user.php">Data Admin</a>
                         </li>
                     </ul>
                 </div>
@@ -46,6 +44,10 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                                         <thead>
                                             <tr>
                                                 <th>ID Users</th>
+                                                <th>Nama</th>
+                                                <th>JK</th>
+                                                <th>Alamat</th>
+                                                <th>No Telepon</th>
                                                 <th>Username</th>
                                                 <th>Email</th>
                                                 <th>Role</th>
@@ -54,6 +56,7 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                                         </thead>
                                         <tbody>
                                             <?php
+                                            require '../../../backend/config/db-klinik.php';
                                             $dataUsers = mysqli_query($db_connect, "SELECT * FROM users");
                                             // $arr = mysqli_fetch_assoc($dataUsers);
                                             while ($row = mysqli_fetch_array($dataUsers)) {
@@ -61,6 +64,18 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                                                 <tr>
                                                     <td>
                                                         <?= $row['id_users']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $row['nama_users']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $row['jk_users']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $row['alamat_users']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $row['notlp_users']; ?>
                                                     </td>
                                                     <td>
                                                         <?= $row['username']; ?>
@@ -73,7 +88,7 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                                                     </td>
                                                     <td style='vertical-align: middle;'>
                                                         <div style="display: flex; align-items: center; gap: 10px">
-                                                            <a href="m_ubah_data_admin?id=<?= $row['id_users']; ?>">
+                                                            <a href="m_ubah_admin?id=<?= $row['id_users']; ?>">
                                                                 <button type="button" class="btn btn-warning">Edit</button>
                                                             </a>
                                                             <button
@@ -150,8 +165,3 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
         SweetAlert2Demo.init();
     });
 </script>
-
-
-<?php
-require_once("{$base_dir}pages{$ds}core{$ds}footer.php");
-?>

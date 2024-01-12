@@ -1,17 +1,3 @@
-<?php
-
-// session_start();
-// require '../backend/config/db-klinik.php';
-
-// if ($_SESSION['role'] != 'admin') {
-//   session_destroy();
-//   header('Location:./../index.php');
-//   exit;
-// }
-
-?>
-
-
 <!-- Sidebar -->
 <div class="sidebar sidebar-style-2">
   <div class="sidebar-wrapper scrollbar scrollbar-inner">
@@ -22,10 +8,13 @@
         </div>
         <div class="info">
           <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+            <?php
+            // session_start();
+            ?>
             <span>
-              <?= $_SESSION['username']; ?>
+              <?=$_SESSION['username']; ?>
               <span class="user-level">
-                <?= $_SESSION['role']; ?>
+                <?=$_SESSION['role']; ?>
               </span>
               <span class="caret"></span>
             </span>

@@ -1,6 +1,6 @@
 <?php
 
-include "config/db-klinik.php";
+include "../../../../backend/config/db-klinik.php";
 
 
 // tambah jadwal dokter php
@@ -18,7 +18,7 @@ if (isset($_POST["tambahJadwalDokter"])) {
 
     $ResultQueryJadwalDokter = mysqli_query($db_connect, $QueryAddJadwalDokter);
 
-    header("Location: ../pages/content/admin/m_jadwal_dokter_umum.php");
+    header("Location: ../m_jadwal_dokter_umum.php");
 }
 
 
@@ -44,14 +44,14 @@ if (isset($_POST["ubahJadwalDokter"])) {
     // var_dump($id_dokter);
     // die;
 
-    header("Location: ../pages/content/admin/m_jadwal_dokter_umum.php");
+    header("Location: ../m_jadwal_dokter_umum.php");
 }
 
 // hapus jadwal dokter
-if (isset($_GET['id_dokter'])) {
-    mysqli_query($db_connect, "DELETE FROM jadwal_dokter WHERE id_dokter='$_GET[id_dokter]'");
+if (isset($_GET['id_jadwal_dokter'])) {
+    mysqli_query($db_connect, "DELETE FROM jadwal_dokter WHERE id_jadwal_dokter='$_GET[id_jadwal_dokter]'");
 
-    header("Location: ../pages/content/admin/m_jadwal_dokter_umum.php");
+    header("Location: ../m_jadwal_dokter_umum.php");
     die();
 }
 

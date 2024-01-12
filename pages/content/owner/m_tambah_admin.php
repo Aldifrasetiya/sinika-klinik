@@ -3,7 +3,6 @@ session_start();
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..') . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_owner.php");
-require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
 
 
 ?>
@@ -40,10 +39,30 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
                         </li> -->
                     </ul>
                 </div>
-                <form action="../../../backend/proses_data_admin.php" method="POST">
+                <form action="proses/proses_data_admin.php" method="POST">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="nama">Nama</label>
+                                    <input type="text" class="form-control" name="nama" id="nama">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="jk">Jenis Kelamin</label>
+                                    <select class="form-control" name="jk" id="jk">
+                                        <option disabled selected>Pilih Jenis Kelamin ...</option>
+                                        <option>LAKI-LAKI</option>
+                                        <option>PEREMPUAN</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="alamat">Alamat</label>
+                                    <input type="text" class="form-control" name="alamat" id="alamat">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="notlp">No Telepon</label>
+                                    <input type="text" class="form-control" name="notlp" id="notlp">
+                                </div>
                                 <div class="form-group col-md-6">
                                     <label for="username">Username</label>
                                     <input type="text" class="form-control" name="username" id="username">

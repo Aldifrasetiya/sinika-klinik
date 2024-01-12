@@ -3,7 +3,6 @@ session_start();
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..') . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
-require_once("{$base_dir}backend{$ds}proses_data_obat.php");
 
 
 ?>
@@ -16,7 +15,7 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
                     <h4 class="page-title">Ubah Resep</h4>
                     <ul class="breadcrumbs">
                         <li class="nav-home">
-                            <a href="dashboard.php">
+                            <a href="../../../pages/dashboard.php">
                                 <i class="flaticon-home"></i>
                             </a>
                         </li>
@@ -44,26 +43,21 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
                 require('../../../backend/config/db-klinik.php');
 
                 if (isset($_GET['id'])) {
-                    $id_obat = $_GET['id'];
+                    $id_resep = $_GET['id'];
 
-                    $result = mysqli_query($db_connect, "SELECT * FROM obat WHERE id_obat = '$id_obat'");
+                    $result = mysqli_query($db_connect, "SELECT * FROM resep WHERE id_resep = '$id_resep'");
                     if (mysqli_num_rows($result) == 1) {
                         $row = mysqli_fetch_assoc($result);
                         ?>
-                        <form action="../../../backend/proses_data_obat.php" method="POST">
+                        <form action="proses/proses_data_resep.php" method="POST">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-row">
-                                        <input type="hidden" name="id_obat" id="id_obat" value="<?= $row['id_obat']; ?>">
+                                        <input type="hidden" name="id_resep" id="id_resep" value="<?= $row['id_resep']; ?>">
                                         <div class="form-group col-md-6">
                                             <label for="id_pasien">ID Pasien</label>
                                             <input type="text" class="form-control" name="id_pasien" id="id_pasien"
                                                 value="<?= $row['id_pasien']; ?>" readonly>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="jenis">Jenis</label>
-                                            <input type="text" class="form-control" name="jenis" id="jenis"
-                                                value="<?= $row['jenis_obat']; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="id_dokter">ID Dokter</label>
@@ -77,8 +71,8 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="tglResep">Tanggal resep</label>
-                                            <input type="text" class="form-control" name="tglResep" id="tglResep"
-                                                value="<?= $row['tanggal_resep']; ?>">
+                                            <input type="date" class="form-control" name="tglResep" id="tglResep"
+                                                value="<?= $row['tgl_resep']; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="namaObat">Nama Obat</label>

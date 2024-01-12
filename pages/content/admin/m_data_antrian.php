@@ -1,17 +1,38 @@
 <?php
 session_start();
 require '../../../backend/config/db-klinik.php';
+require '../../../backend/login.php';
 
-if ($_SESSION['role'] != 'admin' && $_SESSION['role'] != 'owner') {
-    session_destroy();
-    header('Location:./../index.php');
-    exit;
+if (isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $auth = new Auth($db_connect);
+    $result = $auth->loginUser($email, $password);
+
+    if ($result !== true) {
+        echo "<script>
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: '$result',
+            });
+          </script>";
+    }
 }
 
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..' . $ds) . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
-require_once("{$base_dir}backend{$ds}proses_antrian_pasien.php");
+// require_once("{$base_dir}proses{$ds}proses_antrian_pasien.php");
+
+// if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
+//   // Lakukan apa yang perlu dilakukan di dashboard admin
+// } else {
+//   // Jika tidak ada session atau rolenya bukan admin, redirect ke halaman login
+//   header('Location: login.php');
+//   exit;
+// }
 ?>
 
 <body>
@@ -82,7 +103,7 @@ require_once("{$base_dir}backend{$ds}proses_antrian_pasien.php");
                                                                         class='btn btn-warning'>Edit</button>
                                                                 </a>
                                                                 <button type="button"
-                                                                    href='../../../backend/proses_antrian_pasien.php?no_antrian=<?= $row['no_antrian']; ?>'
+                                                                    href='proses/proses_antrian_pasien.php?no_antrian=<?= $row['no_antrian']; ?>'
                                                                     class='btn btn-danger delete'>Hapus</button>
                                                             </div>
                                                         </td>

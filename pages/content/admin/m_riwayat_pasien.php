@@ -3,7 +3,6 @@ session_start();
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..' . $ds) . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
-require_once("{$base_dir}backend{$ds}proses_riwayat_pasien.php");
 
 ?>
 
@@ -54,6 +53,7 @@ require_once("{$base_dir}backend{$ds}proses_riwayat_pasien.php");
                                     </thead>
                                     <tbody>
                                         <?php
+                                        require '../../../backend/config/db-klinik.php';
 
                                         $dataRiwayatPasien = mysqli_query($db_connect, "SELECT * FROM riwayat_pasien");
 

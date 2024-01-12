@@ -1,6 +1,6 @@
 <?php
 
-include "config/db-klinik.php";
+include "../../../../backend/config/db-klinik.php";
 
 // // Mendapatkan ID pasien terbesar dari database
 // $query = mysqli_query($db_connect, "SELECT max(id_dokter) as idTerbesar FROM jadwal_dokter");
@@ -29,7 +29,7 @@ if (isset($_POST["tambahDokter"])) {
 
     $ResultQueryAddDokter = mysqli_query($db_connect, $QueryAddDokter);
 
-    header("Location: ../pages/content/admin/m_data_dokter.php");
+    header("Location: ../m_data_dokter.php");
 }
 
 // edit jadwal dokter
@@ -49,7 +49,7 @@ if (isset($_POST["ubahDokter"])) {
     // var_dump($id_dokter);
     // die;
 
-    header("Location: ../pages/content/admin/m_data_dokter.php");
+    header("Location: ../m_data_dokter.php");
     exit();
 }
 
@@ -57,7 +57,7 @@ if (isset($_POST["ubahDokter"])) {
 if (isset($_GET['id_dokter'])) {
     mysqli_query($db_connect, "DELETE FROM dokter WHERE id_dokter='$_GET[id_dokter]'");
 
-    header("Location: ../pages/content/admin/m_data_dokter.php");
+    header("Location: ../m_data_dokter.php");
     die();
 }
 

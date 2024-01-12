@@ -3,7 +3,6 @@ session_start();
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..' . $ds) . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
-require_once("{$base_dir}backend{$ds}proses_pasien.php");
 
 ?>
 
@@ -53,6 +52,7 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                                     </thead>
                                     <tbody>
                                         <?php
+                                        require '../../../backend/config/db-klinik.php';
 
                                         $dataRekamMedis = mysqli_query($db_connect, "SELECT * FROM rekam_medis");
 
@@ -80,7 +80,7 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                                                             <button type="button" class="btn btn-warning">Edit</button>
                                                         </a>
                                                         <button type="button"
-                                                            href='../../../backend/proses_rekam_medis.php?id_rekam_medis=<?= $row['id_rekam_medis']; ?>'
+                                                            href='proses/proses_rekam_medis.php?id_rekam_medis=<?= $row['id_rekam_medis']; ?>'
                                                             class='btn btn-danger delete'>Hapus</button>
                                                     </div>
                                                 </td>

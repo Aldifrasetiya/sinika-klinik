@@ -3,7 +3,6 @@ session_start();
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..' . $ds) . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
-require_once("{$base_dir}backend{$ds}proses_data_obat.php");
 
 
 ?>
@@ -64,6 +63,7 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
                                 <tbody>
                                     <tr>
                                         <?php
+                                        require '../../../backend/config/db-klinik.php';
                                         $dataResep = mysqli_query(
                                             $db_connect,
 
@@ -101,11 +101,11 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
                                             </td>
                                             <td style='vertical-align: middle;'>
                                                 <div style='display: flex; align-items: center; gap: 10px;'>
-                                                    <a href='m_ubah_data_obat.php?id=<?= $row['id_resep']; ?>'>
+                                                    <a href='m_ubah_data_resep.php?id=<?= $row['id_resep']; ?>'>
                                                         <button type="button" class="btn btn-warning">Edit</button>
                                                     </a>
                                                     <button type="button"
-                                                        href='../../../backend/proses_data_resep.php?id_resep=<?= $row['id_resep']; ?>'
+                                                        href='proses/proses_data_resep.php?id_resep=<?= $row['id_resep']; ?>'
                                                         class='btn btn-danger delete'>Hapus</button>
                                                 </div>
                                             </td>
@@ -121,8 +121,59 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
             </div>
         </div>
     </div>
-</body>
+    <script>
+        const SweetAlert2Demo = function () {
+            const initDemos = function () {
+                $('.delete').click(function (e) {
+                    var url = e.target.getAttribute('href');
+                    swal({
+                        title: 'Yakin ingin menghapus?',
+                        text: "Data tidak bisa kembali jika terhapus!",
+                        type: 'warning',
+                        buttons: {
+                            confirm: {
+                                text: 'Hapus',
+                                className: 'btn btn-success'
+                            },
+                            cancel: {
+                                text: 'Batal',
+                                visible: true,
+                                className: 'btn btn-danger'
+                            }
+                        }
+                    }).then((Delete) => {
+                        if (Delete) {
+                            swal({
+                                title: 'Data Terhapus!',
+                                text: 'Data Resep Terhapus',
+                                type: 'success',
+                                buttons: {
+                                    confirm: {
+                                        className: 'btn btn-success'
+                                    }
+                                }
 
-<?php
-require_once("{$base_dir}pages{$ds}core{$ds}footer.php");
-?>
+                            });
+                            setTimeout(function () {
+                                window.location.href = url;
+                            }, 2000);
+                        } else {
+                            swal.close();
+                        }
+                    });
+                });
+            };
+            return {
+                //== Init
+                init: function () {
+                    initDemos();
+                },
+            };
+        }();
+
+        //== Class Initialization
+        jQuery(document).ready(function () {
+            SweetAlert2Demo.init();
+        });
+    </script>
+</body>

@@ -1,6 +1,6 @@
 <?php
 
-include "config/db-klinik.php";
+include "../../../../backend/config/db-klinik.php";
 
 // tambah rekam medis
 if (isset($_POST["tambah"])) {
@@ -16,7 +16,7 @@ if (isset($_POST["tambah"])) {
 
     $ResultQueryAdd = mysqli_query($db_connect, $QueryAdd);
 
-    header("Location: ../pages/content/admin/m_rekam_medis.php");
+    header("Location: ../m_rekam_medis.php");
 }
 
 // edit rekam medis
@@ -34,14 +34,14 @@ if (isset($_POST["ubah"])) {
     $resultUpdate = mysqli_query($db_connect, $queryUpdate);
 
 
-    header("Location: ../pages/content/admin/m_rekam_medis.php");
+    header("Location: ../m_rekam_medis.php");
 }
 
 // hapus rekam medis
 if (isset($_GET['id_rekam_medis'])) {
     mysqli_query($db_connect, "DELETE FROM rekam_medis WHERE id_rekam_medis='$_GET[id_rekam_medis]'");
 
-    header("Location: ../pages/content/admin/m_rekam_medis.php");
+    header("Location: ../m_rekam_medis.php");
     die();
 }
 

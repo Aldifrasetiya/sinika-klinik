@@ -3,7 +3,6 @@ session_start();
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..' . $ds) . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_owner.php");
-require_once("{$base_dir}backend{$ds}proses_pasien.php");
 
 ?>
 
@@ -15,7 +14,7 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
           <h4 class="page-title">Data Pasien</h4>
           <ul class="breadcrumbs">
             <li class="nav-home">
-              <a href="../../../pages/dashboard.php">
+              <a href="../dashboard/d_owner.php">
                 <i class="flaticon-home"></i>
               </a>
             </li>
@@ -53,11 +52,13 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                         <th>Penyakit</th>
                         <th>No Telepon</th>
                         <th>Jenis Asuransi</th>
+                        <th>No Asuransi</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php
+                      require '../../../backend/config/db-klinik.php';
                       $dataPasien = mysqli_query($db_connect, "SELECT * FROM pasien");
 
                       while ($row = mysqli_fetch_array($dataPasien)) {
@@ -87,14 +88,17 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                           <td>
                             <?= $row['jenis_asuransi']; ?>
                           </td>
-                          <td style='vertical-align: middle;'>
-                            <a href="m_ubah_pasien?id=<?= $row['id_pasien']; ?>">
-                              <button type="button" class="btn btn-warning">Edit</button>
-                            </a>
+                          <td>
+                            <?= $row['no_asuransi']; ?>
                           </td>
                           <td style='vertical-align: middle;'>
-                            <button href="../../../backend/proses_pasien.php?id_pasien=<?= $row['id_pasien']; ?>"
-                              type="button" class="btn btn-danger delete">Hapus</button>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                              <a href="m_ubah_pasien?id=<?= $row['id_pasien']; ?>">
+                                <button type="button" class="btn btn-warning">Edit</button>
+                              </a>
+                              <button href="proses/proses_pasien.php?id_pasien=<?= $row['id_pasien']; ?>" type="button"
+                                class="btn btn-danger delete">Hapus</button>
+                            </div>
                           </td>
                         </tr>
                       <?php } ?>
@@ -164,8 +168,3 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
     SweetAlert2Demo.init();
   });
 </script>
-
-
-<?php
-require_once("{$base_dir}pages{$ds}core{$ds}footer.php");
-?>

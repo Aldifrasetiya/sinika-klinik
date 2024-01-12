@@ -1,5 +1,5 @@
 <?php
-include "config/db-klinik.php";
+include "../../../../backend/config/db-klinik.php";
 
 // tambah data pasien
 if (isset($_POST['TambahPasien'])) {
@@ -25,7 +25,7 @@ if (isset($_POST['TambahPasien'])) {
     // Memeriksa apakah query berhasil dijalankan
     if ($resultQueryAddPasien) {
         // Mengarahkan kembali ke halaman data pasien setelah menambahkan data
-        header("Location: ../pages/content/admin/m_data_pasien.php");
+        header("Location: ../m_data_pasien.php");
     } else {
         // Menampilkan pesan kesalahan jika query tidak berhasil
         echo "Error: " . mysqli_error($db_connect);
@@ -33,7 +33,7 @@ if (isset($_POST['TambahPasien'])) {
 
     // Menutup koneksi database setelah digunakan
     $db->closeConnection();
-    
+
 }
 
 
@@ -51,11 +51,11 @@ if (isset($_POST["UbahPasien"])) {
     $notlp = mysqli_real_escape_string($db_connect, $_POST['notlp']);
     $asuransi = mysqli_real_escape_string($db_connect, $_POST['asuransi']);
 
-    $queryUpdatePasien = "UPDATE pasien SET id_pasien = '$id_pasien' nama_pasien = '$nama_pasien', alamat = '$alamat', tanggal_lahir='$ttl', jk='$jk', penyakit='$penyakit', no_Telepon='$notlp', jenis_asuransi='$asuransi' WHERE id_pasien='$id_pasien'";
+    $queryUpdatePasien = "UPDATE pasien SET nama_pasien = '$nama_pasien', alamat = '$alamat', tanggal_lahir='$ttl', jk='$jk', penyakit='$penyakit', no_Telepon='$notlp', jenis_asuransi='$asuransi' WHERE id_pasien='$id_pasien'";
 
     $resultUpdatePasien = mysqli_query($db_connect, $queryUpdatePasien);
 
-    header("Location: ../pages/content/admin/m_data_pasien.php");
+    header("Location: ../m_data_pasien.php");
 
 }
 
@@ -63,7 +63,7 @@ if (isset($_POST["UbahPasien"])) {
 if (isset($_GET['id_pasien'])) {
     mysqli_query($db_connect, "DELETE FROM pasien WHERE id_pasien='$_GET[id_pasien]'");
 
-    header("Location: ../pages/content/admin/m_data_pasien.php");
+    header("Location: ../m_data_pasien.php");
     die();
 }
 

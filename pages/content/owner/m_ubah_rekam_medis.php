@@ -1,9 +1,8 @@
 <?php
-
+session_start();
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..') . $ds;
-require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
-require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
+require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_owner.php");
 
 
 ?>
@@ -13,7 +12,7 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
         <div class="content">
             <div class="page-inner">
                 <div class="page-header">
-                    <h4 class="page-title">Ubah Jadwal Dokter Umum</h4>
+                    <h4 class="page-title">Ubah Rekam Medis</h4>
                     <ul class="breadcrumbs">
                         <li class="nav-home">
                             <a href="dashboard.php">
@@ -24,13 +23,13 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="m_dokter_umum.php">Jadwal Dokter Umum</a>
+                            <a href="m_rekam_medis.php">Rekam Medis</a>
                         </li>
                         <li class="separator">
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="m_ubah_dokter.php">Ubah Jadwal Dokter Umum</a>
+                            <a href="m_ubah_rekam_medis.php">Ubah Rekam Medis</a>
                         </li>
                         <!-- <li class="separator">
                             <i class="flaticon-right-arrow"></i>
@@ -44,46 +43,41 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
                 require('../../../backend/config/db-klinik.php');
 
                 if (isset($_GET['id'])) {
-                    $id_dokter = $_GET['id'];
+                    $id_rekam_medis = $_GET['id'];
 
-                    $result = mysqli_query($db_connect, "SELECT * FROM jadwal_dokter WHERE id_dokter = $id_dokter ");
+                    $result = mysqli_query($db_connect, "SELECT * FROM rekam_medis WHERE id_rekam_medis = $id_rekam_medis ");
                     if (mysqli_num_rows($result) == 1) {
                         $row = mysqli_fetch_assoc($result);
                         ?>
-                        <form action="../../../backend/proses_jadwal_dokter.php" method="POST">
+                        <form action="proses/proses_rekam_medis.php" method="POST">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-row">
-                                        <input type="hidden" name="id_dokter" id="id_dokter" value="<?= $row['id_dokter']; ?>">
+                                        <input type="hidden" name="id_rekam_medis" id="id_rekam_medis"
+                                            value="<?= $row['id_rekam_medis']; ?>">
                                         <div class="form-group col-md-6">
-                                            <label for="name">Nama Dokter</label>
-                                            <input type="text" class="form-control" name="namaDokter" id="namaDokter"
-                                                value="<?= $row['nama_dokter']; ?>">
+                                            <label for="id_pasien">ID Pasien</label>
+                                            <input type="text" class="form-control" name="id_pasien" id="id_pasien"
+                                                value="<?= $row['id_pasien']; ?>" readonly>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="spesialis">Spesialis</label>
-                                            <input type="text" class="form-control" name="spesialis" id="spesialis"
-                                                value="<?= $row['spesialis']; ?>">
+                                            <label for="rp">Riwayat Penyakit</label>
+                                            <input type="text" class="form-control" name="rp"
+                                                id="rp" value="<?= $row['riwayat_penyakit']; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="notlp">No Telepon</label>
-                                            <input type="text" class="form-control" name="notlp" id="notlp"
-                                                value="<?= $row['no_hp']; ?> ">
+                                            <label for="alergi">Alergi</label>
+                                            <input type="text" class="form-control" name="alergi"
+                                                id="alergi" value="<?= $row['alergi']; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="hari">Hari Praktek</label>
-                                            <input type="text" class="form-control" name="hariPraktek" id="hariPraktek"
-                                                value="<?= $row['hari_praktek']; ?>">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="jamPraktek">Jam Praktek</label>
-                                            <input type="time" class="form-control" name="jamPraktek" id="jamPraktek"
-                                                value="<?= $row['jam_praktek']; ?>">
+                                            <label for="ct">Catatan Lain</label>
+                                            <input type="text" class="form-control" name="ct"
+                                                id="ct" value="<?= $row['catatan_lain']; ?>">
                                         </div>
                                     </div>
                                     <div class="card-action">
-                                        <input type="hidden" name="UbahJadwal" id="UbahJadwal" value="UbahJadwal">
-                                        <button type="submit" class="btn btn-warning" name="UbahJadwal">Ubah</button>
+                                        <button type="submit" class="btn btn-warning" name="ubah">Ubah</button>
                                         <button class=" btn btn-danger">Batal</button>
                                     </div>
                                 </div>
@@ -91,7 +85,7 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
                         </form>
                         <?php
                     } else {
-                        echo "Jadwal Dokter tidak ditemukan.";
+                        echo ".";
                     }
                 } else {
                     echo "ID dokter tidak diberikan";
