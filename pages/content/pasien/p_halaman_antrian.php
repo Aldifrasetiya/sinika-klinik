@@ -3,7 +3,6 @@
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..') . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_pasien.php");
-require_once("{$base_dir}backend{$ds}proses_antrian_pasien.php");
 ?>
 
 
@@ -61,7 +60,7 @@ require_once("{$base_dir}backend{$ds}proses_antrian_pasien.php");
                 var_dump($nomor_antrian, $pasien, $nama_dokter, $spesialis);
                 ?> -->
             </div>
-            <a href="../../../d_pasien.php">
+            <a href="../../../index">
                 <button type="button" class="btn btn-primary my-3">Kembali ke home</button>
             </a>
         </div>

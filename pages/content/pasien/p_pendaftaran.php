@@ -3,7 +3,6 @@
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..' . $ds) . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_pasien.php");
-require_once("{$base_dir}backend{$ds}proses_antrian_pasien.php");
 
 ?>
 
@@ -24,7 +23,7 @@ require_once("{$base_dir}backend{$ds}proses_antrian_pasien.php");
                 INNER JOIN dokter ON jadwal_dokter.id_dokter = dokter.id_dokter";
                 $result = $db_connect->query($databaseDokter);
                 ?>
-                <form action="../../../backend/proses_antrian_pasien.php" method="POST">
+                <form action="proses/proses_antrian_pasien.php" method="POST">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
