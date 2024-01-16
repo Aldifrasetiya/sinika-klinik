@@ -25,7 +25,7 @@ if (isset($_POST['DaftarAntrian'])) {
         echo "Error: " . $query . "<br>" . $db_connect->error;
     }
 
-    header("Location: ../pages/content/pasien/p_halaman_antrian.php?nomor_antrian={$nomor_antrian}&id_pasien={$id_pasien}");
+    header("Location: ../p_halaman_antrian.php?nomor_antrian={$nomor_antrian}&id_pasien={$id_pasien}");
     exit();
 }
 // edit status antrian

@@ -22,11 +22,11 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_pasien.php");
                     $nomor_antrian = $_GET['nomor_antrian'];
 
                     // Ambil informasi pasien dan dokter
-                    $sqlInfoPasienDokter = "SELECT antrian.no_antrian, antrian.atas_nama_pasien, antrian.atas_nama_pasien, antrian.tanggal_antrian, antrian.status_antrian, dokter.nama_dokter, dokter.spesialisasi
-                    FROM antrian
-                    JOIN jadwal_dokter ON antrian.id_dokter = jadwal_dokter.id_dokter
-                    JOIN dokter ON jadwal_dokter.id_dokter = dokter.id_dokter
-                    WHERE antrian.no_antrian = ?";
+                    $sqlInfoPasienDokter = "SELECT antrian.no_antrian, antrian.atas_nama_pasien, antrian.tanggal_antrian, antrian.status_antrian, dokter.nama_dokter, dokter.spesialisasi
+                            FROM antrian
+                            JOIN jadwal_dokter ON antrian.id_dokter = jadwal_dokter.id_dokter
+                            JOIN dokter ON jadwal_dokter.id_dokter = dokter.id_dokter
+                            WHERE antrian.no_antrian = ?";
 
                     $stmt = $db_connect->prepare($sqlInfoPasienDokter);
                     $stmt->bind_param("i", $nomor_antrian);
@@ -53,16 +53,14 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_pasien.php");
                     }
 
                     $stmt->close();
-
                 }
                 ?>
-                <!-- <?php
-                var_dump($nomor_antrian, $pasien, $nama_dokter, $spesialis);
-                ?> -->
             </div>
             <a href="../../../index">
                 <button type="button" class="btn btn-primary my-3">Kembali ke home</button>
             </a>
+            <a href="p_cetak_antrian.php?nomor_antrian=<?php echo $nomor_antrian; ?>" rel="noopener" target="_blank"
+                class="btn btn-warning"><i class="fas fa-print"></i> Cetak Antrian</a>
         </div>
 
     </section>
