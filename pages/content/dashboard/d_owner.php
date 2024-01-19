@@ -3,8 +3,7 @@
 session_start();
 
 if ($_SESSION['role'] != 'owner') {
-  // session_destroy();
-  header('Location: login.php');
+  header('Location: ../../login.php');
   exit;
 }
 

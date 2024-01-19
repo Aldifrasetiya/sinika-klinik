@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 require '../../../backend/config/db-klinik.php';
 require '../../../backend/login.php';
 
@@ -10,42 +11,29 @@ if (isset($_POST['login'])) {
   $auth = new Auth($db_connect);
   $result = $auth->loginUser($email, $password);
 
-  if ($result === true) {
-    $auth->authorizeUser($_SESSION['username'] && $_SESSION['role']);
+  if ($result !== true) {
+    echo "<script>
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: '$result',
+            });
+          </script>";
   } else {
-    echo $result;
+    $_SESSION['username'] = $email;
+    $_SESSION['role'] = 'admin';
   }
 }
 
-// if (isset($_POST['login'])) {
-//   $email = $_POST['email'];
-//   $password = $_POST['password'];
-
-//   $auth = new Auth($db_connect);
-//   $result = $auth->loginUser($email, $password);
-
-//   if ($result !== true) {
-//     echo "<script>
-//             Swal.fire({
-//               icon: 'error',
-//               title: 'Oops...',
-//               text: '$result',
-//             });
-//           </script>";
-//   }
-// }
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+  header('Location: ../../login.php');
+  exit;
+}
 
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds) . $ds;
 require_once("{$base_dir}core{$ds}h_admin.php");
 
-// if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
-//   // Lakukan apa yang perlu dilakukan di dashboard admin
-// } else {
-//   // Jika tidak ada session atau rolenya bukan admin, redirect ke halaman login
-//   header('Location: login.php');
-//   exit;
-// }
 ?>
 
 <body>

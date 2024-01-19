@@ -15,7 +15,7 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
                     <h4 class="page-title">Ubah Resep</h4>
                     <ul class="breadcrumbs">
                         <li class="nav-home">
-                            <a href="../../../pages/dashboard.php">
+                            <a href="../dashboard/dashboard">
                                 <i class="flaticon-home"></i>
                             </a>
                         </li>
@@ -45,7 +45,17 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
                 if (isset($_GET['id'])) {
                     $id_resep = $_GET['id'];
 
-                    $result = mysqli_query($db_connect, "SELECT * FROM resep WHERE id_resep = '$id_resep'");
+                    $result = mysqli_query(
+                        $db_connect,
+
+                        "SELECT resep.*, pasien.nama_pasien, pasien.tanggal_lahir, pasien.jk, pasien.penyakit, pasien.jenis_asuransi, pasien.no_asuransi, 
+                    dokter.nama_dokter, dokter.spesialisasi, dokter.notlp_dokter,
+                    obat.nama_obat, obat.jenis_obat, obat.harga 
+                    FROM resep
+                    JOIN dokter ON resep.id_dokter = dokter.id_dokter
+                    JOIN pasien ON resep.id_pasien = pasien.id_pasien
+                    JOIN obat ON resep.id_obat = obat.id_obat WHERE id_resep= '$id_resep'"
+                    );
                     if (mysqli_num_rows($result) == 1) {
                         $row = mysqli_fetch_assoc($result);
                         ?>
@@ -88,7 +98,7 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
                                     <div class="card-action">
                                         <input type="hidden" name="ubahResep" value="ubahResep">
                                         <button type="submit" class="btn btn-success">Ubah</button>
-                                        <button class="btn btn-danger">Batal</button>
+                                        <a class="btn btn-danger" href="m_data_resep">Batal</a>
                                     </div>
                                 </div>
                         </form>

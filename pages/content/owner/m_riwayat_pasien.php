@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+if ($_SESSION['role'] != 'owner') {
+    header('Location: ../../login.php');
+    exit;
+}
+
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..' . $ds) . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_owner.php");
@@ -83,7 +89,7 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_owner.php");
                                                         <button type="button"
                                                             href='proses/proses_riwayat_pasien.php?id_riwayat=<?= $row['id_riwayat']; ?>'
                                                             class='btn btn-danger delete'>Hapus</button>
-                                                        <a href="#">
+                                                        <a href="m_cetak_riwayat_pasien">
                                                             <button type="button" class="btn btn-primary">Cetak</button>
                                                         </a>
                                                     </div>

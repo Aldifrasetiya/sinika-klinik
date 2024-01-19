@@ -1,3 +1,43 @@
+<?php
+session_start();
+require '../backend/login.php';
+
+if (isset($_SESSION['error'])) {
+  echo "
+        <script type='text/javascript'>
+            document.addEventListener('DOMContentLoaded', () => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    html: '<p class=\"p-popup\">{$_SESSION['error']}</p>',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            });
+        </script>
+    ";
+  unset($_SESSION['error']);
+}
+
+if (isset($_SESSION['success'])) {
+  echo "
+        <script type='text/javascript'>
+            document.addEventListener('DOMContentLoaded', () => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    html: '<p class=\"p-popup\">{$_SESSION['success']}</p>',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            });
+        </script>
+    ";
+  unset($_SESSION['success']);
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +50,10 @@
   <link rel="icon" href="../assets/img/logo-SINIKA.png" type="image/x-icon" />
   <!-- <link rel="stylesheet" href="style.css"> -->
   <title>SINIKA - Sistem Informasi Klinik Aisha Medika</title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -67,25 +111,6 @@
       </div>
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <?php
-  if (isset($_SESSION['role'])) {
-    echo "<script>
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Anda sudah login.',
-            }).then((result) => {
-                if (result.isConfirmed || result.isDismissed) {
-                    window.location.href = '../pages/dashboard.php';
-                }
-            });
-          </script>";
-  }
-  ?>
 </body>
 
 

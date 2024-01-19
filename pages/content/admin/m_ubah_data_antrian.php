@@ -1,5 +1,35 @@
 <?php
 session_start();
+
+require '../../../backend/config/db-klinik.php';
+require '../../../backend/login.php';
+
+if (isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $auth = new Auth($db_connect);
+    $result = $auth->loginUser($email, $password);
+
+    if ($result !== true) {
+        echo "<script>
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: '$result',
+            });
+          </script>";
+    } else {
+        $_SESSION['username'] = $email;
+        $_SESSION['role'] = 'admin';
+    }
+}
+
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    header('Location: ../../login.php');
+    exit;
+}
+
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..') . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
@@ -15,7 +45,7 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
                     <h4 class="page-title">Ubah Data Antrian</h4>
                     <ul class="breadcrumbs">
                         <li class="nav-home">
-                            <a href="dashboard.php">
+                            <a href="../dashboard/dashboard">
                                 <i class="flaticon-home"></i>
                             </a>
                         </li>
@@ -49,7 +79,7 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
                     if (mysqli_num_rows($result) == 1) {
                         $row = mysqli_fetch_assoc($result);
                         ?>
-                        <form action="../backend/proses_antrian_pasien.php" method="POST">
+                        <form action="proses/proses_antrian_pasien.php" method="POST">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-row">
@@ -62,8 +92,8 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="id_pasien">Atas Nama Pasien</label>
-                                            <input type="text" class="form-control" name="atas_nama_pasien" id="atas_nama_pasien"
-                                                value="<?= $row['atas_nama_pasien']; ?>" readonly>
+                                            <input type="text" class="form-control" name="atas_nama_pasien"
+                                                id="atas_nama_pasien" value="<?= $row['atas_nama_pasien']; ?>" readonly>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="id_dokter">ID Dokter</label>
@@ -104,7 +134,7 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
                                     <div class="card-action">
                                         <!-- <input type="hidden" name="editAntrian" id="editAntrian" value="editAntrian"> -->
                                         <button type="submit" class="btn btn-warning" name="editAntrian">Simpan</button>
-                                        <button type="submit" class=" btn btn-danger" name="batal">Batal</button>
+                                        <a class="btn btn-danger" href="m_data_antrian">Batal</a>
                                     </div>
                                 </div>
                             </div>

@@ -86,7 +86,7 @@
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#sidebarLayouts">
                         <i class="fa-solid fa-calendar"></i>
-                        <p>Jadwal Dokter</p>
+                        <p>Data Dokter</p>
                         <span class="caret"></span>
                     </a>
                     <div class="collapse" id="sidebarLayouts">
@@ -96,11 +96,6 @@
                                     <span class="sub-item">Dokter Umum</span>
                                 </a>
                             </li>
-                            <!-- <li>
-                <a href="overlay-sidebar.html">
-                  <span class="sub-item">Dokter Spesialis</span>
-                </a>
-              </li> -->
                         </ul>
                     </div>
                 </li>
@@ -115,11 +110,6 @@
                             <li>
                                 <a href="../owner/m_data_obat">
                                     <span class="sub-item">Obat</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../owner/m_data_resep">
-                                    <span class="sub-item">Resep</span>
                                 </a>
                             </li>
                         </ul>

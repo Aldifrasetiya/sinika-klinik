@@ -1,5 +1,34 @@
 <?php
 session_start();
+
+require '../../../backend/config/db-klinik.php';
+require '../../../backend/login.php';
+
+if (isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $auth = new Auth($db_connect);
+    $result = $auth->loginUser($email, $password);
+
+    if ($result !== true) {
+        echo "<script>
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: '$result',
+            });
+          </script>";
+    } else {
+        $_SESSION['username'] = $email;
+        $_SESSION['role'] = 'admin';
+    }
+}
+
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    header('Location: ../../login.php');
+    exit;
+}
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..' . $ds) . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
@@ -14,7 +43,7 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
                     <h4 class="page-title">Data Pasien</h4>
                     <ul class="breadcrumbs">
                         <li class="nav-home">
-                            <a href="../../../pages/dashboard.php">
+                            <a href="../dashboard/dashboard">
                                 <i class="flaticon-home"></i>
                             </a>
                         </li>
@@ -92,13 +121,12 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
                                                     <?= $row['no_asuransi']; ?>
                                                 </td>
                                                 <td style='vertical-align: middle;'>
-                                                    <div style="display: flex; align-items: center; gap: 10px">
-                                                        <a href="m_ubah_pasien.php?id=<?= $row['id_pasien']; ?>">
+                                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                                        <a href="m_ubah_pasien?id=<?= $row['id_pasien']; ?>">
                                                             <button type="button" class="btn btn-warning">Edit</button>
                                                         </a>
-                                                        <button type="button"
-                                                            href='proses/proses_pasien.php?id_pasien=<?= $row['id_pasien']; ?>'
-                                                            class='btn btn-danger delete'>Hapus</button>
+                                                        <button data-id_pasien="<?= $row['id_pasien']; ?>" type="button"
+                                                            class="btn btn-danger delete">Hapus</button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -117,11 +145,15 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
     const SweetAlert2Demo = function () {
         const initDemos = function () {
             $('.delete').click(function (e) {
-                var url = e.target.getAttribute('href');
+                e.preventDefault(); // Mencegah navigasi langsung ke URL href
+
+                var id_pasien = $(this).data('id_pasien');
+                var url = "proses/proses_pasien.php?id_pasien=" + id_pasien;
+
                 swal({
                     title: 'Yakin ingin menghapus?',
                     text: "Data tidak bisa kembali jika terhapus!",
-                    type: 'warning',
+                    icon: 'warning',
                     buttons: {
                         confirm: {
                             text: 'Hapus',
@@ -134,26 +166,58 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
                         }
                     }
                 }).then((Delete) => {
+                    // Membuat request AJAX ke backend
                     if (Delete) {
-                        swal({
-                            title: 'Data Terhapus!',
-                            text: 'Data Pasien Berhasil di hapus',
-                            type: 'success',
-                            buttons: {
-                                confirm: {
-                                    className: 'btn btn-success'
+                        $.ajax({
+                            url: url,
+                            type: 'GET',
+                            dataType: 'json',
+                            success: function (result) {
+                                if (result.status == 'success') {
+                                    swal({
+                                        title: 'Sukses',
+                                        text: result.message,
+                                        icon: 'success',
+                                        buttons: {
+                                            confirm: {
+                                                className: 'btn btn-success'
+                                            }
+                                        }
+                                    }).then(() => {
+                                        window.location.href = 'm_data_pasien.php';
+                                    });
+                                } else {
+                                    swal({
+                                        title: 'Error',
+                                        text: result.message,
+                                        icon: 'error',
+                                        buttons: {
+                                            confirm: {
+                                                className: 'btn btn-danger'
+                                            }
+                                        }
+                                    });
                                 }
+                            },
+                            error: function () {
+                                swal({
+                                    title: 'Error',
+                                    text: 'Terjadi kesalahan saat melakukan operasi hapus.',
+                                    icon: 'error',
+                                    buttons: {
+                                        confirm: {
+                                            className: 'btn btn-danger'
+                                        }
+                                    }
+                                });
                             }
-
                         });
-                        setTimeout(function () {
-                            window.location.href = url;
-                        }, 2000);
                     } else {
                         swal.close();
                     }
                 });
             });
+
         };
         return {
             //== Init

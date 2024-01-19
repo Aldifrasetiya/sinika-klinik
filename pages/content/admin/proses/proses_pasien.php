@@ -1,6 +1,31 @@
 <?php
 include "../../../../backend/config/db-klinik.php";
 
+// hapus data pasien
+if (isset($_GET['id_pasien'])) {
+    $id_pasien_to_delete = $_GET['id_pasien'];
+
+    // Periksa apakah ada data di tabel resep terkait dengan pasien yang akan dihapus
+    $query_check_resep = "SELECT * FROM resep WHERE id_pasien = '$id_pasien_to_delete'";
+    $result_check_resep = mysqli_query($db_connect, $query_check_resep);
+
+    if (!$result_check_resep) {
+        // Tampilkan Sweet Alert error jika query check resep gagal
+        echo json_encode(array('status' => 'error', 'message' => 'Error saat memeriksa data terkait di tabel resep.'));
+    } else {
+        if (mysqli_num_rows($result_check_resep) > 0) {
+            // Jika ada data terkait, tampilkan Sweet Alert error
+            echo json_encode(array('status' => 'error', 'message' => 'Tidak dapat menghapus pasien karena masih ada data terkait di tabel resep.'));
+        } else {
+            // Jika tidak ada data terkait, hapus data pasien
+            mysqli_query($db_connect, "DELETE FROM pasien WHERE id_pasien = '$id_pasien_to_delete'");
+
+            // Tampilkan Sweet Alert sukses
+            echo json_encode(array('status' => 'success', 'message' => 'Data Pasien berhasil dihapus.'));
+        }
+    }
+}
+
 // tambah data pasien
 if (isset($_POST['TambahPasien'])) {
     // Melakukan validasi data form untuk mencegah SQL injection
@@ -58,15 +83,4 @@ if (isset($_POST["UbahPasien"])) {
     header("Location: ../m_data_pasien.php");
 
 }
-
-// hapus data pasien
-if (isset($_GET['id_pasien'])) {
-    mysqli_query($db_connect, "DELETE FROM pasien WHERE id_pasien='$_GET[id_pasien]'");
-
-    header("Location: ../m_data_pasien.php");
-    die();
-}
-
-
-
 ?>

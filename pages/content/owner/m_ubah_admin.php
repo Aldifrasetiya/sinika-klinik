@@ -12,10 +12,10 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_owner.php");
         <div class="content">
             <div class="page-inner">
                 <div class="page-header">
-                    <h4 class="page-title">Ubah Data Pasien</h4>
+                    <h4 class="page-title">Ubah Data Admin</h4>
                     <ul class="breadcrumbs">
                         <li class="nav-home">
-                            <a href="dashboard.php">
+                            <a href="../dashboard/d.owner">
                                 <i class="flaticon-home"></i>
                             </a>
                         </li>
@@ -23,13 +23,13 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_owner.php");
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="m_data_pasien.php">Data Pasien</a>
+                            <a href="m_data_user.php">Data Admin</a>
                         </li>
                         <li class="separator">
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="m_ubah_dokter.php">Ubah Data Pasien</a>
+                            <a href="m_ubah_admin.php">Ubah Data Admin</a>
                         </li>
                         <!-- <li class="separator">
                             <i class="flaticon-right-arrow"></i>
@@ -95,7 +95,7 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_owner.php");
                                     </div>
                                     <div class="card-action">
                                         <button type="submit" name="UbahAdmin" class="btn btn-success mx-2">Simpan</button>
-                                        <button class="btn btn-danger">Batal</button>
+                                        <a class="btn btn-danger" href="m_data_user">Batal</a>
                                     </div>
                                 </div>
                             </div>

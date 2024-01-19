@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+if ($_SESSION['role'] != 'owner') {
+  header('Location: ../../login.php');
+  exit;
+}
+
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..' . $ds) . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_owner.php");
@@ -96,7 +102,7 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_owner.php");
                               <a href="m_ubah_pasien?id=<?= $row['id_pasien']; ?>">
                                 <button type="button" class="btn btn-warning">Edit</button>
                               </a>
-                              <button href="proses/proses_pasien.php?id_pasien=<?= $row['id_pasien']; ?>" type="button"
+                              <button data-id_pasien="<?= $row['id_pasien']; ?>" type="button"
                                 class="btn btn-danger delete">Hapus</button>
                             </div>
                           </td>
@@ -117,11 +123,15 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_owner.php");
   const SweetAlert2Demo = function () {
     const initDemos = function () {
       $('.delete').click(function (e) {
-        var url = e.target.getAttribute('href');
+        e.preventDefault(); // Mencegah navigasi langsung ke URL href
+
+        var id_pasien = $(this).data('id_pasien');
+        var url = "proses/proses_pasien.php?id_pasien=" + id_pasien;
+
         swal({
           title: 'Yakin ingin menghapus?',
           text: "Data tidak bisa kembali jika terhapus!",
-          type: 'warning',
+          icon: 'warning',
           buttons: {
             confirm: {
               text: 'Hapus',
@@ -134,26 +144,58 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_owner.php");
             }
           }
         }).then((Delete) => {
+          // Membuat request AJAX ke backend
           if (Delete) {
-            swal({
-              title: 'Data Terhapus!',
-              text: 'Data Pasien Terhapus',
-              type: 'success',
-              buttons: {
-                confirm: {
-                  className: 'btn btn-success'
+            $.ajax({
+              url: url,
+              type: 'GET',
+              dataType: 'json',
+              success: function (result) {
+                if (result.status == 'success') {
+                  swal({
+                    title: 'Sukses',
+                    text: result.message,
+                    icon: 'success',
+                    buttons: {
+                      confirm: {
+                        className: 'btn btn-success'
+                      }
+                    }
+                  }).then(() => {
+                    window.location.href = 'm_data_pasien.php';
+                  });
+                } else {
+                  swal({
+                    title: 'Error',
+                    text: result.message,
+                    icon: 'error',
+                    buttons: {
+                      confirm: {
+                        className: 'btn btn-danger'
+                      }
+                    }
+                  });
                 }
+              },
+              error: function () {
+                swal({
+                  title: 'Error',
+                  text: 'Terjadi kesalahan saat melakukan operasi hapus.',
+                  icon: 'error',
+                  buttons: {
+                    confirm: {
+                      className: 'btn btn-danger'
+                    }
+                  }
+                });
               }
-
             });
-            setTimeout(function () {
-              window.location.href = url;
-            }, 2000);
           } else {
             swal.close();
           }
         });
       });
+
     };
     return {
       //== Init

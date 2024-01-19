@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <h2 class="page-header fw-bold">
-                        Informasi Antrian
+                        Laporan Riwayat Pasien
                     </h2>
                     <address>
                         Klinik Aisha Medika</br>
@@ -59,54 +59,47 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>No Antrian</th>
-                                <th>Atas Nama Pasien</th>
-                                <th>Nama Dokter</th>
-                                <th>Spesialis</th>
-                                <th>Tanggal Antrian</th>
-                                <th>Status Antrian</th>
+                                <th>ID Riwayat Pasien</th>
+                                <th>ID Pasien</th>
+                                <th>Tanggal</th>
+                                <th>Jenis Pelayanan</th>
+                                <th>Keterangan</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             require_once("../../../backend/config/db-klinik.php");
 
-                            if (isset($_GET['nomor_antrian'])) {
-                                $nomor_antrian = $_GET['nomor_antrian'];
+                            if (isset($_GET['id_riwayat'])) {
+                                $id_riwayat = $_GET['id_riwayat'];
 
                                 // Ambil informasi pasien dan dokter
-                                $sqlInfoPasienDokter = "SELECT antrian.no_antrian, antrian.atas_nama_pasien, antrian.tanggal_antrian, antrian.status_antrian, dokter.nama_dokter, dokter.spesialisasi
-                                FROM antrian
-                                JOIN jadwal_dokter ON antrian.id_dokter = jadwal_dokter.id_dokter
-                                JOIN dokter ON jadwal_dokter.id_dokter = dokter.id_dokter
-                                WHERE antrian.no_antrian = ?";
+                                $sqlInfoRiwayat = "SELECT * FROM riwayat_pasien WHERE id_riwayat = ?";
 
-                                $stmt = $db_connect->prepare($sqlInfoPasienDokter);
-                                $stmt->bind_param("i", $nomor_antrian);
+                                $stmt = $db_connect->prepare($sqlInfoRiwayat);
+                                $stmt->bind_param("i", $id_riwayat);
                                 $stmt->execute();
                                 $result = $stmt->get_result();
 
                                 if ($result && $result->num_rows > 0) {
                                     $row = $result->fetch_assoc();
-                                    $nomor_antrian = $row['no_antrian'];
-                                    $atas_nama_pasien = $row['atas_nama_pasien'];
-                                    $nama_dokter = $row['nama_dokter'];
-                                    $spesialis = $row['spesialisasi'];
-                                    $tglAntrian = $row['tanggal_antrian'];
-                                    $stsAntrian = $row['status_antrian'];
+                                    $id_riwayat = $row['id_riwayat'];
+                                    $id_pasien = $row['id_pasien'];
+                                    $tgl = $row['tanggal'];
+                                    $jp = $row['jenis_pelayanan'];
+                                    $ket = $row['keterangan'];
 
-                                    // Cetak informasi antrian ke dalam tabel
+                                    // Cetak informasi riwayat pasien ke dalam tabel
                                     echo "
                                     <tr>
-                                        <td>$nomor_antrian</td>
-                                        <td>$atas_nama_pasien</td>
-                                        <td>$nama_dokter</td>
-                                        <td>$spesialis</td>
-                                        <td>$tglAntrian</td>
-                                        <td>$stsAntrian</td>
+                                        <td>$id_riwayat</td>
+                                        <td>$id_pasien</td>
+                                        <td>$tgl</td>
+                                        <td>$jp</td>
+                                        <td>$ket</td>
                                     </tr>";
                                 } else {
-                                    echo "<tr><td colspan='5'>Tidak ada informasi antrian yang valid.</td></tr>";
+                                    echo "<tr><td colspan='5'>Tidak ada informasi yang valid.</td></tr>";
                                 }
 
                                 $stmt->close();

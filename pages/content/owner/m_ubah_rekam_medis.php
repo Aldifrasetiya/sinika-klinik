@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+if ($_SESSION['role'] != 'owner') {
+    header('Location: ../../login.php');
+    exit;
+}
+
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..') . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_owner.php");
@@ -15,7 +21,7 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_owner.php");
                     <h4 class="page-title">Ubah Rekam Medis</h4>
                     <ul class="breadcrumbs">
                         <li class="nav-home">
-                            <a href="dashboard.php">
+                            <a href="../dashboard/d.owner">
                                 <i class="flaticon-home"></i>
                             </a>
                         </li>
@@ -62,23 +68,23 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_owner.php");
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="rp">Riwayat Penyakit</label>
-                                            <input type="text" class="form-control" name="rp"
-                                                id="rp" value="<?= $row['riwayat_penyakit']; ?>">
+                                            <input type="text" class="form-control" name="rp" id="rp"
+                                                value="<?= $row['riwayat_penyakit']; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="alergi">Alergi</label>
-                                            <input type="text" class="form-control" name="alergi"
-                                                id="alergi" value="<?= $row['alergi']; ?>">
+                                            <input type="text" class="form-control" name="alergi" id="alergi"
+                                                value="<?= $row['alergi']; ?>">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="ct">Catatan Lain</label>
-                                            <input type="text" class="form-control" name="ct"
-                                                id="ct" value="<?= $row['catatan_lain']; ?>">
+                                            <input type="text" class="form-control" name="ct" id="ct"
+                                                value="<?= $row['catatan_lain']; ?>">
                                         </div>
                                     </div>
                                     <div class="card-action">
                                         <button type="submit" class="btn btn-warning" name="ubah">Ubah</button>
-                                        <button class=" btn btn-danger">Batal</button>
+                                        <a class="btn btn-danger" href="m_rekam_medis">Batal</a>
                                     </div>
                                 </div>
                             </div>

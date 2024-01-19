@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+if ($_SESSION['role'] != 'owner') {
+    header('Location: ../../login.php');
+    exit;
+}
+
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..') . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_owner.php");
@@ -16,7 +22,7 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
                     <h4 class="page-title">Tambah Jadwal Dokter Umum</h4>
                     <ul class="breadcrumbs">
                         <li class="nav-home">
-                            <a href="dashboard.php">
+                            <a href="../dashboard/d.owner">
                                 <i class="flaticon-home"></i>
                             </a>
                         </li>
@@ -72,7 +78,7 @@ require_once("{$base_dir}backend{$ds}proses_jadwal_dokter.php");
                             </div>
                             <div class="card-action">
                                 <button type="submit" name="Tambah" class="btn btn-success">Tambah</button>
-                                <button class="btn btn-danger">Batal</button>
+                                <a class="btn btn-danger" href="m_data_dokter">Batal</a>
                             </div>
                         </div>
                     </div>

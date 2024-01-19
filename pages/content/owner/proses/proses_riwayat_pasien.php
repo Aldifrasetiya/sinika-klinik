@@ -23,7 +23,7 @@ if (isset($_POST["tambah"])) {
 if (isset($_GET['id_riwayat'])) {
     mysqli_query($db_connect, "DELETE FROM riwayat_pasien WHERE id_riwayat='$_GET[id_riwayat]'");
 
-    header("Location: ../pages/content/admin/m_riwayat_pasien.php");
+    header("Location: ../m_riwayat_pasien.php");
     die();
 }
 

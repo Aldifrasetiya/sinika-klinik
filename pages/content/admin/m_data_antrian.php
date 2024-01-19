@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 require '../../../backend/config/db-klinik.php';
 require '../../../backend/login.php';
 
@@ -18,7 +19,15 @@ if (isset($_POST['login'])) {
               text: '$result',
             });
           </script>";
+    } else {
+        $_SESSION['username'] = $email;
+        $_SESSION['role'] = 'admin';
     }
+}
+
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    header('Location: ../../login.php');
+    exit;
 }
 
 $ds = DIRECTORY_SEPARATOR;
@@ -43,7 +52,7 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
                     <h4 class="page-title">Data Antrian</h4>
                     <ul class="breadcrumbs">
                         <li class="nav-home">
-                            <a href="../../../pages/dashboard.php">
+                            <a href="../dashboard/dashboard">
                                 <i class="flaticon-home"></i>
                             </a>
                         </li>
@@ -51,7 +60,7 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="../admin/m_data_atrian.php">Data Antrian</a>
+                            <a href="m_data_antrian">Data Antrian</a>
                         </li>
                     </ul>
                 </div>

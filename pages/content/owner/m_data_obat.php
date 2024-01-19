@@ -1,9 +1,14 @@
 <?php
 session_start();
+
+if ($_SESSION['role'] != 'owner') {
+    header('Location: ../../login.php');
+    exit;
+}
+
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..' . $ds) . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_owner.php");
-require_once("{$base_dir}backend{$ds}proses_data_obat.php");
 
 
 ?>
@@ -63,6 +68,8 @@ require_once("{$base_dir}backend{$ds}proses_data_obat.php");
                                 <tbody>
                                     <tr>
                                         <?php
+                                        require '../../../backend/config/db-klinik.php';
+
                                         $dataObat = mysqli_query($db_connect, "SELECT * FROM obat");
                                         $no = 1;
 

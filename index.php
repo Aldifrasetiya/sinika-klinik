@@ -182,7 +182,7 @@ require_once("{$base_dir}core{$ds}h_pasien.php");
       <div class="container">
         <div class="row gy-4">
           <div class="col-lg-5 col-md-12 footer-info">
-            <a href="index.html" class="logo d-flex align-items-center">
+            <a href="index" class="logo d-flex align-items-center">
               <img width="160" height="90" src="assets/img/logo-SINIKA.png" alt="logo-SINIKA">
             </a>
             <p class="fw-bold">SINIKA - Sistem Informasi Klinik Aisha Medika</p>
@@ -197,7 +197,7 @@ require_once("{$base_dir}core{$ds}h_pasien.php");
           <div class="col-lg-2 col-6 footer-links">
             <h4>Dashboard</h4>
             <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="pages/index.php">Home</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="index.php">Home</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="pages/content/pasien/p_pendaftaran">Pendaftaran</a></li>
             </ul>
           </div>
@@ -232,6 +232,7 @@ require_once("{$base_dir}core{$ds}h_pasien.php");
   <script src="pages/assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
+  <script src="pages/assets/js/main.js"></script>
   <script src="pages/assets/js/main.js"></script>
 </body>
 

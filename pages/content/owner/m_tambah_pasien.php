@@ -3,7 +3,6 @@ session_start();
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . '..') . $ds;
 require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_owner.php");
-require_once("{$base_dir}backend{$ds}proses_pasien.php");
 
 
 ?>
@@ -16,7 +15,7 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                     <h4 class="page-title">Tambah Data Pasien</h4>
                     <ul class="breadcrumbs">
                         <li class="nav-home">
-                            <a href="../../../pages/dashboard.php">
+                            <a href="../dashboard/d_owner">
                                 <i class="flaticon-home"></i>
                             </a>
                         </li>
@@ -34,14 +33,10 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                         </li>
                     </ul>
                 </div>
-                <form action="../../../backend/proses_pasien.php" method="POST">
+                <form action="proses/proses_pasien.php" method="POST">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="id_pasien">ID Pasien</label>
-                                    <input type="text" class="form-control" name="id_pasien" id="id_pasien" readonly>
-                                </div>
                                 <div class="form-group col-md-6">
                                     <label for="namePasien">Nama Pasien</label>
                                     <input type="text" class="form-control" name="namaPasien" id="namaPasien">
@@ -86,7 +81,7 @@ require_once("{$base_dir}backend{$ds}proses_pasien.php");
                             </div>
                             <div class="card-action">
                                 <button type="submit" name="TambahPasien" class="btn btn-success mx-2">Tambah</button>
-                                <button class="btn btn-danger">Batal</button>
+                                <a class="btn btn-danger" href="m_data_pasien">Batal</a>
                             </div>
                         </div>
                     </div>
