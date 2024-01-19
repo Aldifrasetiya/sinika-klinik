@@ -17,6 +17,21 @@ if (isset($_POST["tambah"])) {
 
     header("Location: ../m_riwayat_pasien.php");
 }
+if (isset($_POST["ubah"])) {
+    global $db_connect;
+    // Ambil data dari formulir
+    $id_riwayat = mysqli_real_escape_string($db_connect, $_POST['id_riwayat']);
+    $id_pasien = mysqli_real_escape_string($db_connect, $_POST['id_pasien']);
+    $tgl = mysqli_real_escape_string($db_connect, $_POST['tgl']);
+    $jpelayanan = mysqli_real_escape_string($db_connect, $_POST['jp']);
+    $ket = mysqli_real_escape_string($db_connect, $_POST['ket']);
+
+    $QueryUpdate = "UPDATE riwayat_pasien SET id_pasien='$id_pasien', tanggal='$tgl', jenis_pelayanan='$jpelayanan', keterangan='$ket' WHERE id_riwayat='$id_riwayat'";
+
+    $ResultQueryUpdate = mysqli_query($db_connect, $QueryUpdate);
+
+    header("Location: ../m_riwayat_pasien.php");
+}
 
 
 // hapus riwayat pasien

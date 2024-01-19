@@ -23,7 +23,7 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="m_rekam_medis.php">Riwayat Pasien</a>
+                            <a href="m_riwayat_pasien.php">Riwayat Pasien</a>
                         </li>
                         <li class="separator">
                             <i class="flaticon-right-arrow"></i>
