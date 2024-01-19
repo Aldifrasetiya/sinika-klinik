@@ -80,11 +80,12 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
                                                         <a href="m_ubah_riwayat_pasien.php?id=<?= $row['id_riwayat']; ?>">
                                                             <button type="button" class="btn btn-warning">Edit</button>
                                                         </a>
-                                                        <button type="button"
-                                                            href='../../../backend/proses_riwayat_pasien.php?id_riwayat=<?= $row['id_riwayat']; ?>'
-                                                            class='btn btn-danger delete'>Hapus</button>
-                                                        <a href="#">
-                                                            <button type="button" class="btn btn-primary">Cetak</button>
+                                                        <a href='proses/proses_riwayat_pasien.php?id_riwayat=<?= $row['id_riwayat']; ?>'
+                                                            class='btn btn-danger delete'>Hapus</a>
+                                                        <a href="m_cetak_riwayat_pasien?id_riwayat=<?= $row['id_riwayat']; ?>"
+                                                            rel="noopener" target="_blank">
+                                                            <button type="button"
+                                                                class="btn btn-primary print">Cetak</button>
                                                         </a>
                                                     </div>
                                                 </td>
