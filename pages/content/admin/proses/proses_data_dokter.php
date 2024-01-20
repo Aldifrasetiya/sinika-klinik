@@ -2,20 +2,32 @@
 
 include "../../../../backend/config/db-klinik.php";
 
-// // Mendapatkan ID pasien terbesar dari database
-// $query = mysqli_query($db_connect, "SELECT max(id_dokter) as idTerbesar FROM jadwal_dokter");
-// $data = mysqli_fetch_array($query);
+// hapus dokter
+if (isset($_GET['id_dokter'])) {
+    $id_dokter_to_delete = $_GET['id_dokter'];
 
-// // Mengenerate ID pasien baru
-// $urutan = (int) substr($data['idTerbesar'], 3, 4) + 1;
-// $id_dokter_baru = "DKT" . sprintf("%04d", $urutan);
+    // Periksa apakah ada data di tabel resep terkait dengan pasien yang akan dihapus
+    $query_check_resep = "SELECT * FROM antrian WHERE id_dokter = '$id_dokter_to_delete'";
+    $result_check_resep = mysqli_query($db_connect, $query_check_resep);
 
-// // Menampilkan ID pasien baru (opsional)
-// echo $id_dokter_baru;
+    if (!$result_check_resep) {
+        // Tampilkan Sweet Alert error jika query check resep gagal
+        echo json_encode(array('status' => 'error', 'message' => 'Error saat memeriksa data terkait di tabel antrian & resep.'));
+    } else {
+        if (mysqli_num_rows($result_check_resep) > 0) {
+            // Jika ada data terkait, tampilkan Sweet Alert error
+            echo json_encode(array('status' => 'error', 'message' => 'Tidak dapat menghapus pasien karena masih ada data terkait di tabel antrian & resep.'));
+        } else {
+            // Jika tidak ada data terkait, hapus data pasien
+            mysqli_query($db_connect, "DELETE FROM dokter WHERE id_dokter = '$id_dokter_to_delete'");
 
-// $QueryGetListDokter = mysqli_query($db_connect, "SELECT * FROM dokter");
+            // Tampilkan Sweet Alert sukses
+            echo json_encode(array('status' => 'success', 'message' => 'Data Obat berhasil dihapus.'));
+        }
+    }
+}
 
-// tambah jadwal dokter php
+// tambah dokter php
 if (isset($_POST["tambahDokter"])) {
     global $connect;
     // Ambil data dari formulir
@@ -32,7 +44,7 @@ if (isset($_POST["tambahDokter"])) {
     header("Location: ../m_data_dokter.php");
 }
 
-// edit jadwal dokter
+// edit dokter
 if (isset($_POST["ubahDokter"])) {
     global $db_connect;
     // Ambil data dari formulir
@@ -53,13 +65,13 @@ if (isset($_POST["ubahDokter"])) {
     exit();
 }
 
-// hapus jadwal dokter
-if (isset($_GET['id_dokter'])) {
-    mysqli_query($db_connect, "DELETE FROM dokter WHERE id_dokter='$_GET[id_dokter]'");
+// // hapus dokter
+// if (isset($_GET['id_dokter'])) {
+//     mysqli_query($db_connect, "DELETE FROM dokter WHERE id_dokter='$_GET[id_dokter]'");
 
-    header("Location: ../m_data_dokter.php");
-    die();
-}
+//     header("Location: ../m_data_dokter.php");
+//     die();
+// }
 
 
 ?>

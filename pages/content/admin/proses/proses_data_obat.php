@@ -2,7 +2,30 @@
 
 include "../../../../backend/config/db-klinik.php";
 
-$QueryDataObat = mysqli_query($db_connect, "SELECT * FROM obat");
+// hapus dokter
+if (isset($_GET['id_obat'])) {
+    $id_obat_to_delete = $_GET['id_obat'];
+
+    // Periksa apakah ada data di tabel resep terkait dengan obat yang akan dihapus
+    $query_check_resep = "SELECT * FROM resep WHERE id_obat = '$id_obat_to_delete'";
+    $result_check_resep = mysqli_query($db_connect, $query_check_resep);
+
+    if (!$result_check_resep) {
+        // Tampilkan Sweet Alert error jika query check resep gagal
+        echo json_encode(array('status' => 'error', 'message' => 'Error saat memeriksa data terkait di resep.'));
+    } else {
+        if (mysqli_num_rows($result_check_resep) > 0) {
+            // Jika ada data terkait, tampilkan Sweet Alert error
+            echo json_encode(array('status' => 'error', 'message' => 'Tidak dapat menghapus pasien karena masih ada data terkait di resep.'));
+        } else {
+            // Jika tidak ada data terkait, hapus data pasien
+            mysqli_query($db_connect, "DELETE FROM obat WHERE id_obat = '$id_obat_to_delete'");
+
+            // Tampilkan Sweet Alert sukses
+            echo json_encode(array('status' => 'success', 'message' => 'Data Obat berhasil dihapus.'));
+        }
+    }
+}
 
 // tambah data obat php
 if (isset($_POST["Tambah"])) {
@@ -37,13 +60,13 @@ if (isset($_POST["ubahObat"])) {
     header("Location: ../m_data_obat.php");
 }
 
-// hapus data obat
-if (isset($_GET['id_obat'])) {
-    mysqli_query($db_connect, "DELETE FROM obat WHERE id_obat='$_GET[id_obat]'");
+// // hapus data obat
+// if (isset($_GET['id_obat'])) {
+//     mysqli_query($db_connect, "DELETE FROM obat WHERE id_obat='$_GET[id_obat]'");
 
-    header("Location: ../m_data_obat.php");
-    die();
-}
+//     header("Location: ../m_data_obat.php");
+//     die();
+// }
 
 
 ?>

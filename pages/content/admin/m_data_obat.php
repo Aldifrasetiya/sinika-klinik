@@ -116,7 +116,7 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
                                                 <?= $row['stok']; ?>
                                             </td>
                                             <td style='vertical-align: middle;'>
-                                                <div style='display: flex; align-items: center; gap: 10px;'>
+                                                <div style="display: flex; align-items: center; gap: 10px;">
                                                     <a href='m_ubah_data_obat.php?id=<?= $row['id_obat']; ?>'>
                                                         <button type="button" class="btn btn-warning">Edit</button>
                                                     </a>
@@ -135,18 +135,20 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
             </div>
         </div>
     </div>
-    </div>
-    </div>
 </body>
 <script>
     const SweetAlert2Demo = function () {
         const initDemos = function () {
             $('.delete').click(function (e) {
-                var url = e.target.getAttribute('href');
+                e.preventDefault(); // Mencegah navigasi langsung ke URL href
+
+                var id_obat = $(this).data('id_obat');
+                var url = "proses/proses_data_obat.php?id_obat=" + id_obat;
+
                 swal({
                     title: 'Yakin ingin menghapus?',
                     text: "Data tidak bisa kembali jika terhapus!",
-                    type: 'warning',
+                    icon: 'warning',
                     buttons: {
                         confirm: {
                             text: 'Hapus',
@@ -159,26 +161,58 @@ require_once("{$base_dir}pages{$ds}content{$ds}core{$ds}h_admin.php");
                         }
                     }
                 }).then((Delete) => {
+                    // Membuat request AJAX ke backend
                     if (Delete) {
-                        swal({
-                            title: 'Data Terhapus!',
-                            text: 'Data Obat Terhapus',
-                            type: 'success',
-                            buttons: {
-                                confirm: {
-                                    className: 'btn btn-success'
+                        $.ajax({
+                            url: url,
+                            type: 'GET',
+                            dataType: 'json',
+                            success: function (result) {
+                                if (result.status == 'success') {
+                                    swal({
+                                        title: 'Sukses',
+                                        text: result.message,
+                                        icon: 'success',
+                                        buttons: {
+                                            confirm: {
+                                                className: 'btn btn-success'
+                                            }
+                                        }
+                                    }).then(() => {
+                                        window.location.href = 'm_data_obat.php';
+                                    });
+                                } else {
+                                    swal({
+                                        title: 'Error',
+                                        text: result.message,
+                                        icon: 'error',
+                                        buttons: {
+                                            confirm: {
+                                                className: 'btn btn-danger'
+                                            }
+                                        }
+                                    });
                                 }
+                            },
+                            error: function () {
+                                swal({
+                                    title: 'Error',
+                                    text: 'Terjadi kesalahan saat melakukan operasi hapus.',
+                                    icon: 'error',
+                                    buttons: {
+                                        confirm: {
+                                            className: 'btn btn-danger'
+                                        }
+                                    }
+                                });
                             }
-
                         });
-                        setTimeout(function () {
-                            window.location.href = url;
-                        }, 2000);
                     } else {
                         swal.close();
                     }
                 });
             });
+
         };
         return {
             //== Init
